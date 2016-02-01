@@ -1,0 +1,288 @@
+@import url("http://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900");
+@import url("http://fonts.googleapis.com/css?family=Quicksand:300,400,700");
+@import url(https://fonts.googleapis.com/css?family=Walter+Turncoat|Cinzel|Kaushan+Script);
+
+ /* DARK SUNSET COLOURS */
+/*$text:   #ff5434;
+$accent: #cc1e2c;
+$shade1: #731630;
+$shade2: #40152a;
+$shade3: #261822;*/
+
+
+ /* GREY SHADES - RED ACCENT */
+/*$text:   #f2f2f2;
+$accent: #f60a20;
+$shade1: #8c8979;
+$shade2: #404040;
+$shade3: #262526;*/
+
+ /* WINTER *//*
+$text:   #bfbd9f;
+$accent: #f1f2d8;
+$shade1: #778c7a;
+$shade2: #425955;
+$shade3: #1b1d26;*/
+
+ /* WINTER 2 */
+$text:   #c5c7b6;
+$accent: #2f3837;
+$shade1: #fff8d3;
+$shade2: #4c493e;
+$shade3: #222028;
+
+
+
+$modal-background: $shade1; 
+$modal-text: $accent;
+$modal-footer: $shade2;
+
+$font1: 'Roboto', sans-serif;
+$font2: 'Quicksand', sans-serif;
+$font3: 'Walter Turncoat', cursive;
+$font4: 'Cinzel', serif;
+$font5: 'Kaushan Script', cursive;
+
+
+
+html
+{
+  font-family: $font1;
+  color: $text;
+
+  background-image: url('/images/use_your_illusion.png');
+  /*background-size: cover;*/
+}
+
+
+footer
+{
+  background-color: $shade3 !important;
+  margin-top: 0 !important;
+  font-family: $font3;
+}
+
+header, nav
+{
+  background-color: transparent;
+  box-shadow: none;
+  color: $accent;
+}
+
+nav
+{
+  line-height: 1.5;
+  padding: 0.8em;
+}
+
+header, nav, footer
+{
+  color: $text !important;
+  a
+  {
+    color: $shade1;
+    &:visited
+    {
+
+      color: $shade1;
+    }
+  }
+  a:hover
+  {
+    color: $accent;
+  }
+
+}
+
+a
+{
+  color: $shade2;
+
+  &:visited
+  {
+    color: $shade2;
+  }
+  &:hover
+  {
+    color: $accent;
+  }
+}
+
+a:hover
+{
+  color: $text;
+}
+
+header
+{
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-image: url('/images/forest.jpg ');
+  /*background-image: url('/images/ZenBG3.png');*/
+}
+
+h1, h2
+{
+  color: $accent;
+  font-family: $font4;
+}
+h4, h5
+{
+  font-family: $font3;
+}
+
+body 
+{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main
+{
+  flex: 1 0 auto;
+  margin-bottom: 0;
+  /*background-color: $shade2;*/
+  padding: 0.75em;
+}
+
+.modal
+{
+  color: $modal-text;
+  background-color: $modal-background;
+  input, textarea
+  {
+    color: $modal-text;
+    border-color: $modal-background; 
+  }
+}
+
+.modal-footer
+{
+  background-color: $modal-footer !important   ;
+  .btn-flat
+  {
+    color: $modal-text;
+    color: $text;
+  }
+}
+
+.f100
+{
+  font-weight: 100;
+}
+
+
+.f300
+{
+  font-weight: 300;
+}
+
+.f400
+{
+  font-weight: 400;
+}
+
+.f500
+{
+  font-weight: 500;
+}
+
+
+.f700
+{
+  font-weight: 700;
+}
+
+.f900
+{
+  font-weight: 900;
+}
+
+
+.f2
+{
+  font-family: $font2;
+}
+
+.f3
+{
+  font-family: $font3;
+}
+
+.f4
+{
+  font-family: $font4;
+}
+
+.f5
+{
+  font-family: $font5;
+}
+
+
+#banner {
+
+  padding: 5em;
+
+  margin-top: 15vh;
+
+  color: $accent;
+
+  .inner {
+    /*background: none;*/
+    display: block;
+    padding: 0 1.5em;
+
+    padding: 3em;
+  }
+}
+
+
+#myName
+{
+  -moz-animation-duration: 2s;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+
+  color: $accent;
+}
+
+
+
+    /*   NAME UNDERLINE   */
+h1 span 
+{
+    position:relative;
+    padding-bottom : 5px;
+}
+
+h1 span:after
+{
+  position:absolute; 
+  left:0; 
+  bottom:0; 
+  width:101%; 
+  height:1px; 
+  border-bottom: 1px solid $accent; 
+  content:""
+}
+
+.navbar 
+.navbar 
+.navbar a:hover,
+.navbar .current a {
+  color: #ffffff;
+}
+.navbar a:hover:before,
+.navbar .current a:before {
+  opacity: 1;
+  left: 0;
+  right: 0;
+}
+
+.accent
+{
+  color: $accent !important;
+}
