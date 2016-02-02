@@ -48,4 +48,10 @@ class Event extends Model
     return $this->belongsTo('App\User');
   }
 
+  public function scopePopular($query)
+    {
+        return $query->where('tickets', '>', 10);
+    }
+
+
 }

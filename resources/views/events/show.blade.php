@@ -19,7 +19,10 @@
     echo "</small>";
   ?>
 
-  <h5>At: <span class="accent f5">{{ $event->event_time->diffForHumans() }}</span></5>
+
+  <h5>At: 
+  {{ $event->event_time->toDayDateTimeString() }}</h5>
+  <span class="accent f5">{{ $event->event_time->diffForHumans() }}</span>
 </div>
 
 
