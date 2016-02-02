@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Validator, Auth;
+use Validator, Auth, Redirect;
 use App\Http\Requests;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -27,7 +27,7 @@ class TestController extends Controller
 
     Auth::attempt(['email' => $request->email, 'password' => $request->password ]);
 
-    return redirect('../');
+    return Redirect::route('/');
 
   }
 

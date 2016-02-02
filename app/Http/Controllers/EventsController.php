@@ -13,6 +13,7 @@ use Carbon\Carbon;
 
 class EventsController extends Controller
 {
+
   public function create(){
     return view('forms.events-create');  
   }
@@ -21,9 +22,7 @@ class EventsController extends Controller
   {
     $request['user_id'] = Auth::id();
 
-    $date = $request['event_date'];
-    $time = $request['event_time'];
-    $dateTime = $date . " " . $time;
+    $dateTime = $request['event_date'] . " " . $request['event_time'];
     $carbon = Carbon::createFromFormat('d F, Y H:i', $dateTime);
     $request['event_time'] = $carbon;
 
@@ -40,8 +39,8 @@ class EventsController extends Controller
   }
 
   public function show(Event $event, $id)
-  {
-    $event = Event::findOrFail($id)->first();
+  { 
+    $event = Event::findOrFail($id);
     return view('events.show', compact('event'));
   }
 

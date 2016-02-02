@@ -1,6 +1,10 @@
 @extends('master')
 
 
+@section('style')
+  <link rel="stylesheet" href="/css/clockpicker.min.css" />
+@stop
+
 @section('content')
 
   <a href="" onclick="history.go(-1)">
@@ -27,6 +31,18 @@
      {{ Form::label('event_time') }}
     </div>
 
+    <div class="input-field clockpicker">
+       <input type="text" class="form-control" name="event_time" value="18:00">
+       {{ Form::label('event_time', "Time") }}
+    </div>
+
+    <div class="black white-text">
+      <section class="container">
+        {{ $event->event_time }}
+      </section>
+    </div>
+
+
     <div class="input-field">
 
      {{ Form::text('tickets', $event->tickets) }}
@@ -44,5 +60,18 @@
 
 </div>
 
+
+@stop
+
+@section('script')
+<script src="/js/clockpicker.min.js"></script>
+<script>
+$('.clockpicker').clockpicker({
+    placement: 'top',
+    align: 'left',
+    donetext: 'Done',
+    autoclose: true
+});
+</script>
 
 @stop

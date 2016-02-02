@@ -24,21 +24,19 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        //
-
         parent::boot($router);
-        $router->model('event', 'App\Event');
+        
         $router->model('tag', 'App\Tag');
+        // $router->model('event', 'App\Event');
         // $router->model('user', 'App\User');
 
         $router->bind('user', function($id) {
             return App\User::where('id', $id)->first();
         });
 
-        // $router->bind('event', function($id){
-        //   return App\Event::where('id', $id)->first();
-        // });
-
+        $router->bind('event', function($id){
+          return App\Event::where('id', $id)->first();
+        });
     }
 
     /**

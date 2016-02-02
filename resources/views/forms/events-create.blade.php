@@ -34,8 +34,8 @@ FUCK
   </div>
 
   <div class="input-field clockpicker">
-       <input type="text" class="form-control" name="event_time" value="18:00">
-       {{ Form::label('event_time', "Time") }}
+     <input type="text" class="form-control" name="event_time" value="18:00">
+     {{ Form::label('event_time', "Time") }}
   </div>
 
   <div class="input-field">

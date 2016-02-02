@@ -33,7 +33,7 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::get('logout', ['as' => 'logout', 'uses' => 'TestController@logout']);
-        Route::get('login', ['as' => 'loginTest', 'uses' => 'TestController@test']);
+    Route::get('login', ['as' => 'loginTest', 'uses' => 'TestController@test']);
 
     Route::resource('users', 'TestController');
 
