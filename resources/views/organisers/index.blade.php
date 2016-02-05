@@ -14,11 +14,11 @@
     ?>
   </div>
 
-  @forelse( $users as $user )
+  @forelse( $organisers as $organiser )
 
     <div class="card">
       <div class="card-content">
-        <a href="/users/{{ $user->id }}">{{ $user->name }}</a>
+        <a href="/organisers/{{ $organiser->id }}">{{ $organiser->name }}</a>
       </div>
       <div class="card-action">
         WOT
@@ -29,6 +29,6 @@
   @endforeach
 
 
-  {{ link_to_route('users.create', 'Create Account') }}
+  {{ link_to_route('organisers.create', 'Create Organiser Account') }}
 
 @stop

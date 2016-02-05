@@ -14,6 +14,12 @@ use Carbon\Carbon;
 class EventsController extends Controller
 {
 
+
+  public function __construct()
+  {
+      $this->middleware('auth', ['except' => ['show', 'index'] ]);
+  }
+
   public function create(){
     return view('forms.events-create');  
   }
@@ -25,8 +31,7 @@ class EventsController extends Controller
 
     // parse date and time to create a carbon instance
     $dateTime = $request['event_date'] . " " . $request['event_time'];
-    $carbon = Carbon::createFromFormat('d F, Y H:i', $dateTime);
-    $request['event_time'] = $carbon;
+    $request['event_time'] = Carbon::createFromFormat('d F, Y H:i', $dateTime);
 
     // create an Event and associate the user with it
     Event::create($request->toArray())->user()->associate(Auth::id());

@@ -13,8 +13,13 @@ class CreateOrganisersTable extends Migration
     public function up()
     {
         Schema::create('organisers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+           $table->increments('id');
+           $table->string('name');
+           $table->string('email')->unique();
+           $table->string('location')->nullable();
+           $table->string('password', 64);
+           $table->rememberToken();
+           $table->timestamps();
         });
     }
 

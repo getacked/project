@@ -35,13 +35,19 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('logout', ['as' => 'logout', 'uses' => 'TestController@logout']);
     Route::get('login', ['as' => 'loginTest', 'uses' => 'TestController@test']);
 
+    Route::put('organisers/login', ['as' => 'orgLogin', 'uses' => 'OrganisersController@handleLogin'] );
+    Route::get('organisers/logout', ['as' => 'orgLogout', 'uses' => 'OrganisersController@logout'] );
+
+
     Route::resource('users', 'TestController');
-
     Route::resource('events', 'EventsController');
+    Route::resource('organisers', 'OrganisersController');
+    Route::resource('tags', 'TagsController');
 
-    Route::controllers([
-      'auth' => 'Auth\AuthController',
-      'password' => 'Auth\PasswordController',
-    ]);
+
+    // Route::controllers([
+    //   'auth' => 'Auth\AuthController',
+    //   'password' => 'Auth\PasswordController',
+    // ]);
 
 });

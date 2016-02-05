@@ -1,9 +1,9 @@
 <header class="accent flow-text center-align"> 
-  <nav class="navbar hide-on-small-only">
-    <a class="left" href="{{ route('users.index') }}">Users</a>
-    <a class="right modal-trigger" href="{{ route('events.index') }}">Events</a>
-    <a href="{{ url('auth/login') }}">Login</a>
-      
+  <nav class="navbar row hide-on-small-only">
+    <a class="col s2" href="{{ route('users.index') }}">Users</a>
+    <a class="col s2" href="{{ route('events.index') }}">Events</a>
+    <a class="col s2" href="{{ route('organisers.index') }}">Organisers</a>
+    <a class="col s2" href="{{ route('tags.index') }}">Tags</a>
   </nav>  
 <div>
   <?php
@@ -21,6 +21,7 @@
   <?php
     if(Auth::check()){
       echo "You're logged in as " . Auth::user()->name ;
+      // dd(Auth::user());
     }
   ?>
 </div>

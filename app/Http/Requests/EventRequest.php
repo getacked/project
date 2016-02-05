@@ -15,12 +15,7 @@ class EventRequest extends Request
      */
     public function authorize()
     {
-        if( Auth::check() )
-        {
-            return true;
-        }else{
-            return false;
-        }
+        return Auth::check();
     }
 
     /**
@@ -34,7 +29,7 @@ class EventRequest extends Request
             'event_name' => 'required|min:3',
             'type' => 'required',
             'tickets' => 'required',
-            'event_time' => 'required|after:' . Carbon::now()
+            'event_date' => 'required|after:' . Carbon::now()
         ];
     }
 

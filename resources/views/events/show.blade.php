@@ -23,6 +23,22 @@
   <h5>At: 
   {{ $event->event_time->toDayDateTimeString() }}</h5>
   <span class="accent f5">{{ $event->event_time->diffForHumans() }}</span>
+
+  <div class="teal">
+    <h5>Tags:</h5>
+    @if ( count($event->tags) > 0 )
+      <ul class="tag-list">
+        @foreach ( $event->tags as $tag )
+          <li class="tag-item">
+            <a href="{{ route('tags.show', $tag->id) }}">
+              {{ $tag->name }}
+            </a>
+          </li>
+        @endforeach
+      </ul>
+    @endif
+  </div>
+
 </div>
 
 

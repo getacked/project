@@ -33,15 +33,9 @@ class Event extends Model
   protected $hidden = [ 'password', 'remember_token' ];
 
 
-  // public function setEventTimeAttribute($date)
-  // {
-  //   $carbon = Carbon::createFromFormat("d F, Y", $date);
-  //   dd($carbon);
-  //   $this->attributes['event_time'] = $carbon;
-  // }
 
   public function tags(){
-      return $this->belongsToMany('App\Tag');
+    return $this->belongsToMany('App\Tag');
   }
 
   public function user(){
@@ -49,9 +43,14 @@ class Event extends Model
   }
 
   public function scopePopular($query)
-    {
-        return $query->where('tickets', '>', 10);
-    }
+  {
+    return $query->where('tickets', '>', 100);
+  }
+
+  public function scopeUpcoming($query)
+  {
+    return $query->where('event_time', '>', Carbon::now() );
+  }
 
 
 }

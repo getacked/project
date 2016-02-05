@@ -36,7 +36,8 @@ class User extends Authenticatable
     }
 
     public function events(){
-        return $this->hasMany('App\Event')->orderBy('event_time');
+        // return $this->hasMany('App\Event')->orderBy('event_time')->where('event_time', '>', Carbon::now() );
+        return $this->hasMany('App\Event')->orderBy('event_time')->popular();
     }
 
 }

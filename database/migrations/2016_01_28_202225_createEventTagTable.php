@@ -19,7 +19,7 @@ class CreateEventTagTable extends Migration
 
 
             $table->foreign('event_id')->references('id')->on('events')
-                    ->onDelete('cascade');
+                    ->onDelete('null');
             $table->foreign('tag_id')->references('id')->on('tags')
                     ->onDelete('cascade');
 

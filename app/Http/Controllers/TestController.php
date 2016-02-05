@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator, Auth, Redirect;
 use App\Http\Requests;
 use App\User;
+use App\Organiser;   //dont need
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 
@@ -27,7 +28,7 @@ class TestController extends Controller
 
     Auth::attempt(['email' => $request->email, 'password' => $request->password ]);
 
-    return Redirect::route('/');
+    return redirect('/');
 
   }
 
@@ -48,11 +49,11 @@ class TestController extends Controller
   {
     Auth::logout();
 
-    return redirect('../');
+    return redirect('/');
   }
 
   public function test(){
-    Auth::login(User::find(1));
+    Auth::login(Organiser::find(2));
     return view('welcome');
   }
 
