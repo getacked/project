@@ -8,11 +8,13 @@
 </a>
 
 <div class="center">
-  <h2>User: {{ $user->name }}</h2> 
+  <h2>User: {{ $user->username }}</h2> 
   <?php
 
     if( $user == Auth::user() ){
       echo "<small>This is you..</small>";
+    }else{
+      echo "<a class='btn-flat' href='" . route('subscribe', $user) . "'>Subscribe</a>";
     }
 
   ?>
@@ -21,7 +23,7 @@
 </div>
 
 <div class="events">
-  <h3>Here are all events from {{ $user->name }}</h3>
+  <h3>Here are all events from {{ $user->username }}</h3>
 
   <ul>  
     @foreach( $user->events as $event )

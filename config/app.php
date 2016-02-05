@@ -126,7 +126,10 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+    /*REPLACED WITH MULTI AUTH */
         Illuminate\Auth\AuthServiceProvider::class,
+        // Sarav\Multiauth\MultiauthServiceProvider::class,
+
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,

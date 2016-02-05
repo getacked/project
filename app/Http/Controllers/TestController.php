@@ -42,6 +42,7 @@ class TestController extends Controller
   public function show(User $user, $id)
   {
     $user = User::find($id);
+    // dd($user);
     return view('users.show', compact('user'));
   }
 
@@ -53,8 +54,20 @@ class TestController extends Controller
   }
 
   public function test(){
-    Auth::login(Organiser::find(2));
+
+    Auth::login(User::find(2));
+
     return view('welcome');
+
+  }
+
+  public function subscribe(User $user, $id)
+  {
+    dd(User::find($id));
+    Auth::user()->subs()->saveMany($user);
+    
+    // show all events
+    return redirect()->action('TestController@show', Auth::user());
   }
 
 }

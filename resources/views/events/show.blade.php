@@ -14,7 +14,7 @@
       echo "<a href='" . route('events.edit', $event)."'>";
       echo "<p class='chip'>Edit event <i class='material-icons'>mode_edit</i></a>";
     }else{
-      echo $event->user['name'] . "'s event";
+      echo $event->user['username'] . "'s event";
     }
     echo "</small>";
   ?>

@@ -55,7 +55,7 @@ class EventsController extends Controller
 
   public function edit(Event $event, $id)
   {
-    $event = Event::findOrFail($id);
+    $event = Event::find($id);
     return view('events.edit', compact('event'));
   }
 
@@ -67,23 +67,16 @@ class EventsController extends Controller
    */
   public function update(EventEditRequest $request, $id){
 
-    $event = Event::findOrFail($id);
-
-    $event->event_name = $request->event_name;
-    $event->tickets = $request->tickets;
-    $event->type = $request->type;
-
     // Parse date and time into a carbon instance 
     $dateTime = $request['event_date'] . " " . $request['event_time'];
     $carbon = Carbon::createFromFormat('d F, Y H:i', $dateTime);
     $request['event_time'] = $carbon;
 
-    $event->event_time = $carbon;
+    // Update the fields shown in the form 
+    Event::where('id', $id)->update($request->only('event_name', 'tickets', 'type', 'event_time'));
 
-    // save variable changes
-    $event->save();
-
-    // show updated event
+    // Show updated event
+    $event = Event::find($id);
     return view('events.show', compact('event'));
   }
   

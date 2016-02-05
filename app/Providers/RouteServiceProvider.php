@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use App\User;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -27,15 +28,17 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot($router);
         
         $router->model('tag', 'App\Tag');
-        // $router->model('event', 'App\Event');
-        // $router->model('user', 'App\User');
 
-        $router->bind('user', function($id) {
-            return App\User::where('id', $id)->first();
+        // $router->bind('user', function($id) {
+        //     return App\User::where('id', $id)->firstOrFail();
+        // });
+
+        \Route::bind('user', function($id) {
+            return App\User::where('id', $id)->firstOrFail();
         });
 
         $router->bind('event', function($id){
-          return App\Event::where('id', $id)->first();
+          return App\Event::where('id', $id)->firstOrFail();
         });
     }
 

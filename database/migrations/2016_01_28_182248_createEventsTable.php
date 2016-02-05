@@ -16,7 +16,7 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->string('event_name');
             $table->dateTime('event_time');
-            $table->string('type');            
+            $table->enum('type', array('music', 'comedy', 'conference', 'talk'));
             $table->integer('tickets')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();

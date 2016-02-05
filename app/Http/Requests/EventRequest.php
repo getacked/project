@@ -37,7 +37,7 @@ class EventRequest extends Request
     public function messages()
     {   
         return [
-            'event_time.after' => "Don't be silly, you can't make an event in the past"
+            'event_date.after' => "Don't be silly, you can't make an event in the past"
         ];
     }
 }

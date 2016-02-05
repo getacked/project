@@ -28,22 +28,18 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', function () {
         return view('welcome');
     });
-    Route::get('logged', function () {
-        return "wow you are logged in";
-    });
 
-    Route::get('logout', ['as' => 'logout', 'uses' => 'TestController@logout']);
-    Route::get('login', ['as' => 'loginTest', 'uses' => 'TestController@test']);
+    Route::auth();
 
-    Route::put('organisers/login', ['as' => 'orgLogin', 'uses' => 'OrganisersController@handleLogin'] );
-    Route::get('organisers/logout', ['as' => 'orgLogout', 'uses' => 'OrganisersController@logout'] );
-
+    Route::get('logoutTest', ['as' => 'testOut', 'uses' => 'TestController@logout']);
+    Route::get('loginTest', ['as' => 'loginTest', 'uses' => 'TestController@test']);
 
     Route::resource('users', 'TestController');
     Route::resource('events', 'EventsController');
-    Route::resource('organisers', 'OrganisersController');
+    // Route::resource('organisers', 'OrganisersController');
     Route::resource('tags', 'TagsController');
 
+    Route::get('/subscribe/{user}', ['uses' => 'TestController@subscribe', 'as' => 'subscribe']);
 
     // Route::controllers([
     //   'auth' => 'Auth\AuthController',

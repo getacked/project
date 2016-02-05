@@ -6,7 +6,7 @@
     <?php
 
       if(Auth::check()){
-        echo "You're logged in as " . Auth::user()->name ;
+        echo "You're logged in as " . Auth::user()->username ;
       }else{
         echo "no luck";
       }
@@ -18,7 +18,7 @@
 
     <div class="card">
       <div class="card-content">
-        <a href="/users/{{ $user->id }}">{{ $user->name }}</a>
+        <a href="/users/{{ $user->id }}">{{ $user->username }}</a>
       </div>
       <div class="card-action">
         WOT

@@ -9,35 +9,27 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'location',
-    ];
 
     protected $table = "users";
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
+    protected $fillable = [
+        'first_name', 'last_name', 'username', 'email', 'location', 'type', 'password'
+    ];
+
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = Hash::make($password);
+    public function events(){
+        return $this->hasMany('App\Event')->orderBy('event_time')->popular();
     }
 
-    public function events(){
-        // return $this->hasMany('App\Event')->orderBy('event_time')->where('event_time', '>', Carbon::now() );
-        return $this->hasMany('App\Event')->orderBy('event_time')->popular();
+    public function subs(){
+        return $this->belongsToMany('App\User', 'subscriptions', 'subscriber_id', 'subscribee_id');
+    }
+
+    public function subscribers(){
+        return $this->belongsToMany('App\User', 'subscriptions', 'subscribee_id', 'subscriber_id');
     }
 
 }

@@ -10,6 +10,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Organiser extends Authenticatable
 {
+
+  protected $table = "organisers";
+
   /**
    * The attributes that are mass assignable.
    *
@@ -19,7 +22,6 @@ class Organiser extends Authenticatable
       'name', 'email', 'location',
   ];
 
-  protected $table = "organisers";
 
   /**
    * The attributes excluded from the model's JSON form.
@@ -30,13 +32,4 @@ class Organiser extends Authenticatable
       'password', 'remember_token',
   ];
 
-
-  public function setPasswordAttribute($password)
-  {
-      $this->attributes['password'] = Hash::make($password);
-  }
-
-  // public function events(){
-  //     return $this->hasMany('App\Event')->orderBy('event_time')->upcoming();
-  // }
 }
