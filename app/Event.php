@@ -33,7 +33,6 @@ class Event extends Model
   protected $hidden = [ 'password', 'remember_token' ];
 
 
-
   public function tags(){
     return $this->belongsToMany('App\Tag');
   }

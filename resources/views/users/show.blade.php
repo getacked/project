@@ -11,10 +11,24 @@
   <h2>User: {{ $user->username }}</h2> 
   <?php
 
+    $mySubs = Auth::user()->subs->toArray();
+    $subscribed = false;
+
+    //check if the user has already subscribed to this host
+    foreach( Auth::user()->subs->toArray() as $sub){
+      if ( in_array($user->username, $sub)  ){
+        $subscribed = true;
+      }
+    }
+
+    if( $subscribed ){
+      printf("You are subscribed to %s.", $user->username);
+    }else{
+      echo "<a class='btn' href='".route('subscribe', $user)."'>Subscribe</a>";
+    }
+
     if( $user == Auth::user() ){
       echo "<small>This is you..</small>";
-    }else{
-      echo "<a class='btn-flat' href='" . route('subscribe', $user) . "'>Subscribe</a>";
     }
 
   ?>

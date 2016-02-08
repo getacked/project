@@ -65,7 +65,13 @@ class TestController extends Controller
   {
     Auth::user()->subs()->attach($user->id);
     
-    // show all events
+    // show all subscriptions
+    return view('users.follows');
+  }
+
+  public function subscriptions()
+  {
+
     return view('users.follows');
   }
 

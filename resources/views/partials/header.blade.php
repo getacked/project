@@ -3,6 +3,9 @@
     <a class="col s2" href="{{ route('users.index') }}">Users</a>
     <a class="col s2" href="{{ route('events.index') }}">Events</a>
     <a class="col s2" href="{{ route('tags.index') }}">Tags</a>
+    @if(Auth::check())
+    <a class="col s2" href="{{ route('subscriptions') }}">Subs</a>
+    @endif
   </nav>  
 <div>
   <?php
@@ -21,6 +24,9 @@
   <?php
     if(Auth::check()){
       echo "Welcome back " . Auth::user()->username ;
+      echo '<a href="'.route('events.create').'">
+        <i class="material-icons small">add_to_queue</i>
+      </a>';
     }
   ?>
 </div>

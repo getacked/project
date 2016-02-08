@@ -23,7 +23,7 @@ class User extends Authenticatable
     public function events(){
         return $this->hasMany('App\Event')->orderBy('event_time')->popular();
     }
-
+    
     public function subs(){
         return $this->belongsToMany('App\User', 'subscriptions', 'subscriber_id', 'subscribee_id');
     }

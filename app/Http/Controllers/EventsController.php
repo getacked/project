@@ -10,10 +10,10 @@ use App\Http\Requests\EventRequest;
 use App\Http\Requests\EventEditRequest;
 use Auth, Redirect;
 use Carbon\Carbon;
+use App\Tag;
 
 class EventsController extends Controller
 {
-
 
   public function __construct()
   {
@@ -21,7 +21,8 @@ class EventsController extends Controller
   }
 
   public function create(){
-    return view('forms.events-create');  
+    $tags = Tag::lists('name');
+    return view('forms.events-create', compact('tags'));  
   }
 
   public function store(EventRequest $request)
@@ -33,8 +34,31 @@ class EventsController extends Controller
     $dateTime = $request['event_date'] . " " . $request['event_time'];
     $request['event_time'] = Carbon::createFromFormat('d F, Y H:i', $dateTime);
 
+    $attributes = $request->only('event_name', 'type', 'event_time', 'tickets', 'tags');
+
     // create an Event and associate the user with it
-    Event::create($request->toArray())->user()->associate(Auth::id());
+    $event = Event::create($request->toArray())->user()->associate(Auth::id());
+    
+
+    // trim custom tags for whitespace and make array
+    $trimmedTags = preg_replace('/\s+/', '', $request['customTags']);
+    $tags = explode(',', $trimmedTags);
+
+    if($request['tags'])
+    {
+      foreach($request['tags'] as $tag)
+      {
+        $event->tags()->attach($tag);
+      }  
+    }
+
+    if($tags)
+    {
+      foreach($tags as $tag)
+      {
+        $event->tags()->attach(Tag::firstOrCreate(array('name' => $tag)));
+      }  
+    }
     
     // show all events
     return redirect()->action('EventsController@index');
