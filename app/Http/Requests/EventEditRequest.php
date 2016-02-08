@@ -32,7 +32,6 @@ class EventEditRequest extends Request
     {
         return [
             'event_name' => 'required|min:3',
-            'type' => 'required',
             'tickets' => 'required',
             'event_date' => 'required|after:' . Carbon::now()
         ];

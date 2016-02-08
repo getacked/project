@@ -21,11 +21,6 @@
      {{ Form::label('event_name', 'Event Name') }}
     </div>
 
-    <div class="input-field">
-     {{ Form::text('type', $event->type) }}
-     {{ Form::label('type', 'Type') }}
-    </div>
-
     <?php 
       $date = $event->event_time->format('d F, Y');
       $time = substr($event->event_time->toTimeString(), 0, 5);

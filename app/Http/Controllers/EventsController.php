@@ -74,10 +74,14 @@ class EventsController extends Controller
 
     // Update the fields shown in the form 
     Event::where('id', $id)->update($request->only('event_name', 'tickets', 'type', 'event_time'));
-
     // Show updated event
     $event = Event::find($id);
     return view('events.show', compact('event'));
   }
   
+  public function addTag(Event $event)
+  {
+    return "wowo";
+  }
+
 }

@@ -13,7 +13,7 @@ class CreateSubscriptionsTable extends Migration
     public function up()
     {
         Schema::create('subscriptions', function (Blueprint $table) {
-            $table->integer('subcriber_id')->unsigned()->index();
+            $table->integer('subscriber_id')->unsigned()->index();
             $table->foreign('subscriber_id')->references('id')->on('users')
                     ->onDelete('cascade');
 

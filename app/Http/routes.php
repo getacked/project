@@ -39,6 +39,8 @@ Route::group(['middleware' => ['web']], function () {
     // Route::resource('organisers', 'OrganisersController');
     Route::resource('tags', 'TagsController');
 
+    Route::get('events/{{id}}/tags', ['as' => 'events.addTag', 'uses' => 'EventsController@addTag']);
+
     Route::get('/subscribe/{user}', ['uses' => 'TestController@subscribe', 'as' => 'subscribe']);
 
     // Route::controllers([

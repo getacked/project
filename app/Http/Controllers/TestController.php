@@ -61,13 +61,17 @@ class TestController extends Controller
 
   }
 
-  public function subscribe(User $user, $id)
+  public function subscribe(User $user)
   {
-    dd(User::find($id));
-    Auth::user()->subs()->saveMany($user);
+    Auth::user()->subs()->attach($user->id);
     
     // show all events
-    return redirect()->action('TestController@show', Auth::user());
+    return view('users.follows');
+  }
+
+  public function follows()
+  {
+    return view('users.follows', Auth::user() );
   }
 
 }

@@ -23,10 +23,18 @@ FUCK
     {{ Form::label('event_name', 'Event Name') }}
   </div>
 
+
   <div class="input-field">
-    {{ Form::text('type') }}
+    <select name="type" class="browsser-default">
+      <option value="" disabled selected>Choose an event category</option>
+      <option value="music">Music</option>
+      <option value="comedy">Comedy</option>
+      <option value="conference">Conference</option>
+      <option value="talk">Talk</option>
+    </select>
     {{ Form::label('type', 'Type') }}
   </div>
+
 
   <div class="input-field">
     <input name="event_date" type="date" class="datepicker">
@@ -42,6 +50,19 @@ FUCK
     {{ Form::text('tickets') }}
     {{ Form::label('tickets', 'Tickets') }}
   </div>
+
+ <!--  <div> 
+    <div class="input-field">
+      {{ Form::select('tags') }}
+      {{ Form::label('tags', 'Tags') }}
+    </div>
+
+    <div>
+      <h3>Or Create your own!</h3>
+      {{ Form::textarea('customTags') }}
+    </div>
+
+  </div> -->
 
   {{ Form::token() }}
 
@@ -62,6 +83,12 @@ $('.clockpicker').clockpicker({
     donetext: 'Done',
     autoclose: true
 });
+
+$(document).ready(function() {
+  $('select').material_select();
+});
+
+
 </script>
 
 @stop

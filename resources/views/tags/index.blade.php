@@ -17,7 +17,7 @@
   <div class="tags row">
     <ul>
       @forelse( $tags as $tag )
-        <li>{{ $tag->name }}</li>
+        <li><a href="{{ route('tags.show', $tag->id) }}">{{ $tag->name }}</a></li>
       @endforeach
     </ul>
   </div>
