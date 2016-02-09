@@ -19,21 +19,14 @@
 <div class="subscriptions">
 
 @foreach( $user->subs as $sub )
-  <p>{{ $sub->username }}</p>
-  <?php 
-    $upcoming = $sub->events()->orderBy('event_time')->take(4);
-    // dd($upcoming);
-    foreach( $upcoming as $event )
-    {
-      // dd($event);
-    }
-  ?>
-  @foreach($upcoming as $event)
-    
-    @include('partials.event-card', $event);
-    
-  @endforeach
-
+  <h5>Events by <a href="">{{ $sub->username }}</a>:</h5>
+  <div class="upcoming-subs row">
+    @foreach($sub->events as $event)
+      <div class="col s3">
+        @include('partials.event-card-small', $event);
+      </div>
+    @endforeach
+  </div>
 @endforeach
 
 </div>

@@ -69,15 +69,9 @@ class TestController extends Controller
     return view('users.follows');
   }
 
-  public function subscriptions()
+  public function getSubscriptions()
   {
-
     return view('users.follows');
-  }
-
-  public function follows()
-  {
-    return view('users.follows', Auth::user() );
   }
 
 }

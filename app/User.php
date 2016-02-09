@@ -21,7 +21,11 @@ class User extends Authenticatable
     ];
 
     public function events(){
-        return $this->hasMany('App\Event')->orderBy('event_time')->popular();
+        return $this->hasMany('App\Event');
+    }
+
+    public function scopeUpcoming(){
+        return $query->whereBetween('event_time', [Carbon::now(), new Carbon('next week')]);
     }
     
     public function subs(){

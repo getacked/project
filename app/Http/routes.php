@@ -2,19 +2,6 @@
 
 /*
 |--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
-
-
-/*
-|--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
 |
@@ -36,18 +23,14 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::resource('users', 'TestController');
     Route::resource('events', 'EventsController');
-    // Route::resource('organisers', 'OrganisersController');
     Route::resource('tags', 'TagsController');
 
-    Route::get('subscriptions', ['uses' => 'TestController@subscriptions', 'as' => 'subscriptions']);
+    Route::controller('profile', 'TestController');
 
-    Route::get('events/{{id}}/tags', ['as' => 'events.addTag', 'uses' => 'EventsController@addTag']);
+    // Route::get('subscriptions', ['uses' => 'TestController@subscriptions', 'as' => 'subscriptions']);
+
+    // Route::get('events/{{id}}/tags', ['as' => 'events.addTag', 'uses' => 'EventsController@addTag']);
 
     Route::get('/subscribe/{user}', ['uses' => 'TestController@subscribe', 'as' => 'subscribe']);
-
-    // Route::controllers([
-    //   'auth' => 'Auth\AuthController',
-    //   'password' => 'Auth\PasswordController',
-    // ]);
 
 });

@@ -4,7 +4,7 @@
     <a class="col s2" href="{{ route('events.index') }}">Events</a>
     <a class="col s2" href="{{ route('tags.index') }}">Tags</a>
     @if(Auth::check())
-    <a class="col s2" href="{{ route('subscriptions') }}">Subs</a>
+    <a class="col s2" href="{{ action('TestController@getSubscriptions') }}">Subs</a>
     @endif
   </nav>  
 <div>
