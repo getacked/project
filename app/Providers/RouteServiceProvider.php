@@ -33,9 +33,15 @@ class RouteServiceProvider extends ServiceProvider
         //     return App\User::where('id', $id)->firstOrFail();
         // });
 
+        // \Route::bind('user', function(User $user) {
+        //     return $user;
+        // });
+
+
         \Route::bind('user', function($id) {
             return User::where('id', $id)->firstOrFail();
         });
+
 
         $router->bind('event', function($id){
           return App\Event::where('id', $id)->firstOrFail();

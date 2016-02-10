@@ -24,7 +24,14 @@
     <?php 
       $date = $event->event_time->format('d F, Y');
       $time = substr($event->event_time->toTimeString(), 0, 5);
+      $types = ['music', 'comedy', 'conference', 'talk']; 
+      $tags = \App\Tag::lists('name');
     ?>
+
+    <div class="input-field">
+      {{ Form::select('type', $types, null, ['class' => 'validate']) }}
+      {{ Form::label('type', 'Type') }}
+    </div>  
 
     <div class="input-field">
      <input name="event_date" type="date" value="{{ $date }}" class="datepicker">
@@ -37,10 +44,22 @@
     </div>
 
     <div class="input-field">
-
      {{ Form::text('tickets', $event->tickets) }}
      {{ Form::label('tickets', 'Tickets') }}
     </div>
+
+    <!-- <div>  -->
+      <div class="input-field">
+        {{ Form::select('tags[]', $tags, $event->tags()->get(), ['multiple']) }}
+        {{ Form::label('tags', 'Tags') }}
+      </div>
+
+      <div>
+        <h3>Or Create your own! <small>(seperated by commas)</small></h3>
+        {{ Form::textarea('customTags') }}
+      </div>
+
+    <!-- </div> -->
         
 
     {{ Form::token() }}

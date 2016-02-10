@@ -24,13 +24,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('users', 'TestController');
     Route::resource('events', 'EventsController');
     Route::resource('tags', 'TagsController');
-
     Route::controller('profile', 'TestController');
 
-    // Route::get('subscriptions', ['uses' => 'TestController@subscriptions', 'as' => 'subscriptions']);
-
-    // Route::get('events/{{id}}/tags', ['as' => 'events.addTag', 'uses' => 'EventsController@addTag']);
-
     Route::get('/subscribe/{user}', ['uses' => 'TestController@subscribe', 'as' => 'subscribe']);
-
+    
 });

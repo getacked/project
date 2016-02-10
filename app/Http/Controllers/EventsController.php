@@ -66,7 +66,7 @@ class EventsController extends Controller
 
   public function index()
   {
-     $events = Event::orderBy('event_time')->get();
+     $events = Event::orderBy('event_time')->upcoming()->get();
 
      return view('events.all', compact('events') );
   }

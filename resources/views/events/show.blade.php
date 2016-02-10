@@ -18,6 +18,7 @@
       echo $event->user['username'] . "'s event";
     }
     echo "</small>";
+    
   ?>
 
 

@@ -21,11 +21,20 @@
 @foreach( $user->subs as $sub )
   <h5>Events by <a href="">{{ $sub->username }}</a>:</h5>
   <div class="upcoming-subs row">
-    @foreach($sub->events as $event)
-      <div class="col s3">
-        @include('partials.event-card-small', $event);
+    <?php
+      $upcomingEvents = $sub->events()->nextWeek(4)->get();
+     ?>
+    @unless( $upcomingEvents->isEmpty() )
+      @foreach($upcomingEvents as $event)
+        <div class="col s3">
+          @include('partials.event-card-small', $event);
+        </div>
+      @endforeach
+    @else
+      <div class="col s12">
+        No upcoming events from this user. 
       </div>
-    @endforeach
+    @endif
   </div>
 @endforeach
 

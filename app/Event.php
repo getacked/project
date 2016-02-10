@@ -48,7 +48,12 @@ class Event extends Model
 
   public function scopeUpcoming($query)
   {
-    return $query->where('event_time', '>', Carbon::now() );
+    return $query->where('event_time', '>', Carbon::now());
+  }
+
+  public function scopeNextWeek($query, $amount)
+  {
+    return $query->where('event_time', '<', new Carbon('next week'))->take($amount);
   }
 
 
