@@ -1,5 +1,5 @@
 <header class="accent flow-text center-align"> 
-  <nav class="navbar row hide-on-small-only">
+  <nav class="navbar row">
     <a class="col s2" href="{{ route('users.index') }}">Users</a>
     <a class="col s2" href="{{ route('events.index') }}">Events</a>
     <a class="col s2" href="{{ route('tags.index') }}">Tags</a>

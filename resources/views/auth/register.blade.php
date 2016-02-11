@@ -9,6 +9,20 @@
    
         {!! csrf_field() !!}
 
+
+        <div>
+          <h5>Select User Type</h5>
+          <p>
+            {{ Form::radio('type', '0', 'true', array('id' => 'regular') )  }}
+            {{ Form::label('regular', 'Regular') }}
+          </p>
+          <p>
+            {{ Form::radio('type', '1', 'false', array('id' => 'host') )  }}
+            {{ Form::label('host', 'Host') }}
+          </p>
+        </div>
+
+
         <div class="input-field">
           {{ Form::text('first_name',  old('first_name'), ['class' => 'validate col'] ) }}
           {{ Form::label('first_name', 'First Name') }}
@@ -30,11 +44,6 @@
         </div>
 
         <div class="input-field">
-          {{ Form::text('location', old('location'), ['class' => 'validate col'] ) }}
-          {{ Form::label('location', 'Location') }}
-        </div>
-
-        <div class="input-field">
          {{ Form::password('password') }}
          {{ Form::label('password', 'Password')  }}
         </div>
@@ -43,6 +52,10 @@
           {{ Form::password('password_confirmation') }}
           {{ Form::label('password_confirmation', 'Confirm Password')  }}
          </div>
+
+
+
+         
 
     
       {{ Form::token() }}

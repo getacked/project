@@ -27,8 +27,8 @@ class UserRequest extends Request
             'first_name' => 'required',
             'last_name' => 'required',
             'username' => 'required|unique:users',
-            'location' => 'required',
             'email' => 'required|email|unique:users|max:255',
+            'tel_no' => 'required_if:type,1',
         ];
     }
 }

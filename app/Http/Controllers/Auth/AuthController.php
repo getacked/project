@@ -53,9 +53,9 @@ class AuthController extends Controller
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'username' => 'required|unique:users',
-            'location' => 'required',
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|confirmed|min:6',
+            'tel_no' => 'required_if:type,1',
         ]);
     }
 
@@ -67,13 +67,23 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'location' => $data['location'],
-        ]);
+        if($data['type'] == 1){  // host type
+            return User::create([
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'username' => $data['username'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'tel_no' => $data['tel_no'],
+            ]);
+        }else{
+            return User::create([
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'username' => $data['username'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);    
+        }
     }
 }

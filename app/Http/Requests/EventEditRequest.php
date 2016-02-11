@@ -15,12 +15,7 @@ class EventEditRequest extends Request
      */
     public function authorize()
     {
-        if( Auth::check() )
-       {
-           return true;
-       }else{
-           return false;
-       }
+       return Auth::check();
     }
 
     /**

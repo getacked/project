@@ -15,16 +15,16 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->longtext('description');
             $table->dateTime('event_time');
             $table->enum('event_type', 
                 array('music', 'comedy', 'conference', 'talk'));
             $table->integer('ticket_cap')->unsigned();
             $table->integer('ticket_left')->unsigned()->nullable();
-            $table->longtext('description');
             
-            $table->integer('photo_id')->unsigned();
+            $table->integer('photo_id')->unsigned()->nullable();
 
-            $table->integer('venue_id')->unsigned()->nullable();
+            $table->integer('venue_id')->unsigned();
 
             $table->integer('host_id')->unsigned();
    

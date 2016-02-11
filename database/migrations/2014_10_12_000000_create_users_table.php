@@ -21,14 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password', 64);
             $table->string('tel_no')->nullable();
-            $table->integer('location_id')->unsigned();
-            $table->integer('photo_id')->unsigned();
+            $table->integer('location_id')->unsigned()->nullable();
+            $table->integer('photo_id')->unsigned()->nullable();
             $table->enum('type', array('normal', 'host'));
             $table->rememberToken();
             $table->timestamps();
-
-            // $table->foreign('location_id')->references('id')->on('locations');
-            // $table->foreign('photo_id')->references('id')->on('photos');
         });
     }
 
