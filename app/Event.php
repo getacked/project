@@ -15,7 +15,7 @@ class Event extends Model
    * @var array
    */
   protected $fillable = [
-      'event_name', 'type', 'tickets', 'event_time', 'user_id'
+      'event_name', 'type', 'tickets', 'event_time', 'host_id'
   ];
 
   /**
@@ -33,13 +33,24 @@ class Event extends Model
   protected $hidden = [ 'password', 'remember_token' ];
 
 
+  /* Event Relations */
+ 
+  public function host(){
+    return $this->belongsTo('App\User', 'host_id', 'id');
+  }
+
+  public function attendees()
+  {
+    return $this->belongsToMany('App\User', 'attending', 'event_id', 'user_id');
+  }
+
   public function tags(){
     return $this->belongsToMany('App\Tag');
   }
 
-  public function user(){
-    return $this->belongsTo('App\User');
-  }
+
+
+  /* Event Scopes */ 
 
   public function scopePopular($query)
   {

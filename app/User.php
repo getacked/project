@@ -20,19 +20,31 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function events(){
-        return $this->hasMany('App\Event');
+
+
+    public function scopeUpcoming()
+    {
+        return $query->where('user_type', '=', 'host');
     }
 
-    public function scopeUpcoming(){
-        return $query->whereBetween('event_time', [Carbon::now(), new Carbon('next week')]);
+
+    public function events()
+    {
+        return $this->hasMany('App\Event', 'host_id');
     }
-    
-    public function subs(){
+
+    public function attending()
+    {  
+        return $this->belongsToMany('App\Event', 'attending', 'user_id', 'event_id');
+    }
+
+    public function subs()
+    {
         return $this->belongsToMany('App\User', 'subscriptions', 'subscriber_id', 'subscribee_id');
     }
 
-    public function subscribers(){
+    public function subscribers()
+    {
         return $this->belongsToMany('App\User', 'subscriptions', 'subscribee_id', 'subscriber_id');
     }
 

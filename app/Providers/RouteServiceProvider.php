@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use App\User;
+use App\Event;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -43,8 +44,8 @@ class RouteServiceProvider extends ServiceProvider
         });
 
 
-        $router->bind('event', function($id){
-          return App\Event::where('id', $id)->firstOrFail();
+        \Route::bind('event', function($id){
+          return Event::where('id', $id)->firstOrFail();
         });
     }
 

@@ -14,15 +14,22 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('event_name');
+            $table->string('name');
             $table->dateTime('event_time');
-            $table->enum('type', array('music', 'comedy', 'conference', 'talk'));
-            $table->integer('tickets')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->timestamps();
+            $table->enum('event_type', 
+                array('music', 'comedy', 'conference', 'talk'));
+            $table->integer('ticket_cap')->unsigned();
+            $table->integer('ticket_left')->unsigned()->nullable();
+            $table->longtext('description');
+            
+            $table->integer('photo_id')->unsigned();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            // $table->foreign('venue_id')->references('id')->on('venues');
+            $table->integer('venue_id')->unsigned()->nullable();
+
+            $table->integer('host_id')->unsigned();
+   
+
+            $table->timestamps();
         });
     }
 
@@ -33,9 +40,6 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::table('events', function (Blueprint $table) {
-            $table->dropForeign('events_user_id_foreign');
-        });
-        Schema::drop('events');
+        Schema::dropIfExists('events');
     }
 }

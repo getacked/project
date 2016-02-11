@@ -35,14 +35,12 @@ class TestController extends Controller
   public function index()
   {
      $users = User::all();
-
      return view('users.all', compact('users') );
   }
 
   public function show(User $user, $id)
   {
-    $user = User::find($id);
-    // dd($user);
+    $user = User::findOrFail($id);
     return view('users.show', compact('user'));
   }
 
@@ -64,8 +62,6 @@ class TestController extends Controller
   public function subscribe(User $user)
   {
     Auth::user()->subs()->attach($user->id);
-    
-    // show all subscriptions
     return view('users.follows');
   }
 

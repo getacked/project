@@ -13,11 +13,11 @@ class CreateEventTagTable extends Migration
     public function up()
     {
         Schema::create('event_tag', function (Blueprint $table) {
-            $table->integer('event_id')->unsigned()->index();
+            $table->integer('event_id')->unsigned();
+            $table->integer('tag_id')->unsigned();
+
             $table->foreign('event_id')->references('id')->on('events')
                     ->onDelete('cascade');
-
-            $table->integer('tag_id')->unsigned()->index();
             $table->foreign('tag_id')->references('id')->on('tags')
                     ->onDelete('cascade');
         });
@@ -31,10 +31,11 @@ class CreateEventTagTable extends Migration
      */
     public function down()
     {
+        
         Schema::table('event_tag', function (Blueprint $table) {
             $table->dropForeign('event_tag_event_id_foreign');
             $table->dropForeign('event_tag_tag_id_foreign');
         });
-        Schema::drop('event_tag');
+        Schema::dropIfExists('event_tag');
     }
 }

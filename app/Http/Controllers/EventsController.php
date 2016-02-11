@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
 use App\Http\Requests\EventEditRequest;
-use Auth, Redirect;
+use Auth, Redirect, View;
 use Carbon\Carbon;
 use App\Tag;
 
@@ -28,7 +28,7 @@ class EventsController extends Controller
   public function store(EventRequest $request)
   {
     // set the owner of the event to the logged in user
-    $request['user_id'] = Auth::id();
+    $request['host_id'] = Auth::id();
 
     // parse date and time to create a carbon instance
     $dateTime = $request['event_date'] . " " . $request['event_time'];
@@ -36,8 +36,8 @@ class EventsController extends Controller
 
     $attributes = $request->only('event_name', 'type', 'event_time', 'tickets', 'tags');
 
-    // create an Event and associate the user with it
-    $event = Event::create($request->toArray())->user()->associate(Auth::id());
+    // create an Event and associate the user as host
+    $event = Event::create($request->toArray())->host()->associate(Auth::user());
     
 
     // trim custom tags for whitespace and make array
@@ -106,6 +106,14 @@ class EventsController extends Controller
   public function addTag(Event $event)
   {
     return "wowo";
+  }
+
+  public function follow(Event $event)
+  {
+    // dd($event);
+    $event->attendees()->attach( Auth::user() );
+    return view('events.show', compact('event') );
+    // return View::make('events.show', $event);
   }
 
 }

@@ -14,12 +14,10 @@ class CreateSubscriptionsTable extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->integer('subscriber_id')->unsigned()->index();
-            $table->foreign('subscriber_id')->references('id')->on('users')
-                    ->onDelete('cascade');
+            $table->foreign('subscriber_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->integer('subscribee_id')->unsigned()->index();
-            $table->foreign('subscribee_id')->references('id')->on('users')
-                    ->onDelete('cascade');
+            $table->foreign('subscribee_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -34,6 +32,6 @@ class CreateSubscriptionsTable extends Migration
             $table->dropForeign('subscriptions_subscriber_id_foreign');
             $table->dropForeign('subscriptions_subscribee_id_foreign');
         });
-        Schema::drop('subscriptions');
+        Schema::dropIfExists('subscriptions');
     }
 }

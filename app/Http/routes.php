@@ -20,6 +20,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('logoutTest', ['as' => 'testOut', 'uses' => 'TestController@logout']);
     Route::get('loginTest', ['as' => 'loginTest', 'uses' => 'TestController@test']);
+    Route::get('events/{event}/attend', ['as' => 'events.attend', 'uses' => 'EventsController@follow']);
 
     Route::resource('users', 'TestController');
     Route::resource('events', 'EventsController');
