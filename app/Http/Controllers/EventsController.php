@@ -34,10 +34,11 @@ class EventsController extends Controller
     $dateTime = $request['event_date'] . " " . $request['event_time'];
     $request['event_time'] = Carbon::createFromFormat('d F, Y H:i', $dateTime);
 
-    $attributes = $request->only('event_name', 'type', 'event_time', 'tickets', 'tags');
+    $attributes = $request->only('name', 'type', 'description', 'event_time', 'ticket_cap');
+    $attributes['ticket_left'] = $request['ticket_cap'];
 
     // create an Event and associate the user as host
-    $event = Event::create($request->toArray())->host()->associate(Auth::user());
+    $event = Event::create($attributes)->host()->associate(Auth::user());
     
 
     // trim custom tags for whitespace and make array
@@ -63,6 +64,7 @@ class EventsController extends Controller
     // show all events
     return redirect()->action('EventsController@index');
   }
+
 
   public function index()
   {
@@ -97,7 +99,7 @@ class EventsController extends Controller
     $request['event_time'] = $carbon;
 
     // Update the fields shown in the form 
-    Event::where('id', $id)->update($request->only('event_name', 'tickets', 'type', 'event_time'));
+    Event::where('id', $id)->update($request->only('name', 'tickets', 'type', 'event_time'));
     // Show updated event
     $event = Event::find($id);
     return view('events.show', compact('event'));

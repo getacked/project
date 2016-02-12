@@ -80,6 +80,11 @@ Sign Up
             </div>
           </div>
 
+          <div class="input-field">
+            {{ Form::text('username',  old('username'), ['class' => 'validate col'] ) }}
+            {{ Form::label('username', 'Username') }}
+          </div>
+
           <div class="row">
             <div class="input-field col s6">
               <i class="material-icons prefix">email</i>

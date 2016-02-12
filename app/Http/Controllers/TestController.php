@@ -70,4 +70,10 @@ class TestController extends Controller
     return view('users.follows');
   }
 
+  public function getDashboard()
+  {
+    $user = Auth::user();
+    return view('users.dashboard', compact('user') );
+  }
+
 }

@@ -24,7 +24,7 @@ class CreateEventsTable extends Migration
             
             $table->integer('photo_id')->unsigned()->nullable();
 
-            $table->integer('venue_id')->unsigned();
+            $table->integer('venue_id')->unsigned()->nullable();
 
             $table->integer('host_id')->unsigned();
    

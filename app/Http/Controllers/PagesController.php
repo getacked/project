@@ -24,4 +24,6 @@ class PagesController extends Controller
   public function faq(){
     return View::make('pages.faq');
   }
+
+  
 }

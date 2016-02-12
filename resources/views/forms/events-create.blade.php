@@ -17,8 +17,8 @@ FUCK
 {{ Form::open(array('route' => 'events.store', 'method' => 'POST')) }}
 
   <div class="input-field">
-    {{ Form::text('event_name', null, ['class' => 'validate col'] ) }}
-    {{ Form::label('event_name', 'Event Name') }}
+    {{ Form::text('name', null, ['class' => 'validate col'] ) }}
+    {{ Form::label('name', 'Event Name') }}
   </div>
 
   <?php 
@@ -31,6 +31,11 @@ FUCK
   </div>  
 
   <div class="input-field">
+    {{ Form::textarea('description') }}
+    {{ Form::label('description', 'Event Description')}}
+  </div>
+  
+  <div class="input-field">
     <input name="event_date" type="date" class="datepicker">
     {{ Form::label('event_date', "Date") }}
   </div>
@@ -40,8 +45,8 @@ FUCK
   </div>
 
   <div class="input-field">
-    {{ Form::text('tickets') }}
-    {{ Form::label('tickets', 'Tickets') }}
+    {{ Form::text('ticket_cap') }}
+    {{ Form::label('ticket_cap', 'Tickets') }}
   </div>
 
   <div> 
