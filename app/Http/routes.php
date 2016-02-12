@@ -12,14 +12,12 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', 'PagesController@homepage')->name('landing');
+    Route::get('contact', 'PagesController@contact')->name('contact');
+    Route::get('faq', 'PagesController@faq')->name('faq');
 
     Route::auth();
 
-    Route::get('logoutTest', ['as' => 'testOut', 'uses' => 'TestController@logout']);
-    Route::get('loginTest', ['as' => 'loginTest', 'uses' => 'TestController@test']);
     Route::get('events/{event}/attend', ['as' => 'events.attend', 'uses' => 'EventsController@follow']);
 
     Route::resource('users', 'TestController');

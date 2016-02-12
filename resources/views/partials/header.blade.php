@@ -1,33 +1,43 @@
-<header class="accent flow-text center-align"> 
-  <nav class="navbar row">
-    <a class="col s2" href="{{ route('users.index') }}">Users</a>
-    <a class="col s2" href="{{ route('events.index') }}">Events</a>
-    <a class="col s2" href="{{ route('tags.index') }}">Tags</a>
-    @if(Auth::check())
-    <a class="col s2" href="{{ action('TestController@getSubscriptions') }}">Subs</a>
-    @endif
-  </nav>  
-<div>
-  <?php
+<header>
+  <div class="navbar-fixed">
 
-    if(Auth::check() ){
-      echo "<a href='" . route('testOut') . "' class='btn'>Logout</a>";
-    }else{
-      echo "<a href='" . url('/login')  . "' class='btn'>Login</a>";
-      echo "<a href='" . url('/register')  . "' class='btn'>Register</a>";
-    }
+    <!--Drop down menu definition-->
+      <ul id="dropdown1" class="dropdown-content">
+      <li><a href="index.html">Home</a></li>
+    <li><a href="{{ url('/register') }}">Sign Up!</a></li>
+    <li class="divider"></li>
+    <li><a href="{{ route('contact') }}">Contact</a></li>
+    <li><a href="{{ route('faq') }}">FAQ</a></li>
+    <li><a href="about.html">About Us</a></li>
+    </ul>
 
-  ?>
-</div>
+    <nav>
+      <div class="nav-wrapper">
 
-<div class="right yellow-text">
-  <?php
-    if(Auth::check()){
-      echo "Welcome back " . Auth::user()->username ;
-      echo '<a href="'.route('events.create').'">
-        <i class="material-icons small">add_to_queue</i>
-      </a>';
-    }
-  ?>
-</div>
+      <!--Main logo and site name, centrally aligned EXCLUDED FROM LANDING PAGE-->
+      <a href="{{ route('landing') }}" class="brand-logo center">Eventure</a>
+
+      <!--Left hand side nav-->
+      <ul id="nav-mobile" class="left">
+        <li class="nav-link"><a href="browse.html">Browse</a></li>
+
+      <!--Search button box thing-->
+      <li class="nav-link">
+        <form>
+                  <div class="input-field">
+                    <input id="search" type="search" required>
+                    <label for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+        </div>
+        </form>
+      </li>
+      </ul>
+
+      <!--Right hand side nav-->
+      <ul id="nav-mobile" class="right">
+        <li><a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="dropdown1">Get Started!<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+      </div>
+    </nav>
+  </div>
 </header>

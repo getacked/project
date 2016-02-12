@@ -1,13 +1,16 @@
-@extends('master')
+@extends('base')
 
 
 @section('title')
- Oops! Try again soon.
+ Oops! Something's wrong.
 @stop
 
 @section('content')
-  <p>Sorry, the page you're trying to access cannot be reached right now.</p>
 
-  <p> Please come back soon and try again!</p>
+  <div class="container flow-text">
+    <h5>Sorry, the page you're trying to access cannot be reached right now.</h5>
+
+    <h5> Please come back soon and try again!</h5>
+  </div>
 
 @stop
