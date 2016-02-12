@@ -20,3 +20,9 @@ header, footer
 {
   background-color: gray !important;
 }
+
+.account-pic
+{
+  max-height: 1.2em;
+  max-width: 1.2em;
+}

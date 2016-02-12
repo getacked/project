@@ -27,15 +27,14 @@ class EventsController extends Controller
 
   public function store(EventRequest $request)
   {
-    // set the owner of the event to the logged in user
-    $request['host_id'] = Auth::id();
-
+    $attributes = $request->only('name', 'type', 'description', 'ticket_cap');
+    $attributes['ticket_left'] = $request['ticket_cap'];   
     // parse date and time to create a carbon instance
     $dateTime = $request['event_date'] . " " . $request['event_time'];
-    $request['event_time'] = Carbon::createFromFormat('d F, Y H:i', $dateTime);
+    $attributes['event_time'] = Carbon::createFromFormat('d F, Y H:i', $dateTime);
 
-    $attributes = $request->only('name', 'type', 'description', 'event_time', 'ticket_cap');
-    $attributes['ticket_left'] = $request['ticket_cap'];
+    // set the owner of the event to the logged in user
+    $attributes['host_id'] = Auth::id();
 
     // create an Event and associate the user as host
     $event = Event::create($attributes)->host()->associate(Auth::user());

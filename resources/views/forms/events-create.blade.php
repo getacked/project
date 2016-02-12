@@ -1,17 +1,18 @@
-@extends('master')
+@extends('base')
 
 @section('title')
 FUCK
 @stop
 
 
-@section('style')
+@section('styles')
   <link rel="stylesheet" href="/css/clockpicker.min.css" />
 @stop
 
 
 @section('content')
 
+<!-- <div class="container"> -->
 <h2 class="center"> Create an Event! </h2>
 
 {{ Form::open(array('route' => 'events.store', 'method' => 'POST')) }}
@@ -72,18 +73,17 @@ FUCK
 
 @stop
 
-@section('script')
+@section('scripts')
 <script src="/js/clockpicker.min.js"></script>
 <script>
-  $('.clockpicker').clockpicker({
-      placement: 'top',
-      align: 'left',
-      donetext: 'Done',
-      autoclose: true
-  });
-
   $(document).ready(function() {
     $('select').material_select();
+    $('.clockpicker').clockpicker({
+        placement: 'top',
+        align: 'left',
+        donetext: 'Done',
+        autoclose: true
+    });
   });
 </script>
 

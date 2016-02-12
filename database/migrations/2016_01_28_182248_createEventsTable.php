@@ -27,7 +27,6 @@ class CreateEventsTable extends Migration
             $table->integer('venue_id')->unsigned()->nullable();
 
             $table->integer('host_id')->unsigned();
-   
 
             $table->timestamps();
         });

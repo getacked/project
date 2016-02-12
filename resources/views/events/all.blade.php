@@ -1,4 +1,4 @@
-@extends('master')
+@extends('base')
 
 @section('content')
 
@@ -14,13 +14,13 @@
     ?>
   </div>
 
-  <div class="events row">
+  <ul class="events row">
     @forelse( $events as $event )
-
-      @include('partials.event-card')
-
+      <li class="col s12 m6 l3">
+        @include('partials.event-card')
+      </li>
     @endforeach
-  </div>
+  </ul>
 
   <div class="center">
     <a href="{{ route('events.create') }}">

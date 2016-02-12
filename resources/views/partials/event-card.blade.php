@@ -1,4 +1,4 @@
-<div class="card teal col s12 m6 l4">
+<div class="card teal">
   <div class="center card-content">
     <h4>{{ $event->name }}</h4>  by 
     <h4>{{ $event->host['username'] }}</h4>

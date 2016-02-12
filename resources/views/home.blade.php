@@ -60,7 +60,7 @@
 
       <div id="custom-message">
         <figure>
-          <img class="responsive-img" src="images/logo2.png" alt="Eventure Logo">
+          <img class="responsive-img front-logo" src="images/logo2.png" alt="Eventure Logo">
         </figure>
         <p>
           <a href="#main">Plan your Adventure!</a>
@@ -133,22 +133,21 @@
                     ?>
                      <img class="activator" src="/images/{{ $path }}" />
                 @else 
-                    <img class="activator" src="images/default.jpg" />
+                    <!-- <img class="activator" src="images/default.jpg" /> -->
+                    <img class="activator" src="http://lorempixel.com/840/500" />
                 @endif
               </div>
               <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4 truncate">{{$event->name}}</span>
-                <p>{{ $event->event_time }} : {{ $event->title }}</p>
+                <span class="card-title activator grey-text text-darken-4 truncate">{{ $event->name }}</span>
+                <p>{{ $event->event_time->diffForHumans() }}</p>
               </div>
               <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Contact Info<i class="material-icons right">close</i></span>
-                <p>We're lonely, please contact us.</p>
-                <!-- Icon FB-->
-                <a href="https://www.facebook.com/fionn.o.connor" target="_blank"><img src="http://www.niftybuttons.com/scribble/facebook.png" border="0" margin="1px"></a>
-                <!-- Icon twitter-->
-                <a href="https://twitter.com/charliesheen" target="_blank"><img src="http://www.niftybuttons.com/scribble/twitter.png" border="0" margin="1px"></a>
-                <!-- Icon G+-->
-                <a href="https://plus.google.com/+DerekBridgeGooglePlus" target="_blank"><img src="http://www.niftybuttons.com/scribble/google.png" border="0" margin="1px"></a>
+                <span class="card-title grey-text text-darken-4">{{ $event->name }}<i class="material-icons right">close</i></span>
+                <small>at {{$event->location }}</small>
+                <p>
+                  {{ $event->description }}
+                </p>
+                <a href="{{ route('events.show', $event) }}">See More</a>
               </div>
             </div>
           </div>

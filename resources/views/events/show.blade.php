@@ -26,6 +26,7 @@
 
       <div class="divider"></div>
       <h4 class="center-align">{{$event->name}}</h4>
+      <h5 class="center-align">by <a href="{{ route('users.show', $event->host) }}">{{ $event->host->username }}</a></h5>
       <div class="divider"></div>
       <br>
       <table class="centered highlight">
@@ -62,7 +63,9 @@
           @foreach( $event->tags as $tag )
             <div class="col s4 m3 l2">
               <p class="center-align">
-                {{$tag->name}}
+                <li><a href="{{ route('tags.show', $tag) }}">
+                  {{$tag->name}}
+                </a></li>
               </p>
             </div>
           @endforeach

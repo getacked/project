@@ -1,4 +1,4 @@
-@extends('master')
+@extends('base')
 
 
 @section('content')
@@ -14,11 +14,10 @@
 <div class="events">
   <h3>Here are all events with the <span class="accent">{{ $tag->name }}</span> tag</h3>
 
-  <ul>  
+  <ul class="row">  
     @foreach( $tag->events as $event )
-      <li>@include('partials.event-card')</li>
+      <li class="col s12 m4">@include('partials.event-card')</li>
     @endforeach
-
   </ul>
 
 

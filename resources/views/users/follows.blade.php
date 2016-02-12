@@ -1,4 +1,4 @@
-@extends('master')
+@extends('base')
 
 
 @section('content')
@@ -8,8 +8,8 @@
   $user = Auth::user();
 ?>
 
-<a href="" onclick="history.go(-1)">
-  &larr;
+<a href="{{ route('dashboard') }}">
+  &larr; Your Dashboard
 </a>
 
 <div class="center">
@@ -26,8 +26,8 @@
      ?>
     @unless( $upcomingEvents->isEmpty() )
       @foreach($upcomingEvents as $event)
-        <div class="col s3">
-          @include('partials.event-card-small', $event);
+        <div class="col s6">
+          @include('partials.event-card', $event);
         </div>
       @endforeach
     @else

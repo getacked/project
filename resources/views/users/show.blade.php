@@ -1,4 +1,4 @@
-@extends('master')
+@extends('base')
 
 
 @section('content')
@@ -32,11 +32,11 @@
 </div>
 
 <div class="events">
-  <h3>Here are all events from {{ $user->username }}</h3>
+  <h3>Upcoming events from {{ $user->username }}</h3>
 
-  <ul>  
+  <ul class="row">  
     @foreach( $user->events as $event )
-      <li>@include('partials.event-card')</li>
+      <li class="col s12 m4">@include('partials.event-card')</li>
     @endforeach
 
   </ul>

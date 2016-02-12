@@ -42,7 +42,7 @@ Login
           Make sure you have turned off caps lock on your machine because let's be honest we've all been there. 
         </p>
         <p class="flowtext">
-          If you're still having trouble click <a href="FAQ.html">here</a> To go to our FAQ page. It could be something on
+          If you're still having trouble click {{ link_to_route('faq', 'here') }} To go to our FAQ page. It could be something on
           our end so bare with us and we'll have you well on your way to getting to the crux of the problem in no time!
         </p>
         </div>
