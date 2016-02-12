@@ -15,112 +15,112 @@
 
 @section('content')
 
-      <header>
-        <div class="navbar">
-        
-          <!--Drop down menu definition-->
-          <ul id="dropdown1" class="dropdown-content">
-            <li><a href="sign_up.html">Sign Up!</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li class="divider"></li>
-            <li><a href="{{ route('contact') }}">Contact</a></li>
-            <li><a href="{{ route('faq') }}">FAQ</a></li>
-            <li><a href="about.html">About Us</a></li>
+  <header>
+    <div class="navbar">
+    
+      <!--Drop down menu definition-->
+      <ul id="dropdown1" class="dropdown-content">
+        <li><a href="sign_up.html">Sign Up!</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li class="divider"></li>
+        <li><a href="{{ route('contact') }}">Contact</a></li>
+        <li><a href="{{ route('faq') }}">FAQ</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+
+      <nav id="navbar">
+        <div class="nav-wrapper">
+
+          <!--Left hand side nav-->
+          <ul id="nav-mobile" class="left">
+            <li class="nav-link"><a href="browse.html">Browse</a></li>
+
+            <!--Search button box thing-->
+            <li class="nav-link hide-on-med-and-down">
+              <!--FORM MUST BE LINKED TO SOMETHING ON BACKEND-->
+              <form action="#">
+                <div class="input-field">
+                  <input id="search" type="search" required>
+                  <label for="search"><i class="material-icons">search</i></label>
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+            </li>
           </ul>
 
-          <nav id="navbar">
-            <div class="nav-wrapper">
-
-              <!--Left hand side nav-->
-              <ul id="nav-mobile" class="left">
-                <li class="nav-link"><a href="browse.html">Browse</a></li>
-
-                <!--Search button box thing-->
-                <li class="nav-link hide-on-med-and-down">
-                  <!--FORM MUST BE LINKED TO SOMETHING ON BACKEND-->
-                  <form action="#">
-                    <div class="input-field">
-                      <input id="search" type="search" required>
-                      <label for="search"><i class="material-icons">search</i></label>
-                      <i class="material-icons">close</i>
-                    </div>
-                  </form>
-                </li>
-              </ul>
-
-              <!--Right hand side nav-->
-              <ul id="nav-mobile" class="right">
-                <li><a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="dropdown1">Get Started!<i class="material-icons right">arrow_drop_down</i></a></li>
-              </ul>
-            </div>
-          </nav>
+          <!--Right hand side nav-->
+          <ul id="nav-mobile" class="right">
+            <li><a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="dropdown1">Get Started!<i class="material-icons right">arrow_drop_down</i></a></li>
+          </ul>
         </div>
-      </header>
-
-
-      <div id="custom-message">
-        <figure>
-          <img class="responsive-img front-logo" src="images/logo2.png" alt="Eventure Logo">
-        </figure>
-        <p>
-          <a href="#main">Plan your Adventure!</a>
-        </p>
-      </div>
-      <div id="icons">
-        <ul>
-          <li>
-            <a class="btn tooltipped floating btn-large waves-effect waves-light" data-position="right" data-delay="50" data-tooltip="Get Involved With Events">
-            <i class="large material-icons">accessibility</i>
-            </a>
-          </li>
-          <br>
-          <li>
-            <a class="btn tooltipped floating btn-large waves-effect waves-light" data-position="right" data-delay="50" data-tooltip="Organize & Advertise Company events">
-            <i class="large material-icons">announcement</i>
-            </a>
-          </li>
-          <br>
-          <li>
-            <a class="btn tooltipped floating btn-large waves-effect waves-light" data-position="right" data-delay="50" data-tooltip="Advertise the Perfect Venue">
-            <i class="large material-icons">account_balance</i>
-            </a>
-          </li>
-      </div>
-      <div id="jump-in"  class="center-align">
-        <a href="#main"><i class="large material-icons">keyboard_arrow_down</i></a>
-      </div>
-      <div id="with-love">
-        <p>
-        Made with <i class="fa fa-heart heart-color red-text"></i> by us.
-        </p>
-      </div>
-      <video autoplay loop class="fillWidth">
-        <source src="videos/Cheer-Up.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
-        <source src="videos/Cheer-Up.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
-      </video>
-      <div class="poster hidden">
-        <img src="images/Cheer-Up.jpg">
-      </div>
+      </nav>
     </div>
+  </header>
+
+
+  <div id="custom-message">
+    <figure>
+      <img class="responsive-img front-logo" src="images/logo2.png" alt="Eventure Logo">
+    </figure>
+    <p>
+      <a href="#main">Plan your Adventure!</a>
+    </p>
   </div>
 
-      <main id="main">
+  <div id="icons">
+    <ul>
+      <li>
+        <a class="btn tooltipped floating btn-large waves-effect waves-light" data-position="right" data-delay="50" data-tooltip="Get Involved With Events">
+        <i class="large material-icons">accessibility</i>
+        </a>
+      </li>
+      <br>
+      <li>
+        <a class="btn tooltipped floating btn-large waves-effect waves-light" data-position="right" data-delay="50" data-tooltip="Organize & Advertise Company events">
+        <i class="large material-icons">announcement</i>
+        </a>
+      </li>
+      <br>
+      <li>
+        <a class="btn tooltipped floating btn-large waves-effect waves-light" data-position="right" data-delay="50" data-tooltip="Advertise the Perfect Venue">
+        <i class="large material-icons">account_balance</i>
+        </a>
+      </li>
+  </div>
 
-      <div class="container">
-      
-      <!--Heading-->
-      <div class="row">     
-        <div class="col s6 offset-s3"><span class="flowtext"><h3 class="center-align">Some Upcoming Events</h3></span></div>
-      </div>
+  <div id="jump-in"  class="center-align">
+    <a href="#main"><i class="large material-icons">keyboard_arrow_down</i></a>
+  </div>
 
-      <!--Divider in the middle-->
-      <div class="row">
-        <div class="divider"></div>
-      </div>
-      
-      
-      <!-- Include a foreach loop here for the cards.-->
+  <div id="with-love">
+    <p>
+    Made with <i class="fa fa-heart heart-color red-text"></i> by us.
+    </p>
+  </div>
+
+  <video autoplay loop class="fillWidth">
+    <source src="videos/Cheer-Up.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+    <source src="videos/Cheer-Up.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+  </video>
+
+  <div class="poster hidden">
+    <img src="images/Cheer-Up.jpg">
+  </div>
+
+    </div>   
+  </div>  <!--  END VIDEO CONTAINER -->
+
+
+    <div class="container">
       <section>
+      <!--Heading-->
+        <div class="row">     
+          <h3 class="center-align">Some Upcoming Events</h3>
+        </div>
+
+      <div class="divider"></div>
+      
+     
         <div class="row">
         
           @foreach($events as $event)
@@ -128,10 +128,10 @@
             <div class="card">
               <div class="card-image waves-effect waves-block waves-light">
                 @if($event->image)   
-                    <?php
-                        $path = App\Image::find($image)->fileName;
-                    ?>
-                     <img class="activator" src="/images/{{ $path }}" />
+                  <?php
+                      $path = App\Image::find($image)->fileName;
+                  ?>
+                   <img class="activator" src="/images/{{ $path }}" />
                 @else 
                     <!-- <img class="activator" src="images/default.jpg" /> -->
                     <img class="activator" src="http://lorempixel.com/840/500" />
@@ -155,25 +155,20 @@
           
         </div>
       </section>
-      
-        <!--Divider in the middle-->
-        <div class="row">
-          <div class="divider"></div>
-        </div>
+
+      <section>
+        <div class="divider"></div>
       
         <!--Heading-->
         <div class="row">
-          <div class="col s6 offset-s3"><span class="flowtext"><h3 class="center-align">Why You Are Here</h3></span></div>
+          <h3 class="center-align">Why You Are Here</h3>
         </div>
 
-        <!--Divider in the middle-->
-        <div class="row">
-          <div class="divider"></div>
-        </div>
+        <div class="divider"></div>
         
         <div class = "row">
           <!--First column of text + logo-->
-          <div class="col s4">
+          <div class="col s12 m4">
             <div class="center-align">
               <i class="large material-icons">accessibility</i>
             </div>
@@ -185,7 +180,7 @@
           </div>
 
           <!--Second column of text + logo-->
-          <div class="col s4">
+          <div class="col s12 m4">
             <div class="center-align">
               <i class="large material-icons">account_balance</i>
             </div>
@@ -196,7 +191,7 @@
           </div>
 
           <!--Third column of text + logo-->
-          <div class="col s4">
+          <div class="col s12 m4">
             <div class="center-align">
               <i class="large material-icons">announcement</i>
             </div>
@@ -207,8 +202,7 @@
           </div>
         </div>
         <div>
-            <!-- <a href="{{ url('register') }}" class="btn"> -->
-            <a href="{{ action('Auth\AuthController@showRegistrationForm') }}"> 
+            <a href="{{ url('register') }}" class="btn">
                 Sign up now!
             </a>
         </div>

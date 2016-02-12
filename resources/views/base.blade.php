@@ -2,6 +2,7 @@
 <html type="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1" />
     <meta name="keywords" content="Events, Eventure, Organization, venues, organizers">
     <meta name="description" content="Event Organization Application.">
     <meta name="author" content="Jack, Scott, Fionn, Alex, Ciaran, Jake">
@@ -33,7 +34,7 @@
 
    <!--jQuery and Materialize -->
 <!--    // <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
-   
+
    <script src="/js/jquery.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
    <script src="/js/init.js"></script>
