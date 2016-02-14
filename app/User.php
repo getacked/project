@@ -5,11 +5,11 @@ namespace App;
 use Hash;
 use Carbon\Carbon;
 use Http\Controllers\Auth;
+use App\Mailers\UserMailer;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-
     protected $table = "users";
 
     protected $fillable = [
@@ -19,8 +19,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-
 
     public function scopeUpcoming()
     {
@@ -48,4 +46,16 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'subscriptions', 'subscribee_id', 'subscriber_id');
     }
 
+    public function generateConfirmationLink() {
+        $this->token = str_random(30);
+
+        $this->save();
+    }
+
+    public function confirmEmail() {
+        $this->verified = true;
+        $this->token = null;
+        
+        $this->save();
+    }
 }

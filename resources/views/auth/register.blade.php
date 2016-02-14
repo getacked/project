@@ -63,9 +63,6 @@ Sign Up
 
         {{ Form::open(array('url' => '/register', 'method' => 'POST')) }}
 
-          
-          {!! csrf_field() !!}
-        
           <div class="row">
             <div class="input-field col s6">
               <i class="material-icons prefix">perm_identity</i>
@@ -116,7 +113,7 @@ Sign Up
 
 
           <div>
-            <p> So would you like to organize events or attent events? Select your option below!</p>
+            <p> So would you like to organize events or attend events? Select your option below!</p>
             <p>
               {{ Form::radio('type', '0', 'true', array('id' => 'regular', 'class' => 'with-gap') )  }}
               {{ Form::label('regular', 'Attendee') }}
@@ -135,8 +132,6 @@ Sign Up
           <div class="row">
             <!-- Foreach tags  -->
           </div>
-
-          {{ Form::token() }}
 
           {{ Form::submit('Create your account!', ['class' => 'btn']) }}
             

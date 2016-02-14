@@ -10,18 +10,19 @@ Login
         <section>
         <section>
             <h4>Login Below to Start Another Eventure!</h4>
+            @include('partials.message')
             <p>Enter your username &amp; password to continue</p>
           </section>
-        <form class="col s12" action="#">
+          {{ Form::open(array('url' => '/login', 'method' => 'POST', 'class' => 'col s12')) }}
           <div class="row">
           <div class="input-field col s6">
             <i class="material-icons prefix">email</i>
-            <input id="email" type="email" class="validate">
+            <input id="email" type="email" class="validate" name="email">
             <label for="email">Email</label>
           </div>
           <div class="input-field col s6">
             <i class="material-icons prefix">vpn_key</i>
-            <input id="password" type="password" class="validate">
+            <input id="password" type="password" class="validate" name="password">
             <label for="password">Password</label>
           </div>
           </div>
@@ -29,6 +30,9 @@ Login
           <input type="submit" value="Login" class="btn"/>
           </div>
         </form>
+
+        @include('partials.errors')
+
         <br>
       </section>
       <section>
