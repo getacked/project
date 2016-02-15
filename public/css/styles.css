@@ -16,13 +16,24 @@ main {
     margin-left: .75rem !important;
 }
 
-header, footer
+header, footer, nav
 {
-  background-color: gray !important;
+  background-color: #303F9F !important;
 }
 
 .account-pic
 {
   max-height: 1.2em;
   max-width: 1.2em;
+}
+
+.card
+{
+  background-color: #FFC107 !important;
+  color: #303F9F !important;
+}
+
+body a
+{
+  color: #303F9F;
 }

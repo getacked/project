@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
+use Closure, Redirect;
 use Illuminate\Support\Facades\Auth;
 
 class Authenticate
@@ -21,7 +21,7 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->route('users.create');
+                return Redirect::url('/register');
             }
         }
 

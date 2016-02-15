@@ -44,6 +44,7 @@ class EventsController extends Controller
     $trimmedTags = preg_replace('/\s+/', '', $request['customTags']);
     $tags = explode(',', $trimmedTags);
 
+
     if($request['tags'])
     {
       foreach($request['tags'] as $tag)
@@ -55,7 +56,7 @@ class EventsController extends Controller
     if($tags)
     {
       foreach($tags as $tag)
-      {
+      { 
         $event->tags()->attach(Tag::firstOrCreate(array('name' => $tag)));
       }  
     }
@@ -111,10 +112,11 @@ class EventsController extends Controller
 
   public function follow(Event $event)
   {
-    // dd($event);
-    $event->attendees()->attach( Auth::user() );
-    return view('events.show', compact('event') );
-    // return View::make('events.show', $event);
+    if( !$event->attendees->contains(Auth::user()) ){
+      $event->attendees()->attach( Auth::user() );
+    }
+    return Redirect::route('events.show', compact('event') );
+
   }
 
 }

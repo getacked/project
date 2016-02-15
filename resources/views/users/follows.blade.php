@@ -8,7 +8,7 @@
   $user = Auth::user();
 ?>
 
-<a href="{{ route('dashboard') }}">
+<a href="{{ url('/profile/dashboard') }}">
   &larr; Your Dashboard
 </a>
 

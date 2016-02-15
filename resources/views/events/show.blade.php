@@ -27,6 +27,21 @@
       <div class="divider"></div>
       <h4 class="center-align">{{$event->name}}</h4>
       <h5 class="center-align">by <a href="{{ route('users.show', $event->host) }}">{{ $event->host->username }}</a></h5>
+      
+      <?php
+        echo "<small class='center'>";
+        // dd($event->host);
+        if( $event->host == Auth::user() ){
+          echo "<a href='" . route('events.edit', $event)."'>";
+          echo "<p class='chip'>Edit event <i class='material-icons'>mode_edit</i></a>";
+        }else{
+          if( !$event->attendees->contains(Auth::user()) ){
+            echo "<a class='btn-large' href='". route('events.attend', $event) . "'>Attend!</a>";  
+          }
+        }
+        echo "</small>";
+      ?>
+
       <div class="divider"></div>
       <br>
       <table class="centered highlight">
@@ -54,9 +69,9 @@
       </tbody>
     </table>
 
-      <br>
+<!-- TAGS -->
+    @if( count($event->tags) > 0 )
       <div class="divider"></div>
-
       <section>
         <h5 class="center-align">Tags</h5>
         <div class="row">
@@ -71,6 +86,23 @@
           @endforeach
         </div>
       </section>
+    @endif
+
+<!-- ATTENDEES -->
+    @if ( count($event->attendees) > 0 )
+    <div class="teal">
+      <h5>People attending: ({{count($event->attendees)}})</h5>
+        <ul class="tag-list">
+          @foreach ( $event->attendees as $attendee )
+            <li class="tag-item">
+                {{ $attendee->username }}
+              </a>
+            </li>
+          @endforeach
+      </ul>
+    </div>
+    @endif
+
     </section>
   </div>
 @endsection

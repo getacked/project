@@ -8,62 +8,47 @@ Sign Up
 @section('content')
 
     
-      <div class="row">
-      <div class="col s12">
+  <div class="row">
+    <div class="col s12">
       <ul class="tabs">
-      <li class="tab col s3"><a href="#howto" class="active">How To Sign Up</a></li>
-      <li class="tab col s3"><a href="#attendee">Attendee</a></li>
-      <li class="tab col s3"><a href="#venue">Venue</a></li>
+        <li class="tab col s3"><a href="#howto" class="active">How To Sign Up</a></li>
+        <li class="tab col s3"><a href="#attendee">Attendee</a></li>
+        <li class="tab col s3"><a href="#venue">Venue</a></li>
       </ul>
-      </div>
     </div>
-    <div class="container">
-      <div id="howto" class="col s12">
-        <section>
-          <h4>Fancy Getting Involved? Of Course You Do. Here's How</h4>
-          <p class="flowtext">
-        With Eventure we have two separate sign up forms for users
-         &amp; venues. So are you the eagerly awaiting concert goer that's looking
-        for the next big thrill? Religious enthusiast that just can't get enough of those pilgrimages?
-        Do you want to celebrate your special day and want everyone to come along? Or do you simply have the
-        perfect venue for that something that someone may be planning? Well have we a nice surprise for you!
-        <br>
-        As a user you will be allowed to search for events near you based on interests that you may have, 
-        view past events, get content from past events and much much more! You're also entitled to networking 
-        with venues and with the help of a user database create events, network and sell tickets all in one place. Venues 
-        have the opportunity to network with organizers and advertise their venue to cater for events most suitable to the 
-        organizer.
+  </div>
+
+  <div class="container">
+    <div id="howto" class="flow-text col s12">
+      <section>
+        <h4>Fancy Getting Involved? Of Course You Do. Here's How</h4>
+        <p>
+          With Eventure we have two separate sign up forms for users &amp; venues. So are you the eagerly awaiting concert goer that's looking for the next big thrill? Religious enthusiast that just can't get enough of those pilgrimages?
+          
+          Do you want to celebrate your special day and want everyone to come along? Or do you simply have the perfect venue for that something that someone may be planning? Well have we a nice surprise for you!
         </p>
-        <br>
+        <p>
+          As a user you will be allowed to search for events near you based on interests that you may have, view past events, get content from past events and much much more! You're also entitled to networking with venues and with the help of a user database create events, network and sell tickets all in one place. Venues have the opportunity to network with organizers and advertise their venue to cater for events most suitable to the organizer.
+        </p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section>
         <h5>Getting down to it.</h5>
-        <p class="flowtext">
-        We know you're eager to sign up so once you've decided what kind of user you want to be just click on the tabs 
-        above that attains to you and after a few bits of information that we will need to create a nice tailored experience 
-        you'll be on your way to your first Eventure! Get excited people.
+        <p>
+          We know you're eager to sign up so once you've decided what kind of user you want to be just click on the tabs above that attains to you and after a few bits of information that we will need to create a nice tailored experience you'll be on your way to your first Eventure! Get excited people.
         </p>
-        </section>
-      <div class="row">
-        <div class = "col s4">
-          <div class="divider"></div>
-        </div>
-        <div class = "col s4">
-          <div class="divider"></div>
-        </div>
-        <div class = "col s4">
-          <div class="divider"></div>
-        </div>
-      </div>
-      </div>
-      <div id="attendee" class="col s12">
-        <section>
-        <section>
-            <h4>User Sign Up.</h4>
-            <p>First just a few details about you - because we think you're cool and want to know you better.</p>
-          </section>
+      </section>
+    </div>
+
+    <div id="attendee" class="col s12">
+      <section>
+        <h4>User Sign Up.</h4>
+        <p>First just a few details about you - because we think you're cool and want to know you better.</p>
 
         {{ Form::open(array('url' => '/register', 'method' => 'POST')) }}
 
-          
           {!! csrf_field() !!}
         
           <div class="row">
@@ -114,7 +99,6 @@ Sign Up
              </div>
           </div>
 
-
           <div>
             <p> So would you like to organize events or attent events? Select your option below!</p>
             <p>
@@ -132,6 +116,7 @@ Sign Up
               Now Just for a few interests and we'll have your brand new profile ready for you in just a few minutes!.
             </p>
           </div>
+
           <div class="row">
             <!-- Foreach tags  -->
           </div>
@@ -145,13 +130,14 @@ Sign Up
         @include('partials.errors')
 
       </section>
-      </div>
-      <div id="venue" class="col s12">
+    </div>
+
+
+    <div id="venue" class="col s12">
       <section>
-        <section>
-          <h4>Venue Sign Up.</h4>
-          <p>Have a nice venue you want to advertise? Do it here by entering a few pieces of information.</p>
-        </section>
+        <h4>Venue Sign Up.</h4>
+        <p>Have a nice venue you want to advertise? Do it here by entering a few pieces of information.</p>
+        
         <form class="col s12" action="#">
           <div class="row">
           <div class="input-field col s6">
@@ -177,6 +163,6 @@ Sign Up
           </div>
         </form>
       </section>
-      </div>      
-    </div>
+    </div>      
+  </div>
 @endsection   
