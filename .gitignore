@@ -1,3 +1,5 @@
+/vendor
+!/vendor/laravel/framework/src/Illuminate/Foundation/Auth/*
 /node_modules
 Homestead.yaml
 Homestead.json
