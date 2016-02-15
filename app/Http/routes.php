@@ -18,6 +18,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('browse', 'EventsController@index')->name('browse');
 
     Route::auth();
+    Route::get('register/confirm/{token}', 'Auth\AuthController@confirmEmail');
 
     Route::get('events/{event}/attend', ['as' => 'events.attend', 'uses' => 'EventsController@follow']);
 

@@ -6,14 +6,14 @@ Login
 
 
 @section('content')
+
   <div class="container">
     <section>
       <h4>Login Below to Start Another Eventure!</h4>
       <p>Enter your username &amp; password to continue</p>
- 
+      @include('partials.message')
 
       {{ Form::open(array('url' => '/login', 'method' => 'POST', 'class' => 'row')) }}
-        {!! csrf_field() !!}
 
         <div class="input-field col s6">
           <i class="material-icons prefix">email</i>

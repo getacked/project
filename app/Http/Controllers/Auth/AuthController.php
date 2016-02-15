@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+use App\Mailers\UserMailer;
+use App\User;
+use Hash;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Hash; 
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Validator; 
 
 class AuthController extends Controller
 {
@@ -31,14 +32,17 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/';
 
+    protected $mailer;
+
     /**
      * Create a new authentication controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserMailer $mailer)
     {
         $this->middleware('guest', ['except' => 'logout']);
+        $this->mailer = $mailer;
     }
 
     /**
@@ -51,11 +55,11 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'first_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
-            'username' => 'required|unique:users',
-            'email' => 'required|email|unique:users|max:255',
-            'password' => 'required|confirmed|min:6',
-            'tel_no' => 'required_if:type,1',
+            'last_name'  => 'required|max:255',
+            'username'   => 'required|unique:users',
+            'email'      => 'required|email|unique:users|max:255',
+            'password'   => 'required|confirmed|min:6',
+            'tel_no'     => 'required_if:type,1',
         ]);
     }
 
@@ -67,23 +71,26 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        if($data['type'] == 1){  // host type
-            return User::create([
+        return User::create([
                 'first_name' => $data['first_name'],
-                'last_name' => $data['last_name'],
-                'username' => $data['username'],
-                'email' => $data['email'],
-                'password' => bcrypt($data['password']),
-                'tel_no' => $data['tel_no'],
-            ]);
-        }else{
-            return User::create([
-                'first_name' => $data['first_name'],
-                'last_name' => $data['last_name'],
-                'username' => $data['username'],
-                'email' => $data['email'],
-                'password' => bcrypt($data['password']),
-            ]);    
-        }
+                'last_name'  => $data['last_name'],
+                'username'   => $data['username'],
+                'email'      => $data['email'],
+                'password'   => bcrypt($data['password']),
+                'tel_no'     => $data['tel_no'],
+                'verified'   => false,
+        ]);
     }
+
+    public function confirmEmail($token) {
+        User::whereToken($token)->firstOrFail()->confirmEmail();
+        session()->flash('message', 'Thank you for confirming your email.');
+        return redirect('login');
+    }
+
+    public function sendConfirmationLink(User $user) {
+        $user->generateConfirmationLink();
+        $this->mailer->sendEmailConfirmation($user);
+        session()->flash('message', 'An email confirmation link has been sent.  Please confirm your email');
+        return redirect('login');    }
 }
