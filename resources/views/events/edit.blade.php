@@ -1,4 +1,4 @@
-@extends('master')
+@extends('base')
 
 
 @section('style')
@@ -17,8 +17,8 @@
   {{ Form::model($event, array('route' => array('events.update', $event), 'method' => 'PUT')) }}
   
     <div class="input-field">
-     {{ Form::text('event_name', $event->event_name, ['class' => 'validate col'] ) }}
-     {{ Form::label('event_name', 'Event Name') }}
+     {{ Form::text('name', $event->name, ['class' => 'validate col'] ) }}
+     {{ Form::label('name', 'Event Name') }}
     </div>
 
     <?php 
@@ -29,10 +29,12 @@
     ?>
 
     <div class="input-field">
-      {{ Form::select('type', $types, null, ['class' => 'validate']) }}
-      {{ Form::label('type', 'Type') }}
+      {{ Form::select('event_type', $types, $event->event_type, ['class' => 'validate']) }}
+      {{ Form::label('event_type', 'Type') }}
     </div>  
 
+<br>
+wut<br>
     <div class="input-field">
      <input name="event_date" type="date" value="{{ $date }}" class="datepicker">
      {{ Form::label('event_date', "Date") }}
@@ -44,11 +46,11 @@
     </div>
 
     <div class="input-field">
-     {{ Form::text('tickets', $event->tickets) }}
+     {{ Form::text('tickets', $event->ticket_cap) }}
      {{ Form::label('tickets', 'Tickets') }}
     </div>
 
-    <!-- <div>  -->
+    <div> 
       <div class="input-field">
         {{ Form::select('tags[]', $tags, $event->tags()->get(), ['multiple']) }}
         {{ Form::label('tags', 'Tags') }}
@@ -59,7 +61,7 @@
         {{ Form::textarea('customTags') }}
       </div>
 
-    <!-- </div> -->
+    </div>
         
 
     {{ Form::token() }}

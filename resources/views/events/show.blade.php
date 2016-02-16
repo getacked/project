@@ -27,20 +27,20 @@
       <div class="divider"></div>
       <h4 class="center-align">{{$event->name}}</h4>
       <h5 class="center-align">by <a href="{{ route('users.show', $event->host) }}">{{ $event->host->username }}</a></h5>
+      <p>Tickets left: {{ $event->ticket_left }}</p>
       
-      <?php
-        echo "<small class='center'>";
-        // dd($event->host);
-        if( $event->host == Auth::user() ){
-          echo "<a href='" . route('events.edit', $event)."'>";
-          echo "<p class='chip'>Edit event <i class='material-icons'>mode_edit</i></a>";
-        }else{
-          if( !$event->attendees->contains(Auth::user()) ){
-            echo "<a class='btn-large' href='". route('events.attend', $event) . "'>Attend!</a>";  
+      <small class='center'>
+        <?php
+          if( $event->host == Auth::user() ){
+            echo "<a href='" . route('events.edit', $event)."'>";
+            echo "<p class='chip'>Edit event <i class='material-icons'>mode_edit</i></a>";
+          }else{
+            if( !$event->attendees->contains(Auth::user()) && Auth::check() ){
+              echo "<a class='btn-large' href='". route('events.attend', $event) . "'>Attend!</a>";  
+            }
           }
-        }
-        echo "</small>";
-      ?>
+        ?>
+      </small>
 
       <div class="divider"></div>
       <br>
@@ -60,7 +60,7 @@
         </tr>
         <tr>
           <td id="left">Type</td>
-          <td>{{ $event->type }}</td>
+          <td>{{ $event->event_type }}</td>
         </tr>
         <tr>
           <td id="left">Starts In</td>
@@ -90,17 +90,17 @@
 
 <!-- ATTENDEES -->
     @if ( count($event->attendees) > 0 )
-    <div class="teal">
+    <div class="divider"></div>
+    <section class="flow-text">
       <h5>People attending: ({{count($event->attendees)}})</h5>
-        <ul class="tag-list">
+        <ul>
           @foreach ( $event->attendees as $attendee )
-            <li class="tag-item">
-                {{ $attendee->username }}
-              </a>
+            <li> 
+                - {{ $attendee->username }}
             </li>
           @endforeach
       </ul>
-    </div>
+    </section>
     @endif
 
     </section>

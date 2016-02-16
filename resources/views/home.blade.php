@@ -7,16 +7,13 @@
 
 @section('pre-nav')
     <!--Landing page full screen video box-->
-    <div class="homepage-hero-module">
+  <div class="homepage-hero-module">
     <div class="video-container">
-    <div class="filter"></div>
+      <div class="filter"></div>
 @endsection
 
-
-@section('content')
-
   <header>
-    <div class="navbar">
+    <div class="navbdar">
     
       <!--Drop down menu definition-->
       <ul id="dropdown1" class="dropdown-content">
@@ -57,6 +54,8 @@
     </div>
   </header>
 
+  @section('content')
+
 
   <div id="custom-message">
     <figure>
@@ -76,7 +75,7 @@
       </li>
       <br>
       <li>
-        <a class="btn tooltipped floating btn-large waves-effect waves-light" data-position="right" data-delay="50" data-tooltip="Organize & Advertise Company events">
+        <a class="btn tooltipped floating btn-large waves-effect waves-light" data-position="right" data-delay="50" data-tooltip="Organize &amp; Advertise Company events">
         <i class="large material-icons">announcement</i>
         </a>
       </li>
@@ -103,12 +102,17 @@
     <source src="videos/Cheer-Up.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
   </video>
 
+
+  <!-- DEFAULT IMAGE IF NO VIDEO CAPABILITY  -->
+
   <div class="poster hidden">
     <img src="images/Cheer-Up.jpg">
   </div>
 
   </div>   
-</div>  <!--  END VIDEO CONTAINER -->
+</div>  
+
+<!--  END VIDEO CONTAINER -->
 
 
 <div class="container">
@@ -119,33 +123,9 @@
     <div class="row">
     
       @foreach($events as $event)
-      <div class="col s6 m4 l3">
-        <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-            @if($event->image)   
-              <?php
-                  $path = App\Image::find($image)->fileName;
-              ?>
-               <img class="activator" src="/images/{{ $path }}" />
-            @else 
-                <!-- <img class="activator" src="images/default.jpg" /> -->
-                <img class="activator" src="http://lorempixel.com/840/500" />
-            @endif
-          </div>
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4 truncate">{{ $event->name }}</span>
-            <p>{{ $event->event_time->diffForHumans() }}</p>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">{{ $event->name }}<i class="material-icons right">close</i></span>
-            <small>at {{$event->location }}</small>
-            <p>
-              {{ $event->description }}
-            </p>
-            <a href="{{ route('events.show', $event) }}">See More</a>
-          </div>
-        </div>
-      </div>
+      
+        @include('partials.event-card-small', $event)
+
       @endforeach
       
     </div>
@@ -197,7 +177,7 @@
 @endsection
 
 
-<!--JavaShi(p)t-->
+<!-- VIDEO SCRIPT - covverr.com -->
 @section('scripts')
     <script>
         $( document ).ready(function() {

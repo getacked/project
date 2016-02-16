@@ -11,7 +11,7 @@
   <?php
 
     if(Auth::check() ){
-      echo "<a href='" . route('testOut') . "' class='btn'>Logout</a>";
+      echo "<a href='" . url('/logout') . "' class='btn'>Logout</a>";
     }else{
       echo "<a href='" . url('/login')  . "' class='btn'>Login</a>";
       echo "<a href='" . url('/register')  . "' class='btn'>Register</a>";

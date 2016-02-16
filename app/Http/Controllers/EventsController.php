@@ -22,7 +22,7 @@ class EventsController extends Controller
 
   public function create(){
     $tags = Tag::lists('name');
-    return view('forms.events-create', compact('tags'));  
+    return view('events.create', compact('tags'));  
   }
 
   public function store(EventRequest $request)
@@ -115,6 +115,9 @@ class EventsController extends Controller
     if( !$event->attendees->contains(Auth::user()) ){
       $event->attendees()->attach( Auth::user() );
     }
+
+    $event->ticket_left--;
+    $event->save();
     return Redirect::route('events.show', compact('event') );
 
   }

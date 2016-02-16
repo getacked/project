@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -128,7 +128,6 @@ return [
          */
     /*REPLACED WITH MULTI AUTH */
         Illuminate\Auth\AuthServiceProvider::class,
-        // Sarav\Multiauth\MultiauthServiceProvider::class,
 
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,

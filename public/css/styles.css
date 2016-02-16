@@ -29,7 +29,6 @@ header, footer, nav
 
 .card
 {
-  background-color: #FFC107 !important;
   color: #303F9F !important;
 }
 
@@ -37,3 +36,21 @@ body a
 {
   color: #303F9F;
 }
+
+.filter header
+{
+  position: absolute;  
+  z-index: 0;
+  width: 100%;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/*#navbar{
+  position: absolute;  
+    z-index: 102;
+  width: 100%;
+    background-color: transparent !important;
+  box-shadow: none !important;
+}
+*/
