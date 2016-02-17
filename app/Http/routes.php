@@ -14,6 +14,7 @@
 Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'PagesController@homepage')->name('landing');
     Route::get('contact', 'PagesController@contact')->name('contact');
+    Route::post('contact', 'PagesController@sendContactMessage');
     Route::get('faq', 'PagesController@faq')->name('faq');
     Route::get('browse', 'EventsController@index')->name('browse');
 
