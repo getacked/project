@@ -43,5 +43,9 @@ class PagesController extends Controller
     return View::make('pages.faq');
   }
 
+  public function about() {
+    return View::make('pages.about');
+  }
+
   
 }

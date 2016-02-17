@@ -17,12 +17,12 @@
     
       <!--Drop down menu definition-->
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="sign_up.html">Sign Up!</a></li>
-        <li><a href="login.html">Login</a></li>
+        <li><a href="register/">Sign Up!</a></li>
+        <li><a href="login/">Login</a></li>
         <li class="divider"></li>
         <li><a href="{{ route('contact') }}">Contact</a></li>
         <li><a href="{{ route('faq') }}">FAQ</a></li>
-        <li><a href="about.html">About Us</a></li>
+        <li><a href="{{ route('about') }}">About Us</a></li>
       </ul>
 
       <nav id="navbar">

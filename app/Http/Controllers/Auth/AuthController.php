@@ -8,6 +8,7 @@ use App\User;
 use Hash;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use View;
 use Validator; 
 
 class AuthController extends Controller
@@ -31,6 +32,8 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+
+    protected $redirectAfterLogout = '/logedout';
 
     protected $mailer;
 
@@ -92,5 +95,10 @@ class AuthController extends Controller
         $user->generateConfirmationLink();
         $this->mailer->sendEmailConfirmation($user);
         session()->flash('message', 'An email confirmation link has been sent.  Please confirm your email');
-        return redirect('login');    }
+        return redirect('login');    
+    }
+
+    public function logedout() {
+        return View::make('auth.logedout');
+    }
 }
