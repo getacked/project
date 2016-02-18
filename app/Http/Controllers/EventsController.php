@@ -50,7 +50,7 @@ class EventsController extends Controller
     {
       foreach($request['tags'] as $tag)
       {
-        $event->tags()->attach($tag);
+        $event->tags()->attach(Tag::find($tag));
       }  
     }
 

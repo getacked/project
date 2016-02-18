@@ -65,6 +65,7 @@
     </table>
 
 <!-- TAGS -->
+
     @if( count($event->tags) > 0 )
       <div class="divider"></div>
       <section>
@@ -85,10 +86,13 @@
 
     <div class="divider"></div>
 
-    <input id="place-id" type="text" value="{{ $event->gmaps_id }}" style="display: none">
-    <div id="map"></div>
-    <img class="right" src="/images/powered_by_google_on_white.png" />
+    <div class="gmaps-container">
+      <input id="place-id" type="text" value="{{ $event->gmaps_id }}" style="display: none">
+      <div id="map"></div>
+      <img class="right" src="/images/powered_by_google_on_white.png" />
+    </div>
 
+    
 <!-- ATTENDEES -->
     @if ( count($event->attendees) > 0 )
     <div class="divider"></div>
@@ -131,7 +135,7 @@ function initMap() {
   geocoder.geocode({'placeId': placeId }, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       if (results[0]) {
-        map.setZoom(11);
+        map.setZoom(13);
         map.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
           map: map,
