@@ -12,25 +12,34 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-    // Pages
+    //Static pages
     Route::get('/', 'PagesController@homepage')->name('landing');
     Route::get('contact', 'PagesController@contact')->name('contact');
     Route::post('contact', 'PagesController@sendContactMessage');
     Route::get('faq', 'PagesController@faq')->name('faq');
     Route::get('about', 'PagesController@about')->name('about');
-    Route::get('browse', 'EventsController@index')->name('browse');
 
-    // Authentication
+    //Authentication
     Route::auth();
     Route::get('register/confirm/{token}', 'Auth\AuthController@confirmEmail');
-    Route::get('logedout', 'Auth\AuthController@logedout');
-
-    Route::get('events/{event}/attend', ['as' => 'events.attend', 'uses' => 'EventsController@follow']);
-    Route::resource('users', 'TestController');
-    Route::resource('events', 'EventsController');
-    Route::resource('tags', 'TagsController');
-    Route::controller('profile', 'TestController');
-
-    Route::get('/subscribe/{user}', ['uses' => 'TestController@subscribe', 'as' => 'subscribe']);
     
+    //Users
+    Route::resource('user', 'UserController', [
+        'only' => [
+            'update', 'show', 'edit'
+        ]]);
+    Route::get('user/dashboard', 'UserController@dashboard')->name('dashboard');
+    Route::get('/subscribe/{user}', ['uses' => 'UserController@subscribe', 'as' => 'subscribe']);
+    
+    //Events
+    Route::resource('events', 'EventsController', ['names' => [
+            'index' => 'browse'
+        ]]);
+    Route::get('events/{event}/attend', 'EventsController@attend')->name('events.attend');
+    
+    //Tags
+    Route::resource('tags', 'TagsController', [
+        'only' => [
+            'index', 'store'
+        ]]);    
 });

@@ -98,7 +98,7 @@ class AuthController extends Controller
         return redirect('login');    
     }
 
-    public function logedout() {
+    public function postLogout() {
         return View::make('auth.logedout');
     }
 }

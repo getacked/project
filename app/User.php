@@ -46,6 +46,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'subscriptions', 'subscribee_id', 'subscriber_id');
     }
 
+    public function hasType($type) {
+        return $this->type == $type;
+    }
+
     public function generateConfirmationLink() {
         $this->token = str_random(30);
 

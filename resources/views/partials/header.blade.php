@@ -4,8 +4,8 @@
     @if( Auth::check() )
       <ul id="user-dropdown" class="dropdown-content">
           <h5>Logged in as: {{ Auth::user()->name }} </h5>
-          <li><a href="{{ url('profile/dashboard') }}">Dashboard</a></li>
-          <li><a href="{{ route('users.show', Auth::user()) }}">My Profile</a></li>
+          <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+          <li><a href="{{ route('user.show', Auth::user()) }}">My Profile</a></li>
           <li><a href="{{ route('events.create') }}">Create Event</a></li>
           <li><a href="{{ route('landing') }}">Home</a></li>
           <li class="divider"></li>

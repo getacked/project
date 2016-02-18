@@ -21,7 +21,7 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return Redirect::url('/register');
+                return redirect('/register');
             }
         }
 

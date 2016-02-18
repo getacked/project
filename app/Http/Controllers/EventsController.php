@@ -14,10 +14,23 @@ use App\Tag;
 
 class EventsController extends Controller
 {
-
   public function __construct()
   {
-      $this->middleware('auth', ['except' => ['show', 'index'] ]);
+    $this->middleware('auth',
+      ['except' => [
+        'index',
+        'show'
+      ]]);
+    $this->middleware('user.type:normal', 
+        ['only' => [
+            'attend'
+        ]]);
+    $this->middleware('user.type:host',
+      ['except' => [
+        'show',
+        'index',
+        'attend'
+      ]]);
   }
 
   public function create(){
@@ -110,7 +123,7 @@ class EventsController extends Controller
     return "wowo";
   }
 
-  public function follow(Event $event)
+  public function attend(Event $event)
   {
     if( !$event->attendees->contains(Auth::user()) ){
       $event->attendees()->attach( Auth::user() );
