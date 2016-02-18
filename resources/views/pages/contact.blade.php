@@ -6,6 +6,7 @@ Contact Us!
 
 
 @section('content')
+
     <div class="container" id="login-container">
       <section>
       <h4>Have a Burning Question on Your Mind?</h4>
@@ -39,3 +40,4 @@ Contact Us!
     </section>
     </div>
 @endsection
+

@@ -27,7 +27,7 @@ class EventsController extends Controller
 
   public function store(EventRequest $request)
   {
-    $attributes = $request->only('name', 'type', 'description', 'ticket_cap');
+    $attributes = $request->only('name', 'type', 'description', 'ticket_cap', 'gmaps_id');
     $attributes['ticket_left'] = $request['ticket_cap'];   
     // parse date and time to create a carbon instance
     $dateTime = $request['event_date'] . " " . $request['event_time'];
@@ -44,6 +44,7 @@ class EventsController extends Controller
     $trimmedTags = preg_replace('/\s+/', '', $request['customTags']);
     $tags = explode(',', $trimmedTags);
 
+    // dd($request['tags']);
 
     if($request['tags'])
     {
@@ -52,6 +53,7 @@ class EventsController extends Controller
         $event->tags()->attach($tag);
       }  
     }
+
 
     if($tags)
     {
