@@ -4,11 +4,6 @@
 {{ $event->name }}
 @endsection
 
-@section('styles')
-  <link rel="stylesheet" href="eventstyles.css">
-@endsection
-
-
 @section('content')
 
   <div class="container">
@@ -70,6 +65,7 @@
     </table>
 
 <!-- TAGS -->
+
     @if( count($event->tags) > 0 )
       <div class="divider"></div>
       <section>
@@ -88,6 +84,15 @@
       </section>
     @endif
 
+    <div class="divider"></div>
+
+    <div class="gmaps-container">
+      <input id="place-id" type="text" value="{{ $event->gmaps_id }}" style="display: none">
+      <div id="map"></div>
+      <img class="right" src="/images/powered_by_google_on_white.png" />
+    </div>
+
+    
 <!-- ATTENDEES -->
     @if ( count($event->attendees) > 0 )
     <div class="divider"></div>
@@ -105,4 +110,47 @@
 
     </section>
   </div>
+@endsection
+
+
+@section('scripts')
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRAA5yBzOP9W3_GzYxYYlxEnmnjcEbkRM&signed_in=true&libraries=geometry,places&callback=initMap" async defer></script>
+
+<script>
+// Initialize the map.
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 8,
+    center: {lat: 51.8972, lng: -8.7200},
+    scrollwheel: false
+  });
+  var geocoder = new google.maps.Geocoder;
+  var infowindow = new google.maps.InfoWindow;
+
+  //Get the event's Google Maps place-id 
+  var placeId = document.getElementById('place-id').value;
+  // var placeId = {{ $event->location }};
+
+  geocoder.geocode({'placeId': placeId }, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      if (results[0]) {
+        map.setZoom(13);
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+        });
+        infowindow.setContent(results[0].formatted_address);
+        infowindow.open(map, marker);
+      } else {
+        window.alert('No results found');
+      }
+    } else {
+      window.alert('Geocoder failed due to: ' + status);
+    }
+  });
+}
+</script>
+
 @endsection

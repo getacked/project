@@ -11,6 +11,7 @@ Contact Us!
         <h4>Have a Burning Question on Your Mind?</h4>
         @include('partials.message')
         <p>Feel free to drop an email in to one of our staff members below!</p>
+
     </section>
     
     <section>
@@ -43,5 +44,11 @@ Contact Us!
         </form>
     @include('partials.errors')
     </section>
+<<<<<<< HEAD
 </div>
 @endsection
+=======
+    </div>
+@endsection
+
+>>>>>>> maps_implementation
