@@ -82,6 +82,7 @@ class AuthController extends Controller
                 'password'   => bcrypt($data['password']),
                 'tel_no'     => $data['tel_no'],
                 'verified'   => false,
+                'type'       => $data['type'] == 0 ? 'normal' : 'host',
         ]);
     }
 

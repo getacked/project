@@ -29,24 +29,16 @@ class UserController extends Controller
         return view('users.follows');
     }
 
-    public function dashboard()
-    {
-        $user = Auth::user();
-        return view('users.dashboard', compact('user') );
-    }
-
-    public function show(User $user, $id)
-    {
-        $user = User::findOrFail($id);
-        return view('users.show', compact('user'));
-    }
-
-    public function edit() {
-        
-    }
-
     public function update() {
         
     }
 
+    public function show()
+    {
+        return view('users.dashboard', compact('user') );
+    }
+
+    public function edit() {
+        dd('blah');
+    }
 }

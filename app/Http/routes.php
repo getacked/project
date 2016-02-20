@@ -26,10 +26,15 @@ Route::group(['middleware' => ['web']], function () {
     //Users
     Route::resource('user', 'UserController', [
         'only' => [
-            'update', 'show', 'edit'
+            'update', 'index', 'edit', 'show'
+        ],
+        'names' => [
+            'show' => 'dashboard'
         ]]);
-    Route::get('user/dashboard', 'UserController@dashboard')->name('dashboard');
-    Route::get('/subscribe/{user}', ['uses' => 'UserController@subscribe', 'as' => 'subscribe']);
+    Route::get('/subscribe/{user}', 'UserController@subscribe')->name('subscribe');
+
+    //Index = show all organisers
+    //Show = dashboard
     
     //Events
     Route::resource('events', 'EventsController', ['names' => [
