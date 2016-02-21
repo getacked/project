@@ -9,6 +9,7 @@ return array(
     'AddEmailVerificationColumns' => $baseDir . '/database/migrations/2016_02_12_202928_add_email_verification_columns.php',
     'AddForeignKeys' => $baseDir . '/database/migrations/2016_02_11_161647_addForeignKeys.php',
     'AddGMAPSid' => $baseDir . '/database/migrations/2016_02_18_143206_addGMAPSid.php',
+    'AttendingTableSeeder' => $baseDir . '/database/seeds/AttendingTableSeeder.php',
     'CreateAttendingTable' => $baseDir . '/database/migrations/2016_02_10_130546_createAttendingTable.php',
     'CreateEventTagTable' => $baseDir . '/database/migrations/2016_01_28_202225_createEventTagTable.php',
     'CreateEventsTable' => $baseDir . '/database/migrations/2016_01_28_182248_createEventsTable.php',
@@ -21,6 +22,7 @@ return array(
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'CreateVenuesTable' => $baseDir . '/database/migrations/2016_02_11_161639_createVenuesTable.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
+    'EventsTableSeeder' => $baseDir . '/database/seeds/EventsTableSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',
@@ -526,4 +528,5 @@ return array(
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'UsersTableSeeder' => $baseDir . '/database/seeds/UserTableSeeder.php',
 );

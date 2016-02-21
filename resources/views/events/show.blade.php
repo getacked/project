@@ -21,7 +21,7 @@
 
       <div class="divider"></div>
       <h4 class="center-align">{{$event->name}}</h4>
-      <h5 class="center-align">by <a href="{{ route('user.show', $event->host) }}">{{ $event->host->username }}</a></h5>
+      <h5 class="center-align">by <a href="{{ route('dashboard', $event->host) }}">{{ $event->host->username }}</a></h5>
       <p>Tickets left: {{ $event->ticket_left }}</p>
       
       <small class='center'>

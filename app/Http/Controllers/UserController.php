@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
+use App\Http\Controllers\Controller;
+use App\Http\Requests;
+use App\Http\Requests\UserRequest;
+use App\User;
 use Illuminate\Http\Request;
 use Validator, Auth, Redirect;
-use App\Http\Requests;
-use App\User;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -35,10 +36,24 @@ class UserController extends Controller
 
     public function show()
     {
-        return view('users.dashboard', compact('user') );
+        // User
+        $user = Auth::user();
+
+        // Tags
+
+        // Suggested events
+        $suggestedEvents = Event::suggested($user)->get();
+
+        // Upcoming events
+        $upcomingEvents = Event::upcoming()->get();
+        
+        // Past events
+        $pastEvents = Event::past($user)->get();
+
+        return view('users.dashboard', compact('user', 'pastEvents', 'suggestedEvents', 'upcomingEvents') );
     }
 
     public function edit() {
-        dd('blah');
+        dd('Edit page');
     }
 }

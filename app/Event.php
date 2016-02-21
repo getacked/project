@@ -2,8 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Event extends Model
 {
@@ -65,6 +66,18 @@ class Event extends Model
   public function scopeNextWeek($query, $amount)
   {
     return $query->where('event_time', '<', new Carbon('next week'))->take($amount);
+  }
+
+  public function scopeSuggested($query, User $user) {
+    //Same as upcoming, just a place holder
+    return $query->where('event_time', '>', Carbon::now());
+  }
+
+  public function scopePast($query, User $user)
+  {
+    $events = DB::table('attending')->where('user_id', $user->id)->lists('event_id');
+    return $query->whereIn('id', $events)
+          ->where('event_time', '>', Carbon::now());
   }
 
 

@@ -15,7 +15,7 @@
   </div>
 
   <ul class="events row">
-    @forelse( $events as $event )
+    @foreach( $events as $event )
       <li class="col s12 m6 l3">
         @include('partials.event-card')
       </li>
