@@ -45,6 +45,6 @@ Route::group(['middleware' => ['web']], function () {
     //Tags
     Route::resource('tags', 'TagsController', [
         'only' => [
-            'index', 'store'
+            'index', 'store', 'show'
         ]]);    
 });

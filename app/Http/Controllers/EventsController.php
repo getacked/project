@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Auth, Redirect, View, Storage;
 use App\Event;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\EventRequest;
-use App\Http\Requests\EventEditRequest;
-use Auth, Redirect, View;
+use App\Photo;
 use Carbon\Carbon;
 use App\Tag;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Requests\EventRequest;
+use App\Http\Requests\EventEditRequest;
+use App\Http\Controllers\Controller;
+
 
 class EventsController extends Controller
 {
@@ -75,6 +77,13 @@ class EventsController extends Controller
         $event->tags()->attach(Tag::firstOrCreate(array('name' => $tag)));
       }  
     }
+
+    // get PHOTO 
+    $photo = Photo::create( ['filename' => $event->created_at->toDateString() . '-' . $event->id] );
+    Storage::put('/public/images/' . $photo->filename,  
+          $photo );
+
+    $event->associate( $photo );
     
     // show all events
     return redirect()->action('EventsController@index');

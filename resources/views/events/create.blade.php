@@ -12,7 +12,7 @@ FUCK
 
 @section('content')
 
-<!-- <div class="container"> -->
+<div class="container">
 <h2 class="center"> Create an Event! </h2>
 
 {{ Form::open(array('route' => 'events.store', 'method' => 'POST')) }}
@@ -63,6 +63,17 @@ FUCK
 
   </div>
 
+
+  <div class="file-field input-field">
+    <div class="btn">
+      <span>Upload a photo for your event:</span>
+      <input type="file">
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" name="image" type="text">
+    </div>
+  </div>
+
   <div class="gmaps-container">
     <input type="hidden" name="gmaps_id" id="gmaps"/>
     <input type="text" class="controls" id="pac-input" />
@@ -75,9 +86,10 @@ FUCK
 
   {{ Form::submit('Sign up!', ['class' => 'btn']) }}
 
-{{ Form::close() }}
+  {{ Form::close() }}
 
   @include('partials.errors')
+</div>
 
 @stop
 
@@ -103,7 +115,7 @@ function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 51.8972, lng: -8.7200},
     zoom: 12,
-    scroll: false
+    scrollwheel: false
   });
 
   // var infoWindow = new google.maps.InfoWindow({map: map});

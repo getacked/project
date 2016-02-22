@@ -46,6 +46,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'subscriptions', 'subscribee_id', 'subscriber_id');
     }
 
+    public function photo()
+    {
+        return $this->hasOne('App\Photo');
+    }
+
     public function hasType($type) {
         return $this->type == $type;
     }

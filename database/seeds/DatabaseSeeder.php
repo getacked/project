@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(EventsTableSeeder::class);
 
-        Model::regaurd();
+        Model::reguard();
 
     }
 }
