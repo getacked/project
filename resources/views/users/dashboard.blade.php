@@ -64,9 +64,15 @@
 		<h4 class="center-align col s12">So what about these events?</h4>
 			<div class="row">
 				<!-- Suggested Events -->
-				@for ($i = 0; $i < 4; $i++)
-					@include('partials.event-dashboard', ['event' => $suggestedEvents[$i]])
-				@endfor
+				@if( count($suggestedEvents) < 5)
+					@foreach($suggestedEvents as $event)
+						@include('partials.event-dashboard')
+					@endforeach
+				@else
+					@for ($i = 0; $i < 4; $i++)
+						@include('partials.event-dashboard', ['event' => $suggestedEvents[$i]])
+					@endfor
+				@endif
 			</div>
 	</section>
 </div>
@@ -93,16 +99,13 @@
   		<div>
   			<section>
   				<div class="row">
-  					@if( count($pastEvents) > 0)
-  						<!-- Past Events -->
-  						@foreach($pastEvents as $event)
-  							@include('partials.event-dashboard')
-  						@endforeach
-  					@else
+  					@forelse($pastEvents as $event)
+  						@include('partials.event-dashboard')
+  					@empty
   						<p class="center-align">
   							you have not attended any events yet, what are you waiting for?
   						</p>
-  					@endif
+  					@endforelse
 
   				</div>
   		    </section>

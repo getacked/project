@@ -11,6 +11,9 @@ class EventsTableSeeder extends Seeder
     public function run()
     {
     	//Create past events
-    	factory('App\Event', 50)->create();
+    	factory('App\Event', 40)->create();
+    	factory('App\Event', 10)->create([
+    			'host_id' => 52
+    		]);
     }
 }

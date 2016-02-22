@@ -20,12 +20,21 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function scopeUpcoming()
-    {
-        return $query->where('user_type', '=', 'host');
+    public function generateConfirmationLink() {
+        $this->token = str_random(30);
+
+        $this->save();
     }
 
+    public function confirmEmail() {
+        $this->verified = true;
+        $this->token = null;
+        
+        $this->save();
+    }
 
+    /* User relations */
+    
     public function events()
     {
         return $this->hasMany('App\Event', 'host_id');
@@ -48,18 +57,5 @@ class User extends Authenticatable
 
     public function hasType($type) {
         return $this->type == $type;
-    }
-
-    public function generateConfirmationLink() {
-        $this->token = str_random(30);
-
-        $this->save();
-    }
-
-    public function confirmEmail() {
-        $this->verified = true;
-        $this->token = null;
-        
-        $this->save();
     }
 }

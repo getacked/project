@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UsersTableSeeder::class);
         $this->call(EventsTableSeeder::class);
+        $this->call(AttendingTableSeeder::class);
 
         Model::regaurd();
 

@@ -26,8 +26,14 @@ class UserController extends Controller
 
     public function subscribe(User $user)
     {
-        Auth::user()->subs()->attach($user->id);
-        return view('users.follows');
+        if($user->hasType('host')) {
+            Auth::user()->subs()->attach($user->id);
+        }
+        return route('dashboard', Auth::user());
+    }
+
+    public function organiser() {
+        
     }
 
     public function update() {
@@ -39,18 +45,25 @@ class UserController extends Controller
         // User
         $user = Auth::user();
 
-        // Tags
+        if($user->hasType('normal')) {
 
-        // Suggested events
-        $suggestedEvents = Event::suggested($user)->get();
+            // Tags
 
-        // Upcoming events
-        $upcomingEvents = Event::upcoming()->get();
-        
-        // Past events
-        $pastEvents = Event::past($user)->get();
+            // Suggested events
+            $suggestedEvents = Event::suggested($user)->get();
 
-        return view('users.dashboard', compact('user', 'pastEvents', 'suggestedEvents', 'upcomingEvents') );
+            // Upcoming events
+            $upcomingEvents = Event::upcoming()->get();
+            
+            // Past events
+            $pastEvents = Event::past($user)->get();
+
+            return view('users.dashboard', compact('user', 'pastEvents', 'suggestedEvents', 'upcomingEvents') );
+        }
+
+        else {
+            dd('Organiser landing'); 
+        }
     }
 
     public function edit() {

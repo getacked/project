@@ -31,7 +31,8 @@ Route::group(['middleware' => ['web']], function () {
         'names' => [
             'show' => 'dashboard'
         ]]);
-    Route::get('/subscribe/{user}', 'UserController@subscribe')->name('subscribe');
+    Route::get('/user/subscribe/{user}', 'UserController@subscribe')->name('subscribe');
+    Route::get('/user/organiser/{user}', 'UserController@organiser')->name('organiser.show');
 
     //Index = show all organisers
     //Show = dashboard
