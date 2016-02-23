@@ -88,7 +88,7 @@
   </div>
 
   <div id="jump-in"  class="center-align">
-    <a href="#main"><i class="large material-icons">keyboard_arrow_down</i></a>
+    <a href="#jump"><i class="large material-icons">keyboard_arrow_down</i></a>
   </div>
 
   <div id="with-love">
@@ -115,7 +115,7 @@
 <!--  END VIDEO CONTAINER -->
 
 
-<div class="container">
+<div class="container" id="jump">
   <section> 
     <h3 class="center-align">Some Upcoming Events</h3>
     <div class="divider"></div>

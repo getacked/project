@@ -69,26 +69,10 @@ trait AuthenticatesUsers
             return $this->sendLockoutResponse($request);
         }
 
-
-        // Get credentials.
         $credentials = $this->getCredentials($request);
-        
-        // Credentials verified status.
-        $credientials_verified = false;
 
-        // Check credentials.
-        $credientials_verified = Auth::guard($this->getGuard())->attempt($credentials, $request->has('remember'), false);
-
-        // If credentials are verified check if email is verified.
-        $credentials['verified'] = true;
-        if($credientials_verified) {
-            // Check email.
-            if (Auth::guard($this->getGuard())->attempt($credentials, $request->has('remember'))) {
-                return $this->handleUserWasAuthenticated($request, $throttles);
-            }
-            else {
-                return $this->sendEmailUnverifiedResonse($request);
-            }
+        if (Auth::guard($this->getGuard())->attempt($credentials, $request->has('remember'))) {
+            return $this->handleUserWasAuthenticated($request, $throttles);
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
@@ -108,7 +92,7 @@ trait AuthenticatesUsers
      * @return void
      */
     protected function validateLogin(Request $request)
-    {   
+    {
         $this->validate($request, [
             $this->loginUsername() => 'required', 'password' => 'required',
         ]);
@@ -150,20 +134,6 @@ trait AuthenticatesUsers
     }
 
     /**
-     * Get the email unverified response instance.
-     *
-     * @param \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function sendEmailUnverifiedResonse(Request $request) {
-        return redirect('login')
-            ->withInput($request->only($this->loginUsername(), 'remember'))
-            ->withErrors([
-                $this->loginUsername() => $this->getEmailUnverifiedMessage(),
-            ]);
-    }
-
-    /**
      * Get the failed login message.
      *
      * @return string
@@ -173,18 +143,6 @@ trait AuthenticatesUsers
         return Lang::has('auth.failed')
                 ? Lang::get('auth.failed')
                 : 'These credentials do not match our records.';
-    }
-
-    /**
-     * Get the email unverified message.
-     *
-     * @return string
-     */
-    protected function getEmailUnverifiedMessage()
-    {
-        return Lang::has('auth.unverified')
-                ? Lang::get('auth.unverified')
-                : 'Your email has not been verified.  Please verify your email to access your account.';
     }
 
     /**
@@ -217,7 +175,17 @@ trait AuthenticatesUsers
     {
         Auth::guard($this->getGuard())->logout();
 
-        return $this->postLogout();
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
+    }
+
+    /**
+     * Get the guest middleware for the application.
+     */
+    public function guestMiddleware()
+    {
+        $guard = $this->getGuard();
+
+        return $guard ? 'guest:'.$guard : 'guest';
     }
 
     /**

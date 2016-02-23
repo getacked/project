@@ -44,11 +44,6 @@ Contact Us!
         </form>
     @include('partials.errors')
     </section>
-<<<<<<< HEAD
 </div>
-@endsection
-=======
-    </div>
-@endsection
 
->>>>>>> maps_implementation
+@endsection

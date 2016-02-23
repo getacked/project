@@ -9,7 +9,6 @@ return array(
     'AddEmailVerificationColumns' => $baseDir . '/database/migrations/2016_02_12_202928_add_email_verification_columns.php',
     'AddForeignKeys' => $baseDir . '/database/migrations/2016_02_11_161647_addForeignKeys.php',
     'AddGMAPSid' => $baseDir . '/database/migrations/2016_02_18_143206_addGMAPSid.php',
-    'AttendingTableSeeder' => $baseDir . '/database/seeds/AttendingTableSeeder.php',
     'CreateAttendingTable' => $baseDir . '/database/migrations/2016_02_10_130546_createAttendingTable.php',
     'CreateEventTagTable' => $baseDir . '/database/migrations/2016_01_28_202225_createEventTagTable.php',
     'CreateEventsTable' => $baseDir . '/database/migrations/2016_01_28_182248_createEventsTable.php',
