@@ -13,6 +13,18 @@
  </div>
  <div class="container">
 
+  <?php
+    // User
+    $user = Auth::user();
+
+    // Suggested events
+    $suggestedEvents = App\Event::all();
+    // Upcoming events
+    $upcomingEvents = App\Event::upcoming()->get();
+    // Past events
+    $pastEvents = App\Event::past($user)->get();
+  ?>
+
 <div id="dashboard" class="col s12">
 	<div class="fixed-action-btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click here to Edit profile data" style="top: 205px; right: 5%;">
 		<a class="btn-floating btn-large red" href="{{ route('user.edit', $user->id) }}">
@@ -64,9 +76,9 @@
 		<h4 class="center-align col s12">So what about these events?</h4>
 			<div class="row">
 				<!-- Suggested Events -->
-				@for ($i = 0; $i < 4; $i++)
-					@include('partials.event-dashboard', ['event' => $suggestedEvents[$i]])
-				@endfor
+				@foreach($suggestedEvents as $event)
+					@include('partials.event-dashboard', $event)
+				@endforeach
 			</div>
 	</section>
 </div>
@@ -82,6 +94,7 @@
 					@foreach($upcomingEvents as $event)
 						@include('partials.event-dashboard')
 					@endforeach
+
 				</div>
 		    </section>
 		</div>

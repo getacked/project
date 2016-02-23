@@ -9,11 +9,12 @@
   <div class="container">
     <section>
       <figure>
-        @if($event->image)   
-            <?php
-                $path = App\Image::find($image)->fileName;
-            ?>
-             <img alt="{{ $event->name }} image" class="responsive-img center-block"  src="/images/{{ $path }}" />
+        @if($event->photo)   
+           <?php
+               $photo = $event->photo;
+               $path = $photo->fileName . $photo->mime;
+           ?>
+            <img alt="{{ $event->name }} image" class="responsive-img center-block"  src="/images/uploads/{!! $path !!}" />
         @else 
             <img alt="{{ $event->name }} image" class="responsive-img center-block" src="http://lorempixel.com/850/480" />
         @endif

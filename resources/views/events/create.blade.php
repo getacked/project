@@ -20,7 +20,8 @@ the event and you'll be ready to share with friends, sell tickets and
 get stuck in to your own Eventure&copy;.  
 </p>
 <div class="divider"></div>
-{{ Form::open(array('route' => 'events.store', 'method' => 'POST')) }}
+{{ Form::open(array('route' => 'events.store', 'method' => 'POST', 'enctype' => 'multipart/form-data')) }}
+
 
   <div class="input-field">
     {{ Form::text('name', null, ['class' => 'validate col'] ) }}
@@ -72,6 +73,22 @@ get stuck in to your own Eventure&copy;.
 
   </div>
 
+
+<!--   <div class="input-field">
+      {!! Form::label('Event Image') !!}
+      {!! Form::file('image', null) !!}
+  </div> -->
+
+  <div class="file-field input-field">
+    <div class="btn">
+      <span>Upload a photo for your event:</span>
+      <input type="file" name="image">
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text">
+    </div>
+  </div>
+
   <div class="gmaps-container">
     <input type="hidden" name="gmaps_id" id="gmaps"/>
     <input type="text" class="controls" id="pac-input" />
@@ -79,12 +96,10 @@ get stuck in to your own Eventure&copy;.
     <img class="right" src="/images/powered_by_google_on_white.png" />
   </div>
 
- 
-  {{ Form::token() }}
 
   {{ Form::submit('Sign up!', ['class' => 'btn']) }}
 
-{{ Form::close() }}
+  {{ Form::close() }}
 
 </div>
 
@@ -114,7 +129,7 @@ function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 51.8972, lng: -8.7200},
     zoom: 12,
-    scroll: false
+    scrollwheel: false
   });
 
   // var infoWindow = new google.maps.InfoWindow({map: map});

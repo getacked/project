@@ -34,6 +34,7 @@ class Event extends Model
   protected $hidden = [ 'password', 'remember_token' ];
 
 
+
   /* Event Relations */
  
   public function host(){
@@ -49,6 +50,9 @@ class Event extends Model
     return $this->belongsToMany('App\Tag');
   }
 
+  public function photo(){
+    return $this->belongsTo('App\Photo');
+  }
 
 
   /* Event Scopes */ 
