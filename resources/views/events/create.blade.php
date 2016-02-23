@@ -39,9 +39,14 @@ get stuck in to your own Eventure&copy;.
 
   <div class="input-field">
     {{ Form::textarea('description') }}
-    {{ Form::label('description', 'Enter Your Event Event Description')}}
+    {{ Form::label('description', 'Enter Your Event Description')}}
   </div>
   
+  <div class="input-field">
+    {{ Form::text('price'), 0 }}
+    {{ Form::label('price', 'Enter Price') }}
+  </div>
+
   <div class="input-field">
     <input name="event_date" type="date" class="datepicker">
     {{ Form::label('event_date', "Date") }}

@@ -3,7 +3,6 @@
 
     @if( Auth::check() )
       <ul id="user-dropdown" class="dropdown-content">
-          <h5>Logged in as: {{ Auth::user()->name }} </h5>
           <li><a href="{{ route('dashboard', Auth::user()->id) }}">Dashboard</a></li>
           <li><a href="{{ route('events.create') }}">Create Event</a></li>
           <li><a href="{{ route('landing') }}">Home</a></li>
@@ -47,9 +46,9 @@
         <!--Right hand side nav-->
         <ul id="nav-mobile" class="right">
          @if( Auth::check() )
-           <li class="row">
-            <a class="col m8 dropdown-button" data-beloworigin="true" href="#!" data-activates="user-dropdown">
-              <img src="http://lorempixel.com/700/420/people" alt="" class="account-pic circle responsive-img" />
+           <li>
+            <a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="user-dropdown">
+              <img src="http://lorempixel.com/800/800/" alt="" class="account-pic circle responsive-img" />
               {{ Auth::user()->username }}
                 <i class="material-icons right">arrow_drop_down</i>
             </a>

@@ -19,7 +19,7 @@
   <div class="footer-copyright">
     <div class="container">
       © 2016 Copyright Blah Blah Blah
-      <a class="grey-text text-lighten-4 right" href="https://www.facebook.com/fionn.o.connor?fref=ts">FF</a>
+      <a class="grey-text text-lighten-5 right" href="https://www.facebook.com/fionn.o.connor?fref=ts">FF</a>
     </div>
   </div>
 </footer>
