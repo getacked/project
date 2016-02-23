@@ -99,4 +99,34 @@ body a
   border-color: #4d90fe;
 }
 
-.pac-c
+#imageContaineruser
+{
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3)
+    ),
+    url("../images/stadium.jpg");
+
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    height:250px;
+    width:100%;
+}
+
+#imageContainerorg
+{   
+    background-image: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3)
+    ),
+    url("images/viewfromstage.jpg");
+    /*background-image:url('viewfromstage.jpg');*/
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    height:300px;
+    width:100%;
+
+}
+
+

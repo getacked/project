@@ -20,12 +20,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function scopeUpcoming()
-    {
-        return $query->where('user_type', '=', 'host');
-    }
 
-
+    // USER RELATIONS 
     public function events()
     {
         return $this->hasMany('App\Event', 'host_id');
@@ -48,12 +44,23 @@ class User extends Authenticatable
 
     public function photo()
     {
-        return $this->hasOne('App\Photo');
+        return $this->belongsTo('App\Photo');
+    }
+
+
+    // USER SCOPES 
+
+    public function scopeHost()
+    {
+        return $query->where('user_type', '=', 'host');
     }
 
     public function hasType($type) {
         return $this->type == $type;
     }
+
+
+    // EMAIL VERIFICATION
 
     public function generateConfirmationLink() {
         $this->token = str_random(30);
@@ -67,4 +74,5 @@ class User extends Authenticatable
         
         $this->save();
     }
+    
 }

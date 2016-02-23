@@ -51,7 +51,7 @@ class Event extends Model
   }
 
   public function photo(){
-    return $this->has('App\Photo');
+    return $this->belongsTo('App\Photo');
   }
 
 

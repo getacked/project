@@ -12,6 +12,7 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
+    
     //Static pages
     Route::get('/', 'PagesController@homepage')->name('landing');
     Route::get('contact', 'PagesController@contact')->name('contact');

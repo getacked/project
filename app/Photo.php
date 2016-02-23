@@ -8,17 +8,17 @@ class Photo extends Model
 {
     protected $table = "photos";
 
-    protected $fillable = ["id", "filename"];
+    protected $fillable = ["id", "fileName", "mime"];
 
 
 
     public function user()
     {
-      return $this->belongsTo('App\User');
+      return $this->hasOne('App\User');
     }
 
     public function event()
     {
-      return $this->belongsTo('App\Event');
+      return $this->hasOne('App\Event');
     }
 }

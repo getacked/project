@@ -15,7 +15,7 @@ FUCK
 <div class="container">
 <h2 class="center"> Create an Event! </h2>
 
-{{ Form::open(array('route' => 'events.store', 'method' => 'POST')) }}
+{{ Form::open(array('route' => 'events.store', 'method' => 'POST', 'enctype' => 'multipart/form-data')) }}
 
   <div class="input-field">
     {{ Form::text('name', null, ['class' => 'validate col'] ) }}
@@ -64,13 +64,18 @@ FUCK
   </div>
 
 
+<!--   <div class="input-field">
+      {!! Form::label('Event Image') !!}
+      {!! Form::file('image', null) !!}
+  </div> -->
+
   <div class="file-field input-field">
     <div class="btn">
       <span>Upload a photo for your event:</span>
-      <input type="file">
+      <input type="file" name="image">
     </div>
     <div class="file-path-wrapper">
-      <input class="file-path validate" name="image" type="text">
+      <input class="file-path validate" type="text">
     </div>
   </div>
 
@@ -81,8 +86,6 @@ FUCK
     <img class="right" src="/images/powered_by_google_on_white.png" />
   </div>
 
- 
-  {{ Form::token() }}
 
   {{ Form::submit('Sign up!', ['class' => 'btn']) }}
 
