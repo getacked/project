@@ -6,14 +6,12 @@ Sign Up
 
 
 @section('content')
-<div class="row">
-    <div class="col s12">
+  <div class="row">
       <ul class="tabs">
         <li class="tab col s3"><a href="#howto" class="active">How To Sign Up</a></li>
         <li class="tab col s3"><a href="#attendee">Attendee</a></li>
         <li class="tab col s3"><a href="#venue">Venue</a></li>
       </ul>
-    </div>
   </div>
 
   <div class="container">

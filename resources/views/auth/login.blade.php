@@ -14,19 +14,17 @@ Login
       @include('partials.message')
 
       {{ Form::open(array('url' => '/login', 'method' => 'POST', 'class' => 'row')) }}
-
+      <div class="row">
         <div class="input-field col s6">
-          <i class="material-icons prefix">email</i>
           {{ Form::email('email', old('email'), ['class' => 'validate col'] ) }}
           {{ Form::label('email', 'Email') }}
         </div>
 
         <div class="input-field col s6">
-          <i class="material-icons prefix">vpn_key</i>
           {{ Form::password('password') }}
           {{ Form::label('password', 'Password')  }}
         </div>
-
+      </div>
         {{ Form::token() }}
         {{ Form::submit('Log In!', ['class' => 'btn']) }}
       {{ Form::close() }}

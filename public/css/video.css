@@ -41,7 +41,7 @@
 
 #custom-message{
   position: absolute;  
-  top: 20vh;
+  top: 24vh;
   width: 80%;
   text-align: center;
     z-index: 101;
@@ -72,13 +72,6 @@
   color: white;
 }
 
-#navbar{
-  position: absolute;  
-    z-index: 102;
-  width: 100%;
-    background-color: transparent !important;
-  box-shadow: none !important;
-}
 
 #with-love{
   position: absolute;  

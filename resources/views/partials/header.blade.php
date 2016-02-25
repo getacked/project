@@ -6,14 +6,17 @@
           <li><a href="{{ route('dashboard', Auth::user()->id) }}">Dashboard</a></li>
           <li><a href="{{ route('events.create') }}">Create Event</a></li>
           <li><a href="{{ route('landing') }}">Home</a></li>
+          <li><a href="{{ route('browse') }}">Browse Events</a></li>
           <li class="divider"></li>
           <li><a href="{{ url('/logout') }}">Logout</a></li>
       </ul>
     @endif
 
     <ul id="guest-dropdown" class="dropdown-content">
+        <li><a href="{{ route('landing') }}">Home</a></li>
         <li><a href="{{ url('/login') }}">Log In</a></li>
         <li><a href="{{ url('/register') }}">Sign Up!</a></li>
+        <li><a href="{{ route('browse') }}">Browse Events</a></li>
         <li class="divider"></li>
         <li><a href="{{ route('contact') }}">Contact</a></li>
         <li><a href="{{ route('faq') }}">FAQ</a></li>
@@ -24,10 +27,10 @@
       <div class="nav-wrapper">
 
       <!--Main logo and site name, centrally aligned EXCLUDED FROM LANDING PAGE-->
-      <a href="{{ route('landing') }}" class="brand-logo center">Eventure</a>
+      <a href="{{ route('landing') }}" class="brand-logo center hide-on-small-only">Eventure</a>
 
         <!--Left hand side nav-->
-        <ul id="nav-mobile" class="left">
+        <ul id="nav-mobile" class="left hide-on-small-only    ">
           <li class="nav-link">{{ link_to_route('browse', 'Browse') }}</li>
 
           <!--Search button box thing-->

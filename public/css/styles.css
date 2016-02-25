@@ -37,6 +37,11 @@ body a
   color: #303F9F;
 }
 
+footer a 
+{
+  color: white;
+}
+
 .filter header
 {
   position: absolute;  

@@ -12,47 +12,6 @@
       <div class="filter"></div>
 @endsection
 
-  <header>
-    <div class="navbdar">
-    
-      <!--Drop down menu definition-->
-      <ul id="dropdown1" class="dropdown-content">
-        <li><a href="register/">Sign Up!</a></li>
-        <li><a href="login/">Login</a></li>
-        <li class="divider"></li>
-        <li><a href="{{ route('contact') }}">Contact</a></li>
-        <li><a href="{{ route('faq') }}">FAQ</a></li>
-        <li><a href="{{ route('about') }}">About Us</a></li>
-      </ul>
-
-      <nav id="navbar">
-        <div class="nav-wrapper">
-
-          <!--Left hand side nav-->
-          <ul id="nav-mobile" class="left">
-            <li class="nav-link"><a href="browse.html">Browse</a></li>
-
-            <!--Search button box thing-->
-            <li class="nav-link hide-on-med-and-down">
-              <!--FORM MUST BE LINKED TO SOMETHING ON BACKEND-->
-              <form action="#">
-                <div class="input-field">
-                  <input id="search" type="search" required>
-                  <label for="search"><i class="material-icons">search</i></label>
-                  <i class="material-icons">close</i>
-                </div>
-              </form>
-            </li>
-          </ul>
-
-          <!--Right hand side nav-->
-          <ul id="nav-mobile" class="right">
-            <li><a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="dropdown1">Get Started!<i class="material-icons right">arrow_drop_down</i></a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </header>
 
   @section('content')
 
