@@ -26,7 +26,7 @@ class EventEditRequest extends Request
     public function rules()
     {
         return [
-            'event_name' => 'required|min:3',
+            'name' => 'required|min:3',
             'tickets' => 'required',
             'event_date' => 'required|after:' . Carbon::now()
         ];

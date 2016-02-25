@@ -60,14 +60,8 @@ FUCK
       <h3>Or Create your own! <small>(seperated by commas)</small></h3>
       {{ Form::textarea('customTags') }}
     </div>
-
   </div>
 
-
-<!--   <div class="input-field">
-      {!! Form::label('Event Image') !!}
-      {!! Form::file('image', null) !!}
-  </div> -->
 
   <div class="file-field input-field">
     <div class="btn">
