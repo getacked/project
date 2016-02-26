@@ -16,28 +16,27 @@
            ?>
             <img alt="{{ $event->name }} image" class="responsive-img center-block"  src="/images/uploads/{!! $path !!}" />
         @else 
-            <img alt="{{ $event->name }} image" class="responsive-img center-block" src="http://lorempixel.com/850/480" />
+            <img alt="{{ $event->name }} image" class="responsive-img center-block" src="http://lorempixel.com/1000/480" />
         @endif
       </figure>
 
       <div class="divider"></div>
       <h4 class="center-align">{{$event->name}}</h4>
       <h5 class="center-align">by <a href="{{ route('dashboard', $event->host) }}">{{ $event->host->username }}</a></h5>
-      <p>Tickets left: {{ $event->ticket_left }}</p>
-      
-      <small class='center'>
-        <?php
-          if( $event->host == Auth::user() ){
-            echo "<a href='" . route('events.edit', $event)."'>";
-            echo "<p class='chip'>Edit event <i class='material-icons'>mode_edit</i></a>";
-          }else{
-            if( !$event->attendees->contains(Auth::user()) && Auth::check() ){
-              echo "<a class='btn-large' href='". route('events.attend', $event) . "'>Attend!</a>";  
-            }
-          }
-        ?>
-      </small>
-
+          <div class="center-align">
+          <p class="center-align">Tickets left: {{ $event->ticket_left }}
+            <?php
+              if( $event->host == Auth::user() ){
+                echo "<a href='" . route('events.edit', $event)."'>";
+                echo "<p class='chip'>Edit event <i class='material-icons'>mode_edit</i></a>";
+              }else{
+                if( !$event->attendees->contains(Auth::user()) && Auth::check() ){
+                  echo "<a class='btn-large' href='". route('events.attend', $event) . "'>Attend!</a>";  
+                }
+              }
+            ?>
+          </p>
+          </div>
       <div class="divider"></div>
       <br>
       <table class="centered highlight">

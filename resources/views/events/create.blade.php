@@ -21,8 +21,12 @@ get stuck in to your own Eventure&copy;.
 </p>
 <div class="divider"></div>
 {{ Form::open(array('route' => 'events.store', 'method' => 'POST', 'enctype' => 'multipart/form-data')) }}
-
-
+  
+  <p class="flowtext"></p>
+  <h5 class="center-align">1 - Main Details</h5>
+  <p class="center-align">
+    Tell us what you're made of
+  </p>
   <div class="input-field">
     {{ Form::text('name', null, ['class' => 'validate col'] ) }}
     {{ Form::label('name', 'Event Name') }}
@@ -38,10 +42,13 @@ get stuck in to your own Eventure&copy;.
   </div>  
 
   <div class="input-field">
-    {{ Form::textarea('description') }}
-    {{ Form::label('description', 'Enter Your Event Description')}}
+    {{ Form::textarea('description', null, array('placeholder' => 'Enter Your Event Description')) }}
   </div>
   
+  <h5 class="center-align">2 - Ticket Information</h5>
+  <p class="center-align">
+    For those wishing to make a shiny penny (of course this is optional)
+  </p>  
   <div class="input-field">
     {{ Form::text('price'), 0 }}
     {{ Form::label('price', 'Enter Price') }}
@@ -52,7 +59,7 @@ get stuck in to your own Eventure&copy;.
     {{ Form::label('event_date', "Date") }}
   </div>
   <div class="input-field clockpicker">
-     <input type="text" class="form-control" name="event_time" value="18:00">
+     <input type="text" class="form-control" name="event_time">
      {{ Form::label('event_time', "Time") }}
   </div>
 
@@ -61,35 +68,36 @@ get stuck in to your own Eventure&copy;.
     {{ Form::label('ticket_cap', 'Tickets') }}
   </div>
 
-  <div> 
-    <h5 class="center-align">Add Some Event Tags!</h5>
-    <p class="center-align">
+  <h5 class="center-align">3 - Add Some Event Tags!</h5>
+  <p class="center-align">
     This will allow other users to find your event
-    </p> 
+  </p>
+
+  <div> 
+     
     <div class="input-field">
       {{ Form::select('tags[]', $tags, null, ['multiple']) }}
       {{ Form::label('tags', 'Tags') }}
     </div>
 
     <div>
-      <h5 class="center-align">Or Create your own! <small>(seperated by commas)</small></h5>
+      <p class="center-align">Or Create your own! <small>(seperated by commas)</small></p>
       {{ Form::textarea('customTags') }}
     </div>
 
   </div>
-
-
+  <br>
 <!--   <div class="input-field">
       {!! Form::label('Event Image') !!}
       {!! Form::file('image', null) !!}
   </div> -->
 
-  <div class="file-field input-field">
-    <div class="btn">
+  <div class="file-field input-field row">
+    <div class="btn col s12">
       <span>Upload a photo for your event:</span>
       <input type="file" name="image">
     </div>
-    <div class="file-path-wrapper">
+    <div class="file-path-wrapper col s12">
       <input class="file-path validate" type="text">
     </div>
   </div>
@@ -100,10 +108,10 @@ get stuck in to your own Eventure&copy;.
     <div id="map"></div>
     <img class="right" src="/images/powered_by_google_on_white.png" />
   </div>
-
-
-  {{ Form::submit('Sign up!', ['class' => 'btn']) }}
-
+  <br>
+  <div class="center-align">
+  {{ Form::submit('Create Event!', ['class' => 'btn']) }}
+  </div>
   {{ Form::close() }}
 
 </div>

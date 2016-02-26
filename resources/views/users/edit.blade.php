@@ -16,7 +16,8 @@
 
     {{ Form::submit('UPLOAD', ['class' => 'btn']) }}
   {{ Form::close() }}
-
+  <p> fuck
+  </p>
 
   @if(Auth::user()->photo)   
       <?php
