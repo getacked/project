@@ -72,16 +72,15 @@ class Event extends Model
     return $query->where('event_time', '<', new Carbon('next week'))->take($amount);
   }
 
-  public function scopeSuggested($query, User $user) {
+  public function scopeSuggested($query) {
     //Same as upcoming, just a place holder
     return $query->where('event_time', '>', Carbon::now());
   }
 
-  public function scopePast($query, User $user)
+  public function scopePast($query)
   {
-    $events = DB::table('attending')->where('user_id', $user->id)->lists('event_id');
-    return $query->whereIn('id', $events)
-          ->where('event_time', '>', Carbon::now());
+    // $events = DB::table('attending')->where('user_id', $user->id)->lists('event_id');
+    return $query->where('event_time', '<', Carbon::now());
   }
 
 

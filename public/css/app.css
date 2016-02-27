@@ -24,10 +24,7 @@ $shade3: #1b1d26;*/
 html {
   font-family: "Roboto", sans-serif;
   color: #c5c7b6;
-  /*background-image: url("/images/footer_lodyas.png");*/
-  /*background-image: url('/images/cover.png');*/
   background-image: url("/images/use_your_illusion.png");
-  /*background-repeat: no-repeat;*/
   /*background-size: cover;*/ }
 
 footer {
@@ -36,10 +33,9 @@ footer {
   font-family: "Walter Turncoat", cursive; }
 
 header, nav {
-  background-color: #222028;
+  background-color: transparent;
   box-shadow: none;
   color: #2f3837; }
-
 
 nav {
   line-height: 1.5;
@@ -64,6 +60,13 @@ a {
 a:hover {
   color: #c5c7b6; }
 
+header {
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-image: url("/images/forest.jpg ");
+  /*background-image: url('/images/ZenBG3.png');*/ }
+
 h1, h2 {
   color: #2f3837;
   font-family: "Cinzel", serif; }
@@ -72,11 +75,17 @@ h4, h5 {
   font-family: "Walter Turncoat", cursive; }
 
 body {
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   min-height: 100vh;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column; }
 
 main {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
   flex: 1 0 auto;
   margin-bottom: 0;
   /*background-color: $shade2;*/
@@ -94,33 +103,6 @@ main {
   .modal-footer .btn-flat {
     color: #2f3837;
     color: #c5c7b6; }
-
-/* label color */
-.input-field label {
-  color: #2f3837; }
-
-/* label focus color */
-.input-field input[type=text]:focus + label {
-  color: #2f3837; }
-
-/* label underline focus color */
-.input-field input[type=text]:focus {
-  border-bottom: 1px solid #2f3837;
-  box-shadow: 0 1px 0 0 #2f3837; }
-
-/* valid color */
-.input-field input[type=text].valid {
-  border-bottom: 1px solid #2f3837;
-  box-shadow: 0 1px 0 0 #2f3837; }
-
-/* invalid color */
-.input-field input[type=text].invalid {
-  border-bottom: 1px solid #2f3837;
-  box-shadow: 0 1px 0 0 #2f3837; }
-
-/* icon prefix focus color */
-.input-field .prefix.active {
-  color: #2f3837; }
 
 .f100 {
   font-weight: 100; }
@@ -162,15 +144,7 @@ main {
     padding: 0 1.5em;
     padding: 3em; }
 
-header {
-  height: 20vh;
-  width: 100%;
-  background-size: cover;
-  background-image: url("/images/forest.jpg ");
-  /*background-image: url('/images/ZenBG3.png');*/ }
-
 #myName {
-  -moz-animation-duration: 2s;
   -webkit-animation-duration: 2s;
   animation-duration: 2s;
   color: #2f3837; }
@@ -189,123 +163,6 @@ h1 span:after {
   border-bottom: 1px solid #2f3837;
   content: ""; }
 
-.form-errors
-{
-  background-color: #2f3837;
-}
-
-/*      SOCIAL BUTTONS (HOVER)    */
-.social {
-  padding: 0.8em;
-  /* Wrapper */
-  /* Circle */
-  /* Icons */ }
-  .social html {
-    font-size: 18px; }
-  .social .icon-button {
-    background-color: #222028;
-    border-radius: 3.6rem;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 2.0rem;
-    height: 3.6rem;
-    line-height: 3.6rem;
-    margin: 0 5px;
-    position: relative;
-    text-align: center;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    width: 3.6rem; }
-  .social .icon-button span {
-    border-radius: 0;
-    display: block;
-    height: 0;
-    left: 50%;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-    width: 0; }
-  .social .icon-button:hover span {
-    width: 3.6rem;
-    height: 3.6rem;
-    border-radius: 3.6rem;
-    margin: -1.8rem; }
-  .social .twitter span {
-    background-color: #4099ff; }
-  .social .github span {
-    background-color: #3B5998; }
-  .social .google-plus span {
-    background-color: #db5a3c; }
-  .social .last-fm span {
-    background-color: #db5a3c; }
-  .social .icon-button i {
-    background: none;
-    color: white;
-    height: 3.6rem;
-    left: 0;
-    line-height: 3.6rem;
-    position: absolute;
-    top: 0;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-    width: 3.6rem;
-    z-index: 10; }
-  .social .icon-button .icon-twitter {
-    color: #4099ff; }
-  .social .icon-button .icon-github {
-    color: #3B5998; }
-  .social .icon-button .icon-google-plus {
-    color: #db5a3c; }
-  .social .icon-button .icon-last-fm {
-    color: #db5a3c; }
-  .social .icon-button:hover .icon-twitter,
-  .social .icon-button:hover .icon-github,
-  .social .icon-button:hover .icon-google-plus,
-  .social .icon-button:hover .icon-last-fm {
-    color: white; }
-
-/*   LINK ANIMATIONS   */
-.navbar {
-  text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: 1px; }
-  .navbar * {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-transition: all 0.35s ease;
-    transition: all 0.35s ease; }
-  .navbar li {
-    display: inline-block;
-    list-style: outside none none;
-    margin: 0.4em 0.8em;
-    padding: 0; }
-  .navbar a {
-    padding: 0 0.7em;
-    position: relative;
-    text-decoration: none;
-    display: inline-block;
-    margin: 0.4em; }
-  .navbar a:before {
-    position: absolute;
-    content: '';
-    -webkit-transition: all 0.35s ease;
-    transition: all 0.35s ease;
-    opacity: 0;
-    left: 15%;
-    right: 15%;
-    top: 0;
-    bottom: 0;
-    border-left: 2px solid #2f3837;
-    border-right: 3px solid #2f3837; }
-
 .navbar
 .navbar
 .navbar a:hover,
@@ -320,3 +177,5 @@ h1 span:after {
 
 .accent {
   color: #2f3837 !important; }
+
+/*# sourceMappingURL=app.css.map */

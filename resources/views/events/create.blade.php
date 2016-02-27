@@ -84,16 +84,13 @@ get stuck in to your own Eventure&copy;.
       <p class="center-align">Or Create your own! <small>(seperated by commas)</small></p>
       {{ Form::textarea('customTags') }}
     </div>
-
   </div>
-  <br>
-<!--   <div class="input-field">
-      {!! Form::label('Event Image') !!}
-      {!! Form::file('image', null) !!}
-  </div> -->
 
-  <div class="file-field input-field row">
-    <div class="btn col s12">
+  <br>
+
+  <div class="file-field input-field">
+    <div class="btn">
+
       <span>Upload a photo for your event:</span>
       <input type="file" name="image">
     </div>
