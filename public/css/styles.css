@@ -21,6 +21,11 @@ header, footer, nav
   background-color: #212121 !important;
 }
 
+.event-form
+{
+  margin-bottom: 2em;
+}
+
 .account-pic
 {
   max-height: 1.2em;

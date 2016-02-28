@@ -12,79 +12,91 @@ Create Event
 
 @section('content')
 
-<div class="container">
-<h2 class="center"> Create an Event!</h2>
-<p>
-You're so close to creating your very own event! Just a few details about
-the event and you'll be ready to share with friends, sell tickets and 
-get stuck in to your own Eventure&copy;.  
-</p>
-<div class="divider"></div>
+<div class="flow-text container">
+  <h2 class="center"> Create an Event!</h2>
+  <p>
+    You're so close to creating your very own event! Just a few details about the event and you'll be ready to share with friends, sell tickets and get stuck in to your own Eventure.  
+  </p>
+  <div class="divider"></div>
+
 {{ Form::open(array('route' => 'events.store', 'method' => 'POST', 'enctype' => 'multipart/form-data')) }}
   
-  <p class="flowtext"></p>
-  <h5 class="center-align">1 - Main Details</h5>
-  <p class="center-align">
-    Tell us what you're made of
-  </p>
-  <div class="input-field">
-    {{ Form::text('name', null, ['class' => 'validate col'] ) }}
-    {{ Form::label('name', 'Event Name') }}
-  </div>
-
-  <?php 
-    $types = ['music', 'comedy', 'conference', 'talk']; 
-  ?>
-
-  <div class="input-field">
-    {{ Form::select('type', $types, null, ['class' => 'validate']) }}
-    {{ Form::label('type', 'Event Type') }}
-  </div>  
-
-  <div class="input-field">
-    {{ Form::textarea('description', null, array('placeholder' => 'Enter Your Event Description')) }}
-  </div>
-  
-  <h5 class="center-align">2 - Ticket Information</h5>
-  <p class="center-align">
-    For those wishing to make a shiny penny (of course this is optional)
-  </p>  
-  <div class="input-field">
-    {{ Form::text('price'), 0 }}
-    {{ Form::label('price', 'Enter Price') }}
-  </div>
-
-  <div class="input-field">
-    <input name="event_date" type="date" class="datepicker">
-    {{ Form::label('event_date', "Date") }}
-  </div>
-  <div class="input-field clockpicker">
-     <input type="text" class="form-control" name="event_time">
-     {{ Form::label('event_time', "Time") }}
-  </div>
-
-  <div class="input-field">
-    {{ Form::text('ticket_cap') }}
-    {{ Form::label('ticket_cap', 'Tickets') }}
-  </div>
-
-  <h5 class="center-align">3 - Add Some Event Tags!</h5>
-  <p class="center-align">
-    This will allow other users to find your event
-  </p>
-
-  <div> 
-     
+  <section class="event-form">
+    <h5 class="center-align">1 - Main Details</h5>
+    <p class="center-align">
+      Tell us what you're made of
+    </p>
     <div class="input-field">
+      {{ Form::text('name', null, ['class' => 'validate col'] ) }}
+      {{ Form::label('name', 'Event Name') }}
+    </div>
+
+    <?php 
+      $types = ['music', 'comedy', 'conference', 'talk']; 
+    ?>
+
+    <div class="input-field">
+      {{ Form::select('event_type', $types, null, ['class' => 'validate']) }}
+      {{ Form::label('event_type', 'Event Type') }}
+    </div>  
+
+    <div class="input-field">
+      {{ Form::textarea('description', null, array('placeholder' => 'Enter Your Event Description', 'class' => 'materialize-textarea')) }}
+    </div>
+
+    <span class="center">Choose a location for your event!</span>
+
+    <div class="gmaps-container">
+      <input type="hidden" name="gmaps_id" id="gmaps"/>
+      <input type="text" class="controls" id="pac-input" />
+      <div id="map"></div>
+      <img class="right" src="/images/powered_by_google_on_white.png" />
+    </div>
+  </section>
+  
+  <section class="event-form">
+    <h5 class="center-align">2 - Ticket Information</h5>
+    <p class="center-align">
+      For those wishing to make a shiny penny. Enter price at €0.00 for a free-for-all!  </p>  
+    <div class="input-field">
+      {{ Form::text('ticket_price') }}
+      {{ Form::label('ticket_price', 'Ticket Price  (0 for no charge)') }}
+    </div>
+
+    <div class="input-field">
+      <input name="event_date" type="date" class="datepicker">
+      {{ Form::label('event_date', "Choose a date for your event") }}
+    </div>
+    <div class="input-field clockpicker">
+       <input type="text" class="form-control" name="event_time">
+       {{ Form::label('event_time', "Choose a time for your event") }}
+    </div>
+
+    <div class="input-field">
+      {{ Form::text('ticket_cap') }}
+      {{ Form::label('ticket_cap', 'Tickets') }}
+    </div>
+  </section>
+
+
+  <section class="event-form row"> 
+    <h5 class="center-align">3 - Add Some Event Tags!</h5>
+    <p class="center-align">
+      This will allow other users to find your event
+    </p>
+
+     
+    <div class="col s4 item input-field">
       {{ Form::select('tags[]', $tags, null, ['multiple']) }}
       {{ Form::label('tags', 'Tags') }}
     </div>
 
-    <div>
-      <p class="center-align">Or Create your own! <small>(seperated by commas)</small></p>
-      {{ Form::textarea('customTags') }}
+    <div class="col s8 item input-field">
+      <!-- <p class="center-align">Or Create your own! <small>(seperated by commas)</small></p> -->
+      {{ Form::textarea('customTags', null, array('class' => 'materialize-textarea')) }}
+      {{ Form::label('customTags', 'Or Create your own! (Seperated by commas)') }}
     </div>
-  </div>
+  </section>
 
   <br>
 
@@ -99,15 +111,10 @@ get stuck in to your own Eventure&copy;.
     </div>
   </div>
 
-  <div class="gmaps-container">
-    <input type="hidden" name="gmaps_id" id="gmaps"/>
-    <input type="text" class="controls" id="pac-input" />
-    <div id="map"></div>
-    <img class="right" src="/images/powered_by_google_on_white.png" />
-  </div>
+
   <br>
   <div class="center-align">
-  {{ Form::submit('Create Event!', ['class' => 'btn']) }}
+  {{ Form::submit('Create Event!', ['class' => 'btn-large']) }}
   </div>
   {{ Form::close() }}
 
@@ -227,19 +234,6 @@ function initMap() {
     infowindow.open(map, marker);
   });
 
-  // Sets a listener on a radio button to change the filter type on Places
-  // Autocomplete.
-  function setupClickListener(id, types) {
-    var radioButton = document.getElementById(id);
-    radioButton.addEventListener('click', function() {
-      autocomplete.setTypes(types);
-    });
-  }
-
-  setupClickListener('changetype-all', []);
-  setupClickListener('changetype-address', ['address']);
-  setupClickListener('changetype-establishment', ['establishment']);
-  setupClickListener('changetype-geocode', ['geocode']);
 }
 </script>
 

@@ -1,34 +1,32 @@
 <div class="col s6 m4 l3">
-  <div class="card">
-
-    <!-- Grab a default picture  -->
-
+  <div class="card item hoverable">
     <div class="card-image waves-effect waves-block waves-light">
-      @if($event->image)   
-        <?php
-            $path = App\Image::find($image)->fileName;
-        ?>
-         <img class="activator" src="/images/{{ $path }}" />
+      
+      @if($event->photo)   
+         <?php
+             $photo = $event->photo;
+             $path = $photo->fileName . $photo->mime;
+         ?>
+          <img alt="{{ $event->name }} image" class="activator responsive-img center-block"  src="/images/uploads/{!! $path !!}" />
       @else 
-          <!-- <img class="activator" src="images/default.jpg" /> -->
-          <img class="activator" src="http://lorempixel.com/840/500" />
+          <img alt="{{ $event->name }} image" class="activator responsive-img center-block" src="http://lorempixel.com/850/480" />
       @endif
     </div>
-
+    
     <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4 truncate">{{ $event->name }}</span>
-      <p>{{ $event->event_time->diffForHumans() }}</p>
+    
+    <span class="card-title activator truncate">{{ $event->name }}<i class="material-icons right">more_vert</i></span>
+      <p><b>{{ $event->event_time->diffForHumans() }}</b></p>
+      <p>{{ $event->event_time->toDayDateTimeString() }}</p>
     </div>
-
-
+  
     <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">{{ $event->name }}<i class="material-icons right">close</i></span>
-      <small>at {{$event->location }}</small>
-      <p>
-        {{ $event->description }}
-      </p>
-      <a href="{{ route('events.show', $event) }}">See More</a>
-    </div>
+      <span class="card-title grey-text text-darken-4">{{ $event->name}}: <br><small>by {{ $event->host->username }}</small><i class="material-icons right">close</i></span>
 
+      <p class="card-address" id="{{ $event->gmaps_id }}"></p>
+      <p>{{ $event->description }}</p>
+
+      <small><a href="{{ route('events.show', $event) }}">See More</a></small>
+    </div>
   </div>
 </div>

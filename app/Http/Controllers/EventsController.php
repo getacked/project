@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Auth, Redirect, View, Storage, Input;
 use App\Event;
-// use Input;
+use Stripe\Stripe;
+use Stripe_Error;
 use App\Photo;
 use Carbon\Carbon;
 use App\Tag;
@@ -66,7 +67,7 @@ class EventsController extends Controller
   {
     $user = Auth::user();
 //extract attributes from input
-    $attributes = $request->only('name', 'type', 'description', 'ticket_cap', 'gmaps_id');
+    $attributes = $request->only('name', 'event_type', 'description', 'ticket_cap', 'gmaps_id', 'ticket_price');
     $attributes['ticket_left'] = $request['ticket_cap'];
     $attributes['host_id'] = $user->id;
 
@@ -200,16 +201,28 @@ class EventsController extends Controller
     return "wowo";
   }
 
-  public function attend(Event $event)
+  public function attend(Request $request, Event $event)
   {
-    if( !$event->attendees->contains(Auth::user()) ){
+    // dd( "wow" );
+    \Stripe\Stripe::setApiKey( env("STRIPE_SK") );
+
+    try {
+      $token = $request->stripeToken;
+      $charge = \Stripe\Charge::create(array(
+        "amount" => $event->ticket_price * 100,
+        "currency" => "eur",
+        "source" => $token,
+        "description" => $event->name));
+      $event->ticket_left--;
       $event->attendees()->attach( Auth::user() );
-    }
+      $event->save();
+    } catch(Stripe_CardError $e) {
+      // Since it's a decline, Stripe_CardError will be caught
+      $body = $e->getJsonBody();
+      $err  = $body['error'];
+    } 
 
-    $event->ticket_left--;
-    $event->save();
     return Redirect::route('events.show', compact('event') );
-
   }
 
 }
