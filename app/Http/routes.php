@@ -22,20 +22,32 @@ Route::group(['middleware' => ['web']], function () {
 
     //Authentication
     Route::auth();
+    
+    // Email Confirmation
     Route::get('register/confirm/{token}', 'Auth\AuthController@confirmEmail');
+    Route::get('resend', 'Auth\AuthController@getResendForm')->name('resend-link');
+    Route::post('resend', 'Auth\AuthController@resendLink')->name('resend-link');
     
     //Users
     Route::resource('user', 'UserController', [
         'only' => [
-            'update', 'index', 'edit', 'show'
-        ],
-        'names' => [
-            'show' => 'dashboard'
+            'index', 'show'
         ]]);
-    Route::get('/subscribe/{user}', 'UserController@subscribe')->name('subscribe');
+    
+    Route::get('dashboard', 'UserController@dashboard')->name('dashboard');
+    
+    // Ajax routes
+    Route::post('dashboard/tag/add', 'UserController@addTag')->name('addTag');
+    Route::post('dashboard/tag/remove', 'UserController@removeTag');
 
-    //Index = show all organisers
-    //Show = dashboard
+    // Cant use user.edit or user.update as it takes in a user id as part of the URI
+    Route::get('dashboard/edit', 'UserController@edit')->name('edit-account');
+    Route::match(array('PUT', 'PATCH'), "dashboard/edit", array(
+          'uses' => 'UserController@update',
+          'as' => 'user.update'
+    ));
+
+    Route::get('/subscribe/{user}', 'UserController@subscribe')->name('subscribe');
     
     //Events
     Route::resource('events', 'EventsController', ['names' => [

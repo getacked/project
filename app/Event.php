@@ -62,11 +62,6 @@ class Event extends Model
     return $query->where('tickets', '>', 100);
   }
 
-  public function scopeUpcoming($query)
-  {
-    return $query->where('event_time', '>', Carbon::now());
-  }
-
   public function scopeNextWeek($query, $amount)
   {
     return $query->where('event_time', '<', new Carbon('next week'))->take($amount);
@@ -77,10 +72,31 @@ class Event extends Model
     return $query->where('event_time', '>', Carbon::now());
   }
 
-  public function scopePast($query)
+  public function scopeUpcoming($query, User $user = null)
   {
-    // $events = DB::table('attending')->where('user_id', $user->id)->lists('event_id');
-    return $query->where('event_time', '<', Carbon::now());
+    if($user == null) {
+      return $query->where('event_time', '>', Carbon::now())->orderBy('event_time');
+    }
+    else if($user->hasType('normal')) {
+      return $query->where('event_time', '>', Carbon::now())->orderBy('event_time');
+    }
+    else {
+      return $query->where('host_id', $user->id)->where('event_time', '>', Carbon::now())->orderBy('event_time');
+    }
+  }
+
+  public function scopePast($query, User $user = null)
+  {
+    if($user == null) {
+      return $query->where('event_time', '<', Carbon::now())->orderBy('event_time');
+    }
+    else if($user->hasType('normal')) {
+      $eventIds = DB::table('attending')->where('user_id', $user->id)->lists('event_id');
+      return $query->whereIn('id', $eventIds)->where('event_time', '<', Carbon::now());
+    }
+    else {
+      return $query->where('host_id', $user->id)->where('event_time', '<', Carbon::now())->orderBy('event_time');
+    }
   }
 
 

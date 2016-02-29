@@ -94,7 +94,7 @@ class EventsController extends Controller
     {
       foreach($tags as $tag)
       { 
-        $event->tags()->attach(Tag::firstOrCreate(array('name' => $tag)));
+        $event->tags()->attach(Tag::firstOrCreate(array('name' => strtolower($tag))));
       }  
     }
 

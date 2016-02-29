@@ -22,6 +22,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'tel_no' 		 => $faker->phoneNumber,
         'remember_token' => str_random(10),
         'verified'	     => true,
+        'type'           => rand(0,1) == 0 ? 'normal' : 'host'
     ];
 });
 

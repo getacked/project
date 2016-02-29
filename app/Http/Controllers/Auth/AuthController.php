@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Mailers\UserMailer;
 use App\User;
 use Hash;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use View;
-use Validator; 
+use Validator;
+use Auth;
 
 class AuthController extends Controller
 {
@@ -62,7 +64,7 @@ class AuthController extends Controller
             'username'   => 'required|unique:users',
             'email'      => 'required|email|unique:users|max:255',
             'password'   => 'required|confirmed|min:6',
-            'tel_no'     => 'required_if:type,1',
+            'tel_no'     => 'required_if:type,1|unique:users',
         ]);
     }
 
@@ -86,7 +88,31 @@ class AuthController extends Controller
         ]);
     }
 
+    public function getResendForm() {
+        return view('auth/resend-link');
+    }
+
+    public function resendLink(Request $request) {
+        // Validate request.
+        $this->validateLogin($request);
+
+        // Get credentials.
+        $credentials = $this->getCredentials($request);
+
+        // Check credentials.
+        $credientials_verified = Auth::guard($this->getGuard())->attempt($credentials, $request->has('remember'), false);
+
+        // Send resend link
+        if($credientials_verified) {
+            return $this->sendConfirmationLink(User::where('email', $request->email)->first());
+        }
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
     public function confirmEmail($token) {
+        // Must add logic to check for non links.
+
         User::whereToken($token)->firstOrFail()->confirmEmail();
         session()->flash('message', 'Thank you for confirming your email.');
         return redirect('login');

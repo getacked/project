@@ -13,23 +13,7 @@ Login
       <p>Enter your username &amp; password to continue</p>
       @include('partials.message')
 
-      {{ Form::open(array('url' => '/login', 'method' => 'POST', 'class' => 'row')) }}
-      <div class="row">
-        <div class="input-field col s6">
-          {{ Form::email('email', old('email'), ['class' => 'validate col'] ) }}
-          {{ Form::label('email', 'Email') }}
-        </div>
-
-        <div class="input-field col s6">
-          {{ Form::password('password') }}
-          {{ Form::label('password', 'Password')  }}
-        </div>
-      </div>
-        {{ Form::token() }}
-        {{ Form::submit('Log In!', ['class' => 'btn']) }}
-      {{ Form::close() }}
-
-      @include('partials.errors')
+      @include('auth/login-form', array('url' => '/login', 'buttonText' => 'Log In!'))
 
       <section>
         <div class="divider"></div>

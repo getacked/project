@@ -10,7 +10,16 @@ class EventsTableSeeder extends Seeder
 
     public function run()
     {
-    	//Create past events
+    	// Create events.
     	factory('App\Event', 50)->create();
+
+    	// Users Attend
+    	for($i = 0; $i < 50; $i++) {
+	    	DB::table('attending')->insert([
+	    			'user_id' => rand(25,50),
+	    			'event_id' => rand(1, 50)
+	    		]);
+	    }
+
     }
 }

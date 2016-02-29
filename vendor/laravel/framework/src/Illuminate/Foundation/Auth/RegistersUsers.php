@@ -2,6 +2,8 @@
 
 namespace Illuminate\Foundation\Auth;
 
+use App\User;
+use App\Mailers\UserMailer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,17 +54,21 @@ trait RegistersUsers
      */
     public function register(Request $request)
     {
+        // Get validator.
         $validator = $this->validator($request->all());
 
+        // Validate.
         if ($validator->fails()) {
             $this->throwValidationException(
                 $request, $validator
             );
         }
 
-        Auth::guard($this->getGuard())->login($this->create($request->all()));
+        // Create user.
+        $user = $this->create($request->all());
 
-        return redirect($this->redirectPath());
+        // Send confirmation link.
+        return $this->sendConfirmationLink($user);
     }
 
     /**

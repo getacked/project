@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Photo');
     }
 
+    public function hasType($type) {
+        return $this->type == $type;
+    }
+
+
 
     // USER SCOPES 
 
@@ -54,11 +59,6 @@ class User extends Authenticatable
     {
         return $query->where('user_type', '=', 'host');
     }
-
-    public function hasType($type) {
-        return $this->type == $type;
-    }
-
 
     // EMAIL VERIFICATION
 

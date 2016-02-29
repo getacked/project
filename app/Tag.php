@@ -27,5 +27,4 @@ class Tag extends Model
     // some query for count of which tags event (of a certain type?) use most
     //return $query->where
   }
-
 }

@@ -125,7 +125,7 @@ footer a
       rgba(0, 0, 0, 0.3),
       rgba(0, 0, 0, 0.3)
     ),
-    url("images/viewfromstage.jpg");
+    url("../images/viewfromstage.jpg");
     /*background-image:url('viewfromstage.jpg');*/
     background-repeat:no-repeat;
     background-size:100% 100%;
