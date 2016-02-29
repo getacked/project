@@ -44,7 +44,12 @@ Create Event
       {{ Form::textarea('description', null, array('placeholder' => 'Enter Your Event Description', 'class' => 'materialize-textarea')) }}
     </div>
 
-    <span class="center">Choose a location for your event!</span>
+    <span class="center"></span>
+
+    <h5 class="center-align">2 - Choose a location for your event!</h5>
+    <p class="center-align">
+      So people won't end up lost in a library somewhere.
+    </p>
 
     <div class="gmaps-container">
       <input type="hidden" name="gmaps_id" id="gmaps"/>
@@ -64,8 +69,7 @@ Create Event
     </div>
 
     <div class="input-field">
-      <input name="event_date" type="date" class="datepicker">
-      {{ Form::label('event_date', "Choose a date for your event") }}
+      <input name="event_date" type="date" class="datepicker" placeholder="Choose the Date of Your Event">
     </div>
     <div class="input-field clockpicker">
        <input type="text" class="form-control" name="event_time">
@@ -82,31 +86,27 @@ Create Event
   <section class="event-form row"> 
     <h5 class="center-align">3 - Add Some Event Tags!</h5>
     <p class="center-align">
-      This will allow other users to find your event
+      This will allow other users to find your event based on what they like.
     </p>
 
-     
-    <div class="col s4 item input-field">
+    <div class="row item input-field">
       {{ Form::select('tags[]', $tags, null, ['multiple']) }}
       {{ Form::label('tags', 'Tags') }}
     </div>
 
-    <div class="col s8 item input-field">
+    <div class="row item input-field">
       <!-- <p class="center-align">Or Create your own! <small>(seperated by commas)</small></p> -->
       {{ Form::textarea('customTags', null, array('class' => 'materialize-textarea')) }}
       {{ Form::label('customTags', 'Or Create your own! (Seperated by commas)') }}
     </div>
   </section>
 
-  <br>
-
   <div class="file-field input-field">
     <div class="btn">
-
-      <span>Upload a photo for your event:</span>
+      <span>Upload a photo for your event</span>
       <input type="file" name="image">
     </div>
-    <div class="file-path-wrapper col s12">
+    <div class="file-path-wrapper">
       <input class="file-path validate" type="text">
     </div>
   </div>

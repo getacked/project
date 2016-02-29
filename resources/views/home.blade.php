@@ -25,26 +25,7 @@
     </p>
   </div>
 
-  <div id="icons">
-    <ul>
-      <li>
-        <a class="btn tooltipped floating btn-large waves-effect waves-light" data-position="right" data-delay="50" data-tooltip="Get Involved With Events">
-        <i class="large material-icons">accessibility</i>
-        </a>
-      </li>
-      <br>
-      <li>
-        <a class="btn tooltipped floating btn-large waves-effect waves-light" data-position="right" data-delay="50" data-tooltip="Organize &amp; Advertise Company events">
-        <i class="large material-icons">announcement</i>
-        </a>
-      </li>
-      <br>
-      <li>
-        <a class="btn tooltipped floating btn-large waves-effect waves-light" data-position="right" data-delay="50" data-tooltip="Advertise the Perfect Venue">
-        <i class="large material-icons">account_balance</i>
-        </a>
-      </li>
-  </div>
+
 
   <div id="jump-in"  class="center-align">
     <a href="#jump"><i class="large material-icons">keyboard_arrow_down</i></a>
@@ -68,13 +49,12 @@
     <img src="images/Cheer-Up.jpg">
   </div>
 
-  </div>   
 </div>  
 
 <!--  END VIDEO CONTAINER -->
 
 
-<div class="container" id="jump">
+<div class="container row" id="jump">
   <section> 
     <h3 class="center-align">Some Upcoming Events</h3>
     <div class="divider"></div>

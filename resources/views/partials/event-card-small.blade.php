@@ -1,4 +1,4 @@
-<div class="col s6 m4 l3">
+<div class="col s6 m4">
   <div class="card item hoverable">
     <div class="card-image waves-effect waves-block waves-light">
       

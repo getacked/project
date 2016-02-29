@@ -43,36 +43,45 @@
             ?>
           
           </div>
-      <div class="divider"></div>
       <br>
-      <table class="centered highlight">
-      <tbody>
-        <tr>
-          <td id="left">Date</td>
-          <td>{{ $event->event_time->format('d F, Y') }}</td>
-        </tr>
-        <tr>
-          <td id="left">Time</td>
-        <td>{{ substr($event->event_time->toTimeString(), 0, 5) }}</td>
-        </tr>
-        <tr>
-          <td id="left">Type</td>
-          <td>{{ $event->event_type }}</td>
-        </tr>
-      </tbody>
-    </table>
-
+    <ul class="collapsible" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header">
+              <h5>About Event</h5>
+            </div>
+            <div class="collapsible-body">
+              <table class="centered highlight">
+                <tbody>
+                  <tr>
+                    <td id="left">Date</td>
+                    <td>{{ $event->event_time->format('d F, Y') }}</td>
+                  </tr>
+                  <tr>
+                    <td id="left">Time</td>
+                  <td>{{ substr($event->event_time->toTimeString(), 0, 5) }}</td>
+                  </tr>
+                  <tr>
+                    <td id="left">Type</td>
+                    <td>{{ $event->event_type }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+        </ul>
+    
 
     <div class="divider"></div>
 
     @if( $event->gmaps_id )
-      <div class="gmaps-container">
+      
         <ul class="collapsible" data-collapsible="accordion">
           <li>
             <div class="collapsible-header">
               <h5>Where?</h5>
             </div>
             <div class="collapsible-body">
+              <div class="gmaps-container">
               <iframe
                 width="600"
                 height="450"
@@ -81,46 +90,68 @@
                   &q=place_id:{{ $event->gmaps_id }}" allowfullscreen>
               </iframe>
               <img class="right" src="/images/powered_by_google_on_white.png" />
+              </div>
+              <br>
+              <br>
             </div>
           </li>
         </ul>
-      </div>
     @endif
 
     
 <!-- ATTENDEES -->
+
     @if ( count($event->attendees) > 0 )
     <div class="divider"></div>
-      <section class="flow-text">
-        <h5>People attending: ({{count($event->attendees)}})</h5>
-          <ul>
-            @foreach ( $event->attendees as $attendee )
-              <li> 
-                  - {{ $attendee->username }}
-              </li>
-            @endforeach
+        <ul class="collapsible" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header">
+              <h5>Attendees</h5>
+            </div>
+            <div class="collapsible-body">
+                <section class="flow-text">
+                  <p class="flowtext">People attending: ({{count($event->attendees)}})</p>
+                      @foreach ( $event->attendees as $attendee )
+                      <div class="col s4 m3 l2">
+                        <p class="center-align">
+                            {{ $attendee->username }}
+                        </p>
+                      </div>
+                      @endforeach
+                  </ul>
+                </section>
+            </div>
+          </li>
         </ul>
-      </section>
     @endif
 
 <!-- TAGS -->
 
     @if( count($event->tags) > 0 )
       <div class="divider"></div>
-      <section>
-        <h5 class="center-align">Tags</h5>
-        <div class="row">
-          @foreach( $event->tags as $tag )
-            <div class="col s4 m3 l2">
-              <p class="center-align">
-                <li><a href="{{ route('tags.show', $tag) }}">
-                  {{$tag->name}}
-                </a></li>
-              </p>
+      <ul class="collapsible" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header">
+              <h5>Tags</h5>
             </div>
-          @endforeach
-        </div>
-      </section>
+            <div class="collapsible-body">
+              <section>
+                <div class="row">
+                  @foreach( $event->tags as $tag )
+                    <div class="col s4 m3 l2">
+                      <p class="center-align">
+                        <a href="{{ route('tags.show', $tag) }}">
+                          {{$tag->name}}
+                        </a>
+                      </p>
+                    </div>
+                  @endforeach
+                </div>
+              </section>
+            </div>
+          </li>
+        </ul>
+      
     @endif
 
 
