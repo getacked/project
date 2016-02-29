@@ -27,8 +27,9 @@ class EventRequest extends Request
     {   
         return [
             'name' => 'required|min:3',
-            'type' => 'required',
+            'event_type' => 'required',
             'ticket_cap' => 'required',
+            'ticket_price' => 'required',
             'event_date' => 'required|after:' . Carbon::now(),
             // 'customTags' => 'alpha_dash'
         ];

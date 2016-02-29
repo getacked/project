@@ -53,7 +53,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('events', 'EventsController', ['names' => [
             'index' => 'browse'
         ]]);
-    Route::get('events/{event}/attend', 'EventsController@attend')->name('events.attend');
+    Route::post('events/{event}/attend', 'EventsController@attend')->name('events.attend');
     
     //Tags
     Route::resource('tags', 'TagsController', [

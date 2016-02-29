@@ -94,7 +94,7 @@ FAQ
       question that you could have that hasn't been answered at all yet. If so, feel free to drop us a message 
       on our contact page by clicking the button below!
       </p>
-      <a href="contact.html" class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Contact Page</a>
+      <a href="{{ route('contact') }}" class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Contact Page</a>
       <p class="flowtext">
       You never know there may be others out there with the same question so push the boat, be all that you can be, ask the question
       and help your fellow humans! 

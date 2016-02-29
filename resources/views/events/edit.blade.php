@@ -56,7 +56,6 @@
     <div class="input-field">
 
      <input name="event_date" type="date" value="{!! $date !!}" class="datepicker">
-     {{ Form::label('event_date', "Date") }}
     </div>
 
     <div class="input-field clockpicker">
@@ -102,9 +101,8 @@
       <div id="map"></div>
       <img class="right" src="/images/powered_by_google_on_white.png" />
     </div>
-
-    {{ Form::submit('Update Event', ['class' => 'btn']) }}
     </div>
+    {{ Form::submit('Update Event', ['class' => 'btn ']) }}
   {{ Form::close() }}
  
 </div>

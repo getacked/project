@@ -25,26 +25,7 @@
     </p>
   </div>
 
-  <div id="icons">
-    <ul>
-      <li>
-        <a class="btn tooltipped floating btn-large waves-effect waves-light" data-position="right" data-delay="50" data-tooltip="Get Involved With Events">
-        <i class="large material-icons">accessibility</i>
-        </a>
-      </li>
-      <br>
-      <li>
-        <a class="btn tooltipped floating btn-large waves-effect waves-light" data-position="right" data-delay="50" data-tooltip="Organize &amp; Advertise Company events">
-        <i class="large material-icons">announcement</i>
-        </a>
-      </li>
-      <br>
-      <li>
-        <a class="btn tooltipped floating btn-large waves-effect waves-light" data-position="right" data-delay="50" data-tooltip="Advertise the Perfect Venue">
-        <i class="large material-icons">account_balance</i>
-        </a>
-      </li>
-  </div>
+
 
   <div id="jump-in"  class="center-align">
     <a href="#jump"><i class="large material-icons">keyboard_arrow_down</i></a>
@@ -68,13 +49,12 @@
     <img src="images/Cheer-Up.jpg">
   </div>
 
-  </div>   
 </div>  
 
 <!--  END VIDEO CONTAINER -->
 
 
-<div class="container" id="jump">
+<div class="container row" id="jump">
   <section> 
     <h3 class="center-align">Some Upcoming Events</h3>
     <div class="divider"></div>
@@ -133,77 +113,115 @@
       </div>
     </section>
   </div>
+
+  <div id="map" style="display:none" ></div>
 @endsection
 
 
 <!-- VIDEO SCRIPT - covverr.com -->
 @section('scripts')
-    <script>
-        $( document ).ready(function() {
-                $(".dropdown-button").dropdown();
-                $('.slider').slider({full_width: true});
-                $('.parallax').parallax();
-                
-                //For fixed action buttons.
-                $('.fixed-action-btn').openFAB();
-                                
-                //Javascript for video background
-                scaleVideoContainer();
+<script>
+$( document ).ready(function() {
+    $(".dropdown-button").dropdown();
+    $('.slider').slider({full_width: true});
+    $('.parallax').parallax();
+    
+    //For fixed action buttons.
+    $('.fixed-action-btn').openFAB();
+                    
+    //Javascript for video background
+    scaleVideoContainer();
 
-                initBannerVideoSize('.video-container .poster img');
-                initBannerVideoSize('.video-container .filter');
-                initBannerVideoSize('.video-container video');
+    initBannerVideoSize('.video-container .poster img');
+    initBannerVideoSize('.video-container .filter');
+    initBannerVideoSize('.video-container video');
 
-                $(window).on('resize', function() {
-                    scaleVideoContainer();
-                    scaleBannerVideoSize('.video-container .poster img');
-                    scaleBannerVideoSize('.video-container .filter');
-                    scaleBannerVideoSize('.video-container video');
-                });
-            });
+    $(window).on('resize', function() {
+        scaleVideoContainer();
+        scaleBannerVideoSize('.video-container .poster img');
+        scaleBannerVideoSize('.video-container .filter');
+        scaleBannerVideoSize('.video-container video');
+    });
+});
 
-            function scaleVideoContainer() {
-                var height = $(window).height() + 5;
-                var unitHeight = parseInt(height) + 'px';
-                $('.homepage-hero-module').css('height',unitHeight);
-            }
+function scaleVideoContainer() {
+    var height = $(window).height() + 5;
+    var unitHeight = parseInt(height) + 'px';
+    $('.homepage-hero-module').css('height',unitHeight);
+}
 
-            function initBannerVideoSize(element){
+function initBannerVideoSize(element){
 
-                $(element).each(function(){
-                    $(this).data('height', $(this).height());
-                    $(this).data('width', $(this).width());
-                });
+    $(element).each(function(){
+        $(this).data('height', $(this).height());
+        $(this).data('width', $(this).width());
+    });
 
-                scaleBannerVideoSize(element);
+    scaleBannerVideoSize(element);
 
-            }
+}
 
-            function scaleBannerVideoSize(element){
+function scaleBannerVideoSize(element){
 
-                var windowWidth = $(window).width(),
-                windowHeight = $(window).height() + 5,
-                videoWidth,
-                videoHeight;
+  var windowWidth = $(window).width(),
+  windowHeight = $(window).height() + 5,
+  videoWidth,
+  videoHeight;
 
-                console.log(windowHeight);
+  console.log(windowHeight);
 
-                $(element).each(function(){
-                    var videoAspectRatio = $(this).data('height')/$(this).data('width');
+  $(element).each(function(){
+      var videoAspectRatio = $(this).data('height')/$(this).data('width');
 
-                    $(this).width(windowWidth);
+      $(this).width(windowWidth);
 
-                    if(windowWidth < 1000){
-                        videoHeight = windowHeight;
-                        videoWidth = videoHeight / videoAspectRatio;
-                        $(this).css({'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) / 2 + 'px'});
+      if(windowWidth < 1000){
+          videoHeight = windowHeight;
+          videoWidth = videoHeight / videoAspectRatio;
+          $(this).css({'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) / 2 + 'px'});
 
-                        $(this).width(videoWidth).height(videoHeight);
-                    }
+          $(this).width(videoWidth).height(videoHeight);
+      }
 
-                    $('.homepage-hero-module .video-container video').addClass('fadeIn animated');
+      $('.homepage-hero-module .video-container video').addClass('fadeIn animated');
 
-                });
-            });
-    </script>
-@endsection 
+  });
+}
+</script>
+
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRAA5yBzOP9W3_GzYxYYlxEnmnjcEbkRM&signed_in=true&libraries=geometry,places&callback=getAddresses" async defer></script>
+
+
+<script>
+
+function getAddresses(){
+ var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 51.8962, lng: -8.7200},
+    zoom: 12
+  });
+
+  var service = new google.maps.places.PlacesService(map);
+
+//get placeIds of suggested events
+  var placeIds = {!! $events->lists('gmaps_id')->toJSON() !!};
+
+  for( i = 0; i < placeIds.length; i++ ){
+    fillAddressDetails(service, placeIds[i]);
+  }
+
+  function fillAddressDetails(service, id){
+    service.getDetails({
+       placeId: id
+     }, function(place, status) {
+       if (status === google.maps.places.PlacesServiceStatus.OK) {
+          $("#".concat(id)).html('<b>' + place.name + '</b><br><i>' + place.formatted_address + '</i>');
+       }
+     });
+  }    
+}
+
+</script>
+
+
+@endsection

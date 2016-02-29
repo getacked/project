@@ -53,13 +53,6 @@
 
 }
 
-#icons{
-  position: absolute;  
-  top: 30vh;
-  left: 10px;
-    z-index: 101;
-}
-
 #jump-in{
   position: absolute;  
   bottom: 5vh;
