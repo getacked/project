@@ -10,12 +10,12 @@ Sign Up
   <div class="container">
     <div id="attendee" class="col s12">
       <section>
-        <h4>User Sign Up.</h4>
+        <h4>User Sign Up</h4>
         <p>First just a few details about you - because we think you're cool and want to know you better.</p>
 
         @include('partials.errors')
 
-        {{ Form::open(array('url' => '/register', 'method' => 'POST')) }}
+        {{ Form::open(array('url' => '/register', 'method' => 'POST', 'enctype' => 'multipart/form-data')) }}
 
 
           <p>
@@ -28,6 +28,23 @@ Sign Up
               {{ Form::label('host', 'Host') }}
             </p>
           </div>
+
+
+
+          <div class="input-field">
+            <i class="material-icons prefix">group</i>
+            {{ Form::text('username',  old('username'), ['class' => 'validate col'] ) }}
+            {{ Form::label('username', 'Username') }}
+          </div>
+
+          <div class="row" id="host_form" style="display: none">
+            <div class="input-field">
+              <i class="material-icons prefix black-text">description</i>      
+              {{ Form::textarea('description', null, array('placeholder' => "Give a description of the kind of events you'll be doing", 'class' => 'materialize-textarea')) }}
+              {{ Form::label('description')}}
+            </div>
+          </div>
+
 
           <div class="row">
             <div class="input-field col s6">
@@ -43,22 +60,30 @@ Sign Up
             </div>
           </div>
 
-          <div class="input-field">
-            {{ Form::text('username',  old('username'), ['class' => 'validate col'] ) }}
-            {{ Form::label('username', 'Username') }}
-          </div>
 
           <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 m6">
               <i class="material-icons prefix">email</i>
               {{ Form::email('email', old('email'), ['class' => 'validate'] ) }}
               {{ Form::label('email', 'Email') }}
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s12 m6">
               <i class="material-icons prefix">phone</i>             
               {{ Form::text('tel_no',  old('tel_no'), ['class' => 'validate'] ) }}
-              {{ Form::label('tel_no', 'Telephone Number: (optional)') }}
+              {{ Form::label('tel_no', 'Telephone Number: (Required for hosts)*') }}
             </div>
+          </div>
+
+
+
+
+          <div class="row" id="user_form" style="display: none">
+            <p>
+        
+
+
+
+            </p>
           </div>
 
           <div class="row">
@@ -77,27 +102,24 @@ Sign Up
              </div>
           </div>
 
-
-          <div class="row" id="host_form">
-            <p>
-          gg
-            </p>
+          <div>
+            <h5>Upload a photo for your profile? </h5>
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>Photo</span>
+                <input type="file" name="image">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
           </div>
 
-          <div class="row" id="user_form">
-            <p>
-        kk
-            </p>
+          <div class="center">
+            {{ Form::submit('Create your account!', ['class' => 'btn-large']) }}
           </div>
 
-          <div class="row">
-            <!-- Foreach tags  -->
-          </div>
-
-          {{ Form::submit('Create your account!', ['class' => 'btn']) }}
-            
         {{ Form::close() }}
-
        
       </section>
     </div>
@@ -108,14 +130,24 @@ Sign Up
 
 @section('scripts')
 
-$("input:radio[name='user_type']").click(function() {
-  if (this.value == "host") {
-    $("#host_form").css("display", "block");
-    $("#user_form").css("display", "none");
-   } else {
-    $("#host_form").css("display", "none");
-    $("#user_form").css("display", "block");
-   }
+<script>
+
+$(document).ready(function(){
+
+
+  $("input:radio[name='user_type']").click(function() {
+    if (this.value == "1") {  //host is chosen
+      $("#host_form").css("display", "block");
+      $("#user_form").css("display", "none");
+     } else {                 //user is chosen
+      $("#host_form").css("display", "none");
+      $("#user_form").css("display", "block");
+     }
+  });
+
 });
+</script>
+
+
 
 @endsection

@@ -108,7 +108,7 @@
   					@if( count($pastEvents) > 0)
   						<!-- Past Events -->
   						@foreach($pastEvents as $event)
-  							@include('partials.event-dashboard-small')
+  							@include('partials.event-card-small', $event)
   						@endforeach
   					@else
   						<p class="center-align">

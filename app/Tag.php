@@ -15,7 +15,11 @@ class Tag extends Model
   protected $table = "tags";
 
   public function events(){
-      return $this->belongsToMany('App\Event');
+    return $this->belongsToMany('App\Event');
+  }
+
+  public function users(){
+    return $this->belongsToMany('App\User');
   }
 
   public function scopeUserPopular(){
