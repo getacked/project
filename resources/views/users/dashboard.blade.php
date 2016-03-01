@@ -16,13 +16,12 @@
   <?php
     // User
     $user = Auth::user();
-
     // Suggested events
     $suggestedEvents = App\Event::all();
     // Upcoming events
     $upcomingEvents = App\Event::upcoming()->get();
     // Past events
-    $pastEvents = App\Event::past()->get();
+    $pastEvents = $user->attending()->past()->get();
   ?>
 
 <div id="dashboard" class="col s12">
@@ -109,7 +108,7 @@
   					@if( count($pastEvents) > 0)
   						<!-- Past Events -->
   						@foreach($pastEvents as $event)
-  							@include('partials.event-dashboard')
+  							@include('partials.event-dashboard-small')
   						@endforeach
   					@else
   						<p class="center-align">
@@ -159,7 +158,8 @@ function getAddresses(){
        placeId: id
      }, function(place, status) {
        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          $("#".concat(id)).html('<b>' + place.name + '</b><br><i>' + place.formatted_address + '</i>');
+          $("#".concat(id)).html('<i>' + place.formatted_address + '</i>');
+          $("#place-".concat(id)).html('<em>' + place.name + '</em>');
        }
      });
   }    

@@ -25,7 +25,7 @@
       <h5 class="center-align">by <a href="{{ route('dashboard', $event->host) }}">{{ $event->host->username }}</a></h5>
           <div class="center-align">
             <em>{{ $event->event_time->diffForHumans() }}</em>
-          <p class="center-align">Tickets left: {{ $event->ticket_left }}</p>
+          <p class="center-align">Tickets left: {{ $event->ticket_left }} at {{ $event->ticket_price }}</p>
             <?php
               if( $event->host == Auth::user() ){
                 echo "<a href='" . route('events.edit', $event)."'>";
@@ -74,8 +74,8 @@
             </div>
             <div class="collapsible-body">
               <iframe
-                width="600"
-                height="450"
+                width="100%"
+                height="100%"
                 frameborder="0" style="border:0"
                 src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDRAA5yBzOP9W3_GzYxYYlxEnmnjcEbkRM
                   &q=place_id:{{ $event->gmaps_id }}" allowfullscreen>
