@@ -23,7 +23,7 @@
 		<h4 class="center-align">Create an event</h4>
 
 		<div class="center">
-			<a href="http://eventure.app/events/create">
+			<a href="{{ route('events.create') }}">
 				<i class="material-icons large">add_to_queue</i>
 			</a>
 		</div>
