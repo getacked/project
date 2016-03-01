@@ -8,6 +8,9 @@ $(document).ready(function() {
     selectYears: 4
   });
   $('.item').matchHeight();
+  // var rowGridOptions = { minMargin: 10, maxMargin: 35, itemSelector: ".item"};
+  // $(".row-grid").rowGrid(rowGridOptions);
+
   $('.collapsible').collapsible();
         
 });

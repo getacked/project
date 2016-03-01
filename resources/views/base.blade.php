@@ -35,8 +35,10 @@
 
    <!--jQuery and Materialize -->
    <script src="/js/jquery.min.js"></script>
-   <script src="/js/jquery.matchHeight-min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+
+   <script src="/js/jquery.matchHeight.js"></script>
+   <!-- // <script src="/js/jquery.row-grid.min.js"></script> -->
    <script src="/js/init.js"></script>
    @yield('scripts')
   </body>

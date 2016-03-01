@@ -218,6 +218,7 @@ class EventsController extends Controller
       $event->save();
     } catch(Stripe_CardError $e) {
       // Since it's a decline, Stripe_CardError will be caught
+      dd(" shit");
       $body = $e->getJsonBody();
       $err  = $body['error'];
     } 

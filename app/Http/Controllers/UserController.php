@@ -37,6 +37,12 @@ class UserController extends Controller
         return view('users.follows');
     }
 
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('users.show', compact('user') );
+    }
+
     public function update(Request $request) {
  
         $user = Auth::user();

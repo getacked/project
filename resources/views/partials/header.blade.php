@@ -3,9 +3,10 @@
 
     @if( Auth::check() )
       <ul id="user-dropdown" class="dropdown-content">
-          <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-          <li><a href="{{ route('events.create') }}">Create Event</a></li>
-          <li><a href="{{ route('landing') }}">Home</a></li>
+          <li><a href="{{ route('dashboard', Auth::user()->id) }}">Dashboard</a></li>
+          @if( Auth::user()->isHost() )
+            <li><a href="{{ route('events.create') }}">Create Event</a></li>
+          @endif
           <li><a href="{{ route('browse') }}">Browse Events</a></li>
           <li class="divider"></li>
           <li><a href="{{ url('/logout') }}">Logout</a></li>

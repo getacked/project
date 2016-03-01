@@ -32,7 +32,7 @@ Create Event
     </div>
 
     <?php 
-      $types = ['music', 'comedy', 'conference', 'talk']; 
+      $types = ['music' => 'music', 'comedy' => 'comedy', 'conference' => 'conference', 'talk' => 'talk']; 
     ?>
 
     <div class="input-field">
