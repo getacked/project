@@ -10,7 +10,7 @@
 					@include('partials.event-dashboard')
 				@empty
 					<p class="center-align">
-						We currently have no upcoming events.
+						There's a shortage in events at the moment. 
 					</p>
 				@endforelse
 

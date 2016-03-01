@@ -39,8 +39,12 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $user = User::findOrFail($id);
-        return view('users.show', compact('user') );
+      $user = User::findOrFail($id);
+      if( $user->isHost() ){
+        return view('users.show', compact('user') );   
+      }else{
+        return Redirect::url('/');
+      }
     }
 
     public function update(Request $request) {
@@ -108,7 +112,7 @@ class UserController extends Controller
 
         if($user->hasType('normal')) {
           // Tags
-          $tags = Tag::whereIn('id', DB::table('tag_user')->where('user_id', $user->id)->lists('tag_id') )->get();
+          $tags = $user->tags;
 
           // Suggested events
           $suggestedEvents = Event::suggested()->limit(4)->get();

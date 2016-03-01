@@ -24,25 +24,39 @@
 @stop
 
 @section('scripts')
+
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRAA5yBzOP9W3_GzYxYYlxEnmnjcEbkRM&signed_in=true&libraries=geometry,places&callback=getAddresses" async defer></script>
+
+
 <script>
-	$( document ).ready(function() {
-		$(".dropdown-button").dropdown();
-		$('.slider').slider({full_width: true});
-		$('.parallax').parallax();
-		$('select').material_select();
-	    $("#hidden_elements").css("display", "none");
 
-			 $("input:radio[name='group1']").click(function(){
-			  if (this.value == "two") {
-			  	$("#hidden_elements").css("display", "block");
-			  	$("#elements_to_hide").css("display", "none");
-		   } else {
-		    $("#hidden_elements").css("display", "none");
-		    $("#elements_to_hide").css("display", "block");
-		   }
+function getAddresses(){
+ var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 51.8962, lng: -8.7200},
+    zoom: 12
+  });
 
-		});
-		
-	});
+  var service = new google.maps.places.PlacesService(map);
+
+//get placeIds of suggested events
+  var placeIds = {!! $suggestedEvents->lists('gmaps_id')->toJSON() !!};
+
+  for( i = 0; i < placeIds.length; i++ ){
+    fillAddressDetails(service, placeIds[i]);
+  }
+
+  function fillAddressDetails(service, id){
+    service.getDetails({
+       placeId: id
+     }, function(place, status) {
+       if (status === google.maps.places.PlacesServiceStatus.OK) {
+          $("#".concat(id)).html('<i>' + place.formatted_address + '</i>');
+          $("#place-".concat(id)).html('<em>' + place.name + '</em>');
+       }
+     });
+  }    
+}
+
 </script>
 @stop

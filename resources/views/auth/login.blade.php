@@ -13,7 +13,7 @@ Login
       <p>Enter your username &amp; password to continue</p>
       @include('partials.message')
 
-      @include('auth/login-form', array('url' => '/login', 'buttonText' => 'Log In!'))
+      @include('forms.login', array('url' => '/login', 'buttonText' => 'Log In!'))
 
       <section>
         <div class="divider"></div>

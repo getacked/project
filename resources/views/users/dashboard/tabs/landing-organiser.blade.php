@@ -42,3 +42,9 @@
 	</section>
 
 </div>
+
+
+    
+    <div class="hidden" style="height=0;width=0;display:none" id="map">
+
+    </div>

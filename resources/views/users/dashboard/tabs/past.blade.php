@@ -4,6 +4,7 @@
 		<div>
 			<section>
 				<div class="row">
+					<?php $pastEvents = Auth::user()->attending()->past(); ?>
 					@forelse($pastEvents as $event)
 						@include('partials.event-dashboard')
 					@empty
