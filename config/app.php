@@ -126,9 +126,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
-    /*REPLACED WITH MULTI AUTH */
         Illuminate\Auth\AuthServiceProvider::class,
-
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
@@ -150,6 +148,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -206,7 +205,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Form'      => Collective\Html\FormFacade::class,
-        'Html'      => Collective\Html\HtmlFacade::class
+        'Html'      => Collective\Html\HtmlFacade::class,
+        'QrCode'    => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
     ],
 
 ];

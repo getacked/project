@@ -1,16 +1,27 @@
 @extends('emails.email')
 
 @section('title')
-Welcome to eventure - Please confirm your email.
-@endsection
+Please confirm your new email.
+@stop
 
 @section('content')
-<h1>Welcome to Eventure</h1>
+<tr>
+	<td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td>Hi {{ $user->username }}</td>
+			</tr>
+				
+			<tr>
+				<td style="padding: 20px 0 30px 0;">
+				To confirm your change of email address please <a href="{{ url('register/confirm/') . $user->token }}"><i>click here</i></a>.
+				</td>
+			</tr>
 
-<p>Welcome {{ $user->first_name }} {{ $user->last_name }}, </p>
-
-<p>
-	Please confirm your email by clicking the following link:<br/>
-	http://www.eventure.app/register/confirm/{{ $user->token }}  
-</p>
-@endsection
+			<tr>
+				<td> Best Regards, <br/> The Eventure Team </td>
+			</tr>
+		</table>
+	</td>
+</tr>
+@stop

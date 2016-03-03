@@ -20,6 +20,7 @@ jQuery(document).ready( function( $ ) {
                 });
             },
             success: function (response) {
+                $( '#tag' ).val('');
                 var selector = '#' + response.tag;
 
                 // If status is done and tag is not listed, list tag

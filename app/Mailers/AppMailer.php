@@ -4,18 +4,19 @@ namespace App\Mailers;
 
 use App\User;
 use Illuminate\Mail\Mailer;
+use Illuminate\Http\Request;
 
-abstract class AppMailer {
+class AppMailer {
 
-	protected $mailer;
+	private $mailer;
 
-	protected $to;
+	private $to;
 
-	protected $subject;
+	private $subject;
 
-	protected $view;
+	private $view;
 
-	protected $data = [];
+	private $data = [];
 
 	public function __construct(Mailer $mailer) {
 		$this->mailer = $mailer;
@@ -23,9 +24,60 @@ abstract class AppMailer {
 
 	public function deliver() {
 		$this->mailer->send($this->view, $this->data, function($message) {
-			$message->to($this->to)
-					->subject($this->subject);
+			$message->from('eventure420@mail.com');
+			$message->to($this->to);
+			$message->subject($this->subject);
 		});
+	}
+
+	public function sendEmailConfirmation(User $user, $changeOfEmail = false) {
+		$this->to = $user->email;
+		if($changeOfEmail) {
+			$this->view = 'emails.confirm';
+		}
+		else {
+			$this->view = 'emails.welcome';
+		}
+		$this->subject = 'Welcome to Eventure - Please confirm your email.';
+		$this->data = compact('user');
+
+		$this->deliver();
+	}
+
+	public function sendContactMessage(Request $request) {
+		$this->to = env('CONTACT_EMAIL');
+		$this->view = 'emails.contact';
+		$this->subject = 'Email from site contact form.';
+		$this->data = compact('request');
+
+		$this->deliver();
+	}
+
+	public function sendTicket(Request $request) {
+		$this->to = env('CONTACT_EMAIL');
+		$this->view = 'emails.contact';
+		$this->subject = 'Email from site contact form.';
+		$this->data = compact('request');
+
+		$this->deliver();
+	}
+
+	public function sendEmailHasBeenConfirmed(User $user) {
+		$this->to = $user->email;
+		$this->view = 'emails.confirmed';
+		$this->subject = 'Thank you for confirming your email';
+		$this->data = compact('user');
+
+		$this->deliver();
+	}
+
+	public function sendRecievedContactMessage(Request $request) {
+		$this->to = $request->email;
+		$this->view = 'emails.message-recieved';
+		$this->subject = 'Thank you for the message.';
+		$this->data = compact('request');
+
+		$this->deliver();
 	}
 }
 

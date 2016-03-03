@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Mailers\UserMailer;
+use App\Mailers\AppMailer;
 use App\User;
 use Hash;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use View;
 use Validator;
 use Auth;
@@ -44,7 +44,7 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct(UserMailer $mailer)
+    public function __construct(AppMailer $mailer)
     {
         $this->middleware('guest', ['except' => 'logout']);
         $this->mailer = $mailer;
@@ -104,23 +104,29 @@ class AuthController extends Controller
 
         // Send resend link
         if($credientials_verified) {
-            return $this->sendConfirmationLink(User::where('email', $request->email)->first());
+            return $this->sendConfirmationLink(User::where('email', $request->email)->first(), true);
         }
 
         return $this->sendFailedLoginResponse($request);
     }
 
     public function confirmEmail($token) {
-        // Must add logic to check for non links.
+        try {
+            $user = User::whereToken($token)->firstOrFail();
+            $user->confirmEmail();
+            session()->flash('message', 'Thank you for confirming your email.');
+            $this->mailer->sendEmailHasBeenConfirmed($user);
+        }
+        catch(ModelNotFoundException $e) {
+            session()->flash('message', 'This link has already been used or is invalid.');
+        }
 
-        User::whereToken($token)->firstOrFail()->confirmEmail();
-        session()->flash('message', 'Thank you for confirming your email.');
         return redirect('login');
     }
 
-    public function sendConfirmationLink(User $user) {
+    public function sendConfirmationLink(User $user, $changeOfEmail = false) {
         $user->generateConfirmationLink();
-        $this->mailer->sendEmailConfirmation($user);
+        $this->mailer->sendEmailConfirmation($user, $changeOfEmail);
         session()->flash('message', 'An email confirmation link has been sent.  Please confirm your email');
         return redirect('login');    
     }

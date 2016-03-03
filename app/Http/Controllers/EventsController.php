@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EventRequest;
 use App\Http\Requests\EventEditRequest;
 use App\Http\Controllers\Controller;
+use DB;
 
 
 class EventsController extends Controller
@@ -203,7 +204,6 @@ class EventsController extends Controller
 
   public function attend(Request $request, Event $event)
   {
-    // dd( "wow" );
     \Stripe\Stripe::setApiKey( env("STRIPE_SK") );
 
     try {
@@ -220,7 +220,16 @@ class EventsController extends Controller
       // Since it's a decline, Stripe_CardError will be caught
       $body = $e->getJsonBody();
       $err  = $body['error'];
-    } 
+    }
+
+    // Get attending ID.
+    $id = $event->attendees()->pivot->id;
+
+    dd($id);
+
+    // Create QR code.
+    $code = QrCode::format('png')->size(100)->generate($event->id);
+    File::put('images/file.png', $code);    
 
     return Redirect::route('events.show', compact('event') );
   }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Event;
+use App\Mailers\AppMailer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\UserRequest;
@@ -37,7 +38,7 @@ class UserController extends Controller
         return view('users.follows');
     }
 
-    public function update(Request $request) {
+    public function update(Request $request, AppMailer $mailer) {
  
         $user = Auth::user();
 
@@ -54,7 +55,8 @@ class UserController extends Controller
           $user->email = $request->email;
           $user->verified = false;
           $user->generateConfirmationLink();
-          $message = $message + 'Please confirm your email.';
+          $mailer->sendEmailConfirmation($user, true);
+          $message = $message . ' Please confirm your email.';
         }
 
         // Phone update

@@ -1,10 +1,3 @@
-@extends('emails.email')
-
-@section('title')
-Message from site contact form.
-@endsection
-
-@section('content')
 <h1>Message from site contact form.</h1>
 
 <p>
@@ -18,4 +11,3 @@ Message from site contact form.
 	<br />
 	{{ $request->input('message') }}
 </p>
-@endsection
