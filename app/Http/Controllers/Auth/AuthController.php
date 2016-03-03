@@ -85,6 +85,7 @@ class AuthController extends Controller
                 'tel_no'     => $data['tel_no'],
                 'verified'   => false,
                 'type'       => $data['type'] == 0 ? 'normal' : 'host',
+                'description' => $data['description']
         ]);
     }
 

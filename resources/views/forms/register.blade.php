@@ -3,10 +3,10 @@
   <p>
     <div class="center"> So would you like to organize events or attend events? Select your option below!</p>
     <p class="row center">
-      {{ Form::radio('user_type', '0', false, array('id' => 'regular', 'class' => 'with-gap') )  }}
+      {{ Form::radio('type', '0', false, array('id' => 'regular', 'class' => 'with-gap') )  }}
       {{ Form::label('regular', 'Attendee') }}
 
-      {{ Form::radio('user_type', '1', false, array('id' => 'host', 'class' => 'with-gap') )  }}
+      {{ Form::radio('type', '1', false, array('id' => 'host', 'class' => 'with-gap') )  }}
       {{ Form::label('host', 'Host') }}
     </p>
   </div>
@@ -54,18 +54,6 @@
       {{ Form::text('tel_no',  old('tel_no'), ['class' => 'validate'] ) }}
       {{ Form::label('tel_no', 'Telephone Number: (Required for hosts)*') }}
     </div>
-  </div>
-
-
-
-
-  <div class="row" id="user_form" style="display: none">
-    <p>
-
-
-
-
-    </p>
   </div>
 
   <div class="row">

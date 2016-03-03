@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('meta')
-<meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 
 @section('content')
@@ -31,11 +31,7 @@
 
 @section('scripts')
 <script src="/js/dash-tag-handler.js"></script>
-
-
-
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRAA5yBzOP9W3_GzYxYYlxEnmnjcEbkRM&signed_in=true&libraries=geometry,places&callback=getAddresses" async defer></script>
-
 
 <script>
 

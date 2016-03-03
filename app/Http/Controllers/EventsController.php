@@ -40,7 +40,9 @@ class EventsController extends Controller
   {
      $events = Event::orderBy('event_time')->upcoming()->get();
 
-     return view('events.all', compact('events') );
+     $initialSearch = "";
+     // return view('events.all', compact('events') );
+     return view('events.all', compact(['initialSearch', 'events']) );
   }
 
   public function show(Event $event, $id)
@@ -55,12 +57,20 @@ class EventsController extends Controller
     return view('events.edit', compact('event'));
   }
 
+
   public function create(){
     //create a list of all most commonly used tags
     $tags = Tag::lists('name');
     return view('events.create', compact('tags'));  
   }
 
+
+  public function search(Request $request){
+    $initialSearch = $request->searchTerm;
+    $events = Event::orderBy('event_time')->upcoming()->get();
+
+    return View::make('events.all', compact(['initialSearch', 'events']));
+  }
 
 
   public function store(EventRequest $request)
@@ -203,7 +213,6 @@ class EventsController extends Controller
 
   public function attend(Request $request, Event $event)
   {
-    // dd( "wow" );
     \Stripe\Stripe::setApiKey( env("STRIPE_SK") );
 
     try {
@@ -212,13 +221,13 @@ class EventsController extends Controller
         "amount" => $event->ticket_price * 100,
         "currency" => "eur",
         "source" => $token,
-        "description" => $event->name));
+        "description" => $event->name) );
       $event->ticket_left--;
-      $event->attendees()->attach( Auth::user() );
+      $event->attendees()->attach( Auth::user(), 
+                    ['num_tickets' => $request->num_tickets ] );
       $event->save();
     } catch(Stripe_CardError $e) {
       // Since it's a decline, Stripe_CardError will be caught
-      dd(" shit");
       $body = $e->getJsonBody();
       $err  = $body['error'];
     } 

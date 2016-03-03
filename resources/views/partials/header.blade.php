@@ -36,13 +36,14 @@
 
           <!--Search button box thing-->
           <li class="nav-link">
-            <form>   <!-- NEEDS TO DO SOMETHING -->
+            {{ Form::open(array('route' => 'events.search')) }}
               <div class="input-field">
-                <input id="search" type="search" required>
+                <input id="searchTerm" type="search" name="searchTerm" required>
                 <label for="search"><i class="material-icons">search</i></label>
                 <i class="material-icons">close</i>
-              </div>
-            </form>
+              </div><!-- 
+              {{ Form::submit('search', ['class' =>'hidden']) }} -->
+            {{ Form::close() }}
           </li>
         </ul>
 

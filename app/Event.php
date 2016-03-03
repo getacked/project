@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -43,7 +44,7 @@ class Event extends Model
 
   public function attendees()
   {
-    return $this->belongsToMany('App\User', 'attending', 'event_id', 'user_id');
+    return $this->belongsToMany('App\User', 'attending', 'event_id', 'user_id')->withPivot('num_tickets');
   }
 
   public function tags(){
@@ -75,21 +76,9 @@ class Event extends Model
 
   public function scopeSuggested($query) {
     //Same as upcoming, just a place holder
-    return $query->where('event_time', '>', Carbon::now());
+    $subs = Auth::user()->subs->lists('id');
+    return $query->where('host_id', 'in', $subs);
   }
-
-  // public function scopeUpcoming($query, User $user = null)
-  // {
-  //   if($user == null) {
-  //     return $query->where('event_time', '>', Carbon::now())->orderBy('event_time');
-  //   }
-  //   else if($user->hasType('normal')) {
-  //     return $query->where('event_time', '>', Carbon::now())->orderBy('event_time');
-  //   }
-  //   else {
-  //     return $query->where('host_id', $user->id)->where('event_time', '>', Carbon::now())->orderBy('event_time');
-  //   }
-  // }
 
   public function scopePast($query, User $user = null)
   {

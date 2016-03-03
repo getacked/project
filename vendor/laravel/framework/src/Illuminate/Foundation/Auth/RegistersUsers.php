@@ -2,8 +2,14 @@
 
 namespace Illuminate\Foundation\Auth;
 
+use App\User;
+use App\Mailers\UserMailer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Input;
+use Carbon\Carbon;
+use App\Photo;
+
 
 trait RegistersUsers
 {
@@ -52,17 +58,45 @@ trait RegistersUsers
      */
     public function register(Request $request)
     {
+        // Get validator.
         $validator = $this->validator($request->all());
 
+        // Validate.
         if ($validator->fails()) {
             $this->throwValidationException(
                 $request, $validator
             );
         }
 
-        Auth::guard($this->getGuard())->login($this->create($request->all()));
+        $attributes = $request->only(array('username', 'first_name', 'last_name', 'description', 'email', 'tel_no', 'type', 'password'));
+        // Create user.
+        $user = $this->create($attributes);
 
-        return redirect($this->redirectPath());
+
+        if( $request->file('image') ) {
+          //make timestamp and append username for filename
+          $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
+          $imageFile = Input::file('image');
+          $mime = "." . substr($imageFile->getMimeType(), 6);
+        
+          //move file to /public/images/
+          $filename = $timestamp . '-' . $user->username;
+
+          $photoData = array('fileName' => $filename, 'mime' => $mime);
+
+          $photo = Photo::create( $photoData );
+          $imageFile->move( public_path().'/images/', $filename . $mime );
+
+          //associate the image with the user
+          $user->photo_id = $photo->id;
+          $user->photo()->associate( $photo );
+        }
+
+        $user->save();
+
+
+        // Send confirmation link.
+        return $this->sendConfirmationLink($user);
     }
 
     /**

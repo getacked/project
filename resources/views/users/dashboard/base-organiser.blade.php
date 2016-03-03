@@ -16,6 +16,12 @@
  
  <div class="container">
 
+  <?php 
+
+    $hostEvents = Auth::user()->events();
+
+  ?>
+
 	@include('users.dashboard.tabs.landing-organiser')
   
 	@include('users.dashboard.tabs.past')
@@ -40,7 +46,7 @@ function getAddresses(){
   var service = new google.maps.places.PlacesService(map);
 
 //get placeIds of suggested events
-  var placeIds = {!! $suggestedEvents->lists('gmaps_id')->toJSON() !!};
+  var placeIds = {!! $hostEvents->lists('gmaps_id')->toJSON() !!};
 
   for( i = 0; i < placeIds.length; i++ ){
     fillAddressDetails(service, placeIds[i]);
