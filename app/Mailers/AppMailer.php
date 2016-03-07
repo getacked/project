@@ -5,6 +5,7 @@ namespace App\Mailers;
 use App\User;
 use Illuminate\Mail\Mailer;
 use Illuminate\Http\Request;
+use App\Event;
 
 class AppMailer {
 
@@ -53,11 +54,11 @@ class AppMailer {
 		$this->deliver();
 	}
 
-	public function sendTicket(Request $request) {
-		$this->to = env('CONTACT_EMAIL');
-		$this->view = 'emails.contact';
-		$this->subject = 'Email from site contact form.';
-		$this->data = compact('request');
+	public function sendTicket(User $user, Event $event) {
+		$this->to = $user->email;
+		$this->view = 'emails.ticket-email';
+		$this->subject = 'Your tickets.';
+		$this->data = compact('user', 'event');
 
 		$this->deliver();
 	}
