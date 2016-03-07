@@ -14,7 +14,7 @@ Please Confirm your email
 					
 				<tr>
 					<td style="padding: 20px 0 30px 0;">
-					   Thank you for taking the time to sign up to Eventure! Before we can welcome you as part of the Eventure family we just need you to confirm your email address by <a href="{{ url('register/confirm/') . $user->token }}"><i>clicking here</i></a>.
+					   Thank you for taking the time to sign up to Eventure! Before we can welcome you as part of the Eventure family we just need you to confirm your email address by <a href="{{ url('register/confirm') . '/' . $user->token }}"><i>clicking here</i></a>.
 					</td>
 				</tr>
 

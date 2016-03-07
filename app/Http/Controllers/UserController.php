@@ -55,7 +55,7 @@ class UserController extends Controller
         // Validate request
         $this->validate($request, [
             'email'      => 'required|unique:users,email,'.$user->id,
-            'tel_no'     => 'required_if:type,1|unique:users',
+            'tel_no'     => 'required_if:type,1|unique:users,tel_no,'.$user->id
         ]);
 
         $message = 'Your account has been updated!';

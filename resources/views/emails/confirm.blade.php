@@ -14,7 +14,7 @@ Please confirm your new email.
 				
 			<tr>
 				<td style="padding: 20px 0 30px 0;">
-				To confirm your change of email address please <a href="{{ url('register/confirm/') . $user->token }}"><i>click here</i></a>.
+				To confirm your change of email address please <a href="{{ url('register/confirm') . '/' . $user->token }}"><i>click here</i></a>.
 				</td>
 			</tr>
 

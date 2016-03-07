@@ -8,15 +8,7 @@
 
 	@include('partials.message')
 
-	@if($user->photo)   
-		<?php
-			$photo = $user->photo;
-			$path = $photo->fileName . $photo->mime;
-		?>				
-		<img alt="{{ $user->username }} image" class="responsive-img"  src="/images/{!! $path !!}" />
-	@else 
-		<img alt="{{ $user->username }} image" class="responsive-img" src="http://lorempixel.com/850/480" />
-	@endif
+	@include('partials.errors')
 
 	{{ Form::open(array('route' => array('user.update', $user), 'method' => 'PUT', 'enctype' => 'multipart/form-data', 'class' => 'col s12') ) }}
 		<div class="row">
