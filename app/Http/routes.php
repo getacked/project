@@ -29,6 +29,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('resend', 'Auth\AuthController@getResendForm')->name('resend-link');
     Route::post('resend', 'Auth\AuthController@resendLink')->name('resend-link');
     
+    // Password Reset
+    Route::get('password/reset', 'Auth\PasswordController@getResetForm')->name('reset-password');
+
     //Users
     Route::resource('user', 'UserController', [
         'only' => [

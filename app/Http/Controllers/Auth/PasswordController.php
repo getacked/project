@@ -20,6 +20,8 @@ class PasswordController extends Controller
 
     use ResetsPasswords;
 
+    protected $redirectPath = '/dashboard';
+
     /**
      * Create a new password controller instance.
      *
@@ -28,5 +30,9 @@ class PasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function getResetForm() {
+        return view('auth.passwords/email');
     }
 }

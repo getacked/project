@@ -69,6 +69,7 @@ trait RegistersUsers
         }
 
         $attributes = $request->only(array('username', 'first_name', 'last_name', 'description', 'email', 'tel_no', 'type', 'password'));
+        
         // Create user.
         $user = $this->create($attributes);
 
@@ -93,7 +94,6 @@ trait RegistersUsers
         }
 
         $user->save();
-
 
         // Send confirmation link.
         return $this->sendConfirmationLink($user);

@@ -15,9 +15,10 @@ Login
 
       @include('forms.login', array('url' => '/login', 'buttonText' => 'Log In!'))
 
+      <p>Forgot your password? <a href="{{ route('reset-password') }}">Click here.</a></p>
       <section>
         <div class="divider"></div>
-          <h5>Still having trouble logging in?</h5>
+          <h5>Having trouble logging in?</h5>
           <p>
             Step one; don't panic, you're not alone out there. Try refreshing your browser and re-entering your credentials.
             Make sure you have turned off caps lock on your machine because let's be honest we've all been there. 
