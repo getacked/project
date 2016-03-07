@@ -31,9 +31,10 @@
       <div class="tabs-wrapper pinned search">
         <br>
         <br>
-        SEARCH OPTIONS
-        <!--Implement some kind of search form here, would be lovely :) -->
-        <input type="text" value="{{ $initialSearch }}" v-model="query" v-on:keyup.enter="search" >
+
+        <h5>SEARCH OPTIONS</h5>
+        <input type="text" value="{{ $initialSearch }}" v-model="query"  id="searchBox" >
+     
       </div>
     </div>
 
@@ -51,44 +52,69 @@
 <script>
   $(document).ready(function(){
     $('.tabs-wrapper .row').pushpin({ top: $('.tabs-wrapper').offset().top });
+    document.getElementById('results').onkeypress=function(e){
+      var key = String.fromCharCode( e.which | e.keyCode );
+      if (key==13){
+         searching();
+      }
+    };
   });
+
+  function searching(){
+    var client = algoliasearch("DL6Q2SNWBH", "6ad40c1dee4b3dbe37af51a0c39b4d5a");
+    var index = client.initIndex('getstarted_actors');
+
+    console.log("ready");
+
+    index.search("{{ $initialSearch }}", function(error, results){
+      if(error){
+        console.log(error);
+      }
+
+      events = results.hits;
+      console.log(results.hits);
+    });
+
+    return false;
+  }
+
 </script>
 
 
 <script>
 
-new Vue({
-  el: 'section',
+// new Vue({
+//   el: 'section',
 
-  data: { query: '', events: [] },
+//   data: { query: '', events: [] },
 
-  ready: function(){
-    this.client = algoliasearch("DL6Q2SNWBH", "6ad40c1dee4b3dbe37af51a0c39b4d5a");
-    this.index = this.client.initIndex('getstarted_actors');
-    console.log("ready");
-    if ( {{ strlen($initialSearch) }} > 0 ){
-      this.index.search("{{ $initialSearch }}", function(error, results){
+//   ready: function(){
+//     this.client = algoliasearch("DL6Q2SNWBH", "6ad40c1dee4b3dbe37af51a0c39b4d5a");
+//     this.index = this.client.initIndex('getstarted_actors');
+//     console.log("ready");
+//     if ( {{ strlen($initialSearch) }} > 0 ){
+//       this.index.search("{{ $initialSearch }}", function(error, results){
 
-        if(error){
-          console.log(error);
-        }
-        this.events = results.hits;
-        console.log(results.hits);
-      });
-    }
-  },
+//         if(error){
+//           console.log(error);
+//         }
+//         this.events = results.hits;
+//         console.log(results.hits);
+//       });
+//     }
+//   },
 
-  methods: {
-    search: function(){
-      console.log("whyyyy");
-      this.index.search(this.query, function(error, results){
-        this.events = results.hits;
-        console.log("searched");
-      }.bind(this));
-    }
-  }
+//   methods: {
+//     search: function(){
+//       console.log("whyyyy");
+//       this.index.search(this.query, function(error, results){
+//         this.events = results.hits;
+//         console.log("searched");
+//       }.bind(this));
+//     }
+//   }
   
-});
+// });
 
 </script>
 

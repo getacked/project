@@ -53,17 +53,22 @@
               <table class="centered highlight">
                 <tbody>
                   <tr>
-                    <td id="left">Date</td>
+                    <td>Description</td>
+                    <td>{{ $event->description }}</td>
+                  </tr>
+                  <tr>
+                    <td id="lef">Date</td>
                     <td>{{ $event->event_time->format('d F, Y') }}</td>
                   </tr>
                   <tr>
-                    <td id="left">Time</td>
+                    <td id="lef">Time</td>
                   <td>{{ substr($event->event_time->toTimeString(), 0, 5) }}</td>
                   </tr>
                   <tr>
-                    <td id="left">Type</td>
+                    <td id="lef">Type</td>
                     <td>{{ $event->event_type }}</td>
                   </tr>
+
                 </tbody>
               </table>
             </div>

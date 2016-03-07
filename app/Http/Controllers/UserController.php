@@ -108,7 +108,7 @@ class UserController extends Controller
         $upcomingEvents = Event::upcoming($user)->get();
         
         // Past events
-        $pastEvents = Event::past($user)->get();
+        $pastEvents = $user->attending()->past();
 
         if($user->hasType('normal')) {
           // Tags
