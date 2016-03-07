@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public function attending()
     {  
-        return $this->belongsToMany('App\Event', 'attending', 'user_id', 'event_id');
+        return $this->belongsToMany('App\Event', 'attending', 'user_id', 'event_id')->withTimestamps();
     }
 
     public function subs()

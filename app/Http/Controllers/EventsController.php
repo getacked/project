@@ -14,7 +14,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EventRequest;
 use App\Http\Requests\EventEditRequest;
 use App\Http\Controllers\Controller;
-use DB;
+use File;
+use QrCode;
+use App\Mailers\AppMailer;
 
 
 class EventsController extends Controller
@@ -62,7 +64,7 @@ class EventsController extends Controller
   public function create(){
     //create a list of all most commonly used tags
     $tags = Tag::lists('name');
-    return view('events.create', compact('tags'));  
+    return view('events.create', compact('tags'));
   }
 
 
@@ -136,6 +138,10 @@ class EventsController extends Controller
       $event->photo()->associate( $photo );
       $event->save();
     }
+
+    // Create QR code.
+    $code = QrCode::format('png')->size(100)->generate(url('/events') . '/' . $event->id);
+    File::put('images/qrcodes/' . $event->id . '.png', $code); 
 
     // show all events
     return redirect()->action('EventsController@index');
@@ -217,10 +223,9 @@ class EventsController extends Controller
     return "wowo";
   }
 
-  public function attend(Request $request, Event $event)
+  public function attend(Request $request, Event $event, AppMailer $mailer)
   {
     \Stripe\Stripe::setApiKey( env("STRIPE_SK") );
-
 
     try {
       $token = $request->stripeToken;
@@ -240,15 +245,9 @@ class EventsController extends Controller
       $err  = $body['error'];
     }
 
-    // Get attending ID.
-    $id = $event->attendees()->pivot->id;
-
-    dd($id);
-
-    // Create QR code.
-    $code = QrCode::format('png')->size(100)->generate($event->id);
-    File::put('images/file.png', $code);    
-
+    // Send ticket email.
+    $mailer->sendTicket(Auth::user(), $event);
+    
     return Redirect::route('events.show', compact('event') );
   }
 

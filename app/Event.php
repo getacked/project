@@ -63,7 +63,7 @@ class Event extends Model
 
   public function attendees()
   {
-    return $this->belongsToMany('App\User', 'attending', 'event_id', 'user_id')->withPivot('id')->withPivot('num_tickets');
+    return $this->belongsToMany('App\User', 'attending', 'event_id', 'user_id')->withPivot('id', 'num_tickets');
   }
 
   public function tags(){
