@@ -12,22 +12,24 @@ use AlgoliaSearch\Laravel\AlgoliaEloquentTrait;
 class Event extends Model
 {
 
-  // use AlgoliaEloquentTrait;
+  use AlgoliaEloquentTrait;
 
-  // public $algoliaSettings = [
-  //     'attributesToIndex' => [
-  //         'event_type', 
-  //         'name',
-  //         'event_time', 
-  //         'description',
-  //         'ticket_price',
-  //         'ticket_left',
-  //     ],
-  //     'customRanking' => [
-  //         'desc(popularity)', 
-  //         'asc(price)',
-  //     ],
-  // ];
+  public $indices = ['dev_events'];
+
+
+  public $algoliaSettings = [
+      'attributesToIndex' => [
+          'event_type', 
+          'name',
+          'event_time', 
+          'description',
+          'ticket_price',
+          'ticket_left',
+          'place_name',
+      ]
+  ];
+
+  public static $autoIndex = true;
 
   protected $table = "events";
   /**
@@ -36,7 +38,7 @@ class Event extends Model
    * @var array
    */
   protected $fillable = [
-      'name', 'event_type', 'event_time', 'host_id', 'description', 'ticket_cap', 'ticket_left', 'venue_id', 'location_id', 'photo_id', 'gmaps_id', 'ticket_price'
+      'name', 'event_type', 'event_time', 'host_id', 'description', 'ticket_cap', 'ticket_left', 'venue_id', 'place_name', 'location_id', 'photo_id', 'gmaps_id', 'ticket_price'
   ];
 
   /**
@@ -53,7 +55,12 @@ class Event extends Model
    */
   protected $hidden = [ 'password', 'remember_token' ];
 
-
+  public function getAlgoliaRecord()
+  {
+    return array_merge($this->toArray(), [
+      'hostname' => $this->host->name
+    ]);
+  }
 
   /* Event Relations */
  
@@ -63,7 +70,7 @@ class Event extends Model
 
   public function attendees()
   {
-    return $this->belongsToMany('App\User', 'attending', 'event_id', 'user_id')->withPivot('id')->withPivot('num_tickets');
+    return $this->belongsToMany('App\User', 'attending', 'event_id', 'user_id')->withPivot('id', 'num_tickets');
   }
 
   public function tags(){

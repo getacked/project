@@ -12,44 +12,26 @@
     
       <div class="divider"></div>
 
-      <section class="row">
-        <div class="content" id="content">
-          
-          <article v-for="event in events">
-          
-            <div class="col s12 m6 l4">
-              <div class="card item">
-                <div class="card-image waves-effect waves-block waves-light">
-                  Some Image                  
-                </div>
-                
-                <div class="card-content">
-                
-                <span class="card-title activator grey-text text-darken-4"><span class="truncate">@{{{ event._highlightResult.name.value }}}</span><br><small>by @{{ event.host }}</small><i class="material-icons right">more_vert</i></span>
-                  <p><strong>@{{ event.event_time }}</strong></p>
-                  <p id="place-@{{ event.gmaps_id }}"></p>
-                </div>
-              
-                <div class="card-reveal">
-                  <span class="card-title grey-text text-darken-4">@{{ event.name}}: <br><small>by @{{ event.host }}</small><i class="material-icons right">close</i></span>
-
-                  <p class="card-address" id="@{{ event.gmaps_id }}"></p>
-                  <p>@{{ event.description }}</p>
-
-                  <br>
-                  <p><em>@{{ event.event_time }}</em></p>
-
-                  <small><a href="">See More</a></small>
-                </div>
+      <div class="content row" id="content">
+        
+      <!-- EVENT INFO  -->
+        <article class="item col s12 m6 l4" v-for="event in events">
+      
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">@{{{ event._highlightResult.name.value }}}</span>
+                <p>@{{{ event._highlightResult.image_path.value }}}</p>
+                <p>@{{{ event._highlightResult.alternative_name.value }}}</p>
+              </div>
+              <div class="card-action">
+                <a class="right" href="#">See More</a>
               </div>
             </div>
           
-          </article>
+        </article>
 
-        </div>
-      </section>
+      </div>
 
-      
     </div>
 
     <div class="col hide-on-small-only m3">
@@ -60,7 +42,7 @@
         <h5>SEARCH OPTIONS</h5>
         <!-- <form v-on:submit.prevent="search"> -->
           <input type="text" value="{{ $initialSearch }}" v-model="query" 
-                v-on:keyup.enter="search" id="searchBox" >
+                v-on:keyup.enter="search" minlength="3" debounce="500" id="searchBox" >
         <!-- </form> -->
         
       </div>
@@ -76,8 +58,8 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRAA5yBzOP9W3_GzYxYYlxEnmnjcEbkRM&signed_in=true&libraries=geometry,places&callback=getAddresses" async defer></script>
 
 <script src="http://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-<!-- <script src="http://cdn.jsdelivr.net/vue/1.0.17/vue.min.js"></script> -->
-<script src="/js/vue.js"></script>
+<script src="http://cdn.jsdelivr.net/vue/1.0.17/vue.min.js"></script>
+<!-- <script src="/js/vue.js"></script> -->
 
 <script>
   $(document).ready(function(){
@@ -95,7 +77,19 @@ new Vue({
 
   ready: function(){
     this.client = algoliasearch('DL6Q2SNWBH', '6ad40c1dee4b3dbe37af51a0c39b4d5a');
-    this.index = this.client.initIndex('events');
+    this.index = this.client.initIndex('dev_events');
+
+    $('#searchBox').typeahead({
+        hint: false,
+        minLength: 3,
+        highlight: true
+      }, 
+      {
+        source:  this.index.ttAdapter(),
+        displayKey: 'name'
+      }).on('typeahead:select', function(e, suggestion){
+        this.query = suggestion.name;
+      }.bind(this));
   },
 
   methods: {

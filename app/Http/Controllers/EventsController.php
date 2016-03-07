@@ -24,7 +24,8 @@ class EventsController extends Controller
     $this->middleware('auth',
       ['except' => [
         'index',
-        'show'
+        'show',
+        'search'
       ]]);
     $this->middleware('user.type:normal', 
                 ['only' => ['attend']]);
@@ -32,7 +33,8 @@ class EventsController extends Controller
       ['except' => [
         'show',
         'index',
-        'attend'
+        'attend',
+        'search'
       ]]);
   }
 
@@ -40,7 +42,6 @@ class EventsController extends Controller
   public function index()
   {
      $events = Event::orderBy('event_time')->upcoming()->get();
-
      $initialSearch = "";
      // return view('events.all', compact('events') );
      return view('events.all', compact(['initialSearch', 'events']) );
@@ -67,14 +68,14 @@ class EventsController extends Controller
 
 
   public function search(Request $request){
-    Event::setSettings();
-    
-    $initialSearch = $request->searchTerm;
-    $events = Event::orderBy('event_time')->upcoming()->get();
-
-
     // $client = new \AlgoliaSearch\Client("DL6Q2SNWBH", "d88cd24d64152b62f3eb02bfdc75eb6c");
 
+    // $events = Event::orderBy('event_time')->upcoming()->get()->toJson();
+    // dd($events);
+    // $myIndex = $client->initIndex("dev_events");
+    // $myIndex->addObject($events);
+    
+    $initialSearch = $request->searchTerm;
     return View::make('events.all', compact(['initialSearch', 'events']));
   }
 
@@ -220,7 +221,6 @@ class EventsController extends Controller
   public function attend(Request $request, Event $event)
   {
     \Stripe\Stripe::setApiKey( env("STRIPE_SK") );
-
 
     try {
       $token = $request->stripeToken;

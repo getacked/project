@@ -84,7 +84,7 @@ trait RegistersUsers
           $photoData = array('fileName' => $filename, 'mime' => $mime);
 
           $photo = Photo::create( $photoData );
-          $imageFile->move( public_path().'/images/', $filename . $mime );
+          $imageFile->move( public_path().'/images/uploads/', $filename . $mime );
 
           //associate the image with the user
           $user->photo_id = $photo->id;

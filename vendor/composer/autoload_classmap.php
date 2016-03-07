@@ -11,6 +11,7 @@ return array(
     'AddGMAPSid' => $baseDir . '/database/migrations/2016_02_18_143206_addGMAPSid.php',
     'AddMimeColumn' => $baseDir . '/database/migrations/2016_02_23_114338_addMimeColumn.php',
     'AddNumTicketsColumn' => $baseDir . '/database/migrations/2016_03_03_125835_addNumTicketsColumn.php',
+    'AddPlaceNameColumn' => $baseDir . '/database/migrations/2016_03_07_182303_addPlaceNameColumn.php',
     'AddTicketPriceColumn' => $baseDir . '/database/migrations/2016_02_22_125358_addTicketPriceColumn.php',
     'AlgoliaSearch\\AlgoliaException' => $vendorDir . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/AlgoliaException.php',
     'AlgoliaSearch\\Client' => $vendorDir . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/Client.php',
