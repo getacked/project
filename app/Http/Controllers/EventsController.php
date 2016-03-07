@@ -67,8 +67,13 @@ class EventsController extends Controller
 
 
   public function search(Request $request){
+    Event::setSettings();
+    
     $initialSearch = $request->searchTerm;
     $events = Event::orderBy('event_time')->upcoming()->get();
+
+
+    // $client = new \AlgoliaSearch\Client("DL6Q2SNWBH", "d88cd24d64152b62f3eb02bfdc75eb6c");
 
     return View::make('events.all', compact(['initialSearch', 'events']));
   }
@@ -216,6 +221,7 @@ class EventsController extends Controller
   {
     \Stripe\Stripe::setApiKey( env("STRIPE_SK") );
 
+
     try {
       $token = $request->stripeToken;
       $charge = \Stripe\Charge::create(array(
@@ -223,9 +229,10 @@ class EventsController extends Controller
         "currency" => "eur",
         "source" => $token,
         "description" => $event->name) );
-      $event->ticket_left--;
+      $numTickets = isset($request->num_tickets) ? $request->num_tickets : 1;
       $event->attendees()->attach( Auth::user(), 
-                    ['num_tickets' => $request->num_tickets ] );
+                    ['num_tickets' => $numTickets ] );
+      $event->ticket_left = $event->ticket_left - $numTickets;
       $event->save();
     } catch(Stripe_CardError $e) {
       // Since it's a decline, Stripe_CardError will be caught

@@ -6,9 +6,28 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use AlgoliaSearch\Laravel\AlgoliaEloquentTrait;
+
 
 class Event extends Model
 {
+
+  // use AlgoliaEloquentTrait;
+
+  // public $algoliaSettings = [
+  //     'attributesToIndex' => [
+  //         'event_type', 
+  //         'name',
+  //         'event_time', 
+  //         'description',
+  //         'ticket_price',
+  //         'ticket_left',
+  //     ],
+  //     'customRanking' => [
+  //         'desc(popularity)', 
+  //         'asc(price)',
+  //     ],
+  // ];
 
   protected $table = "events";
   /**

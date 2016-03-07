@@ -11,7 +11,7 @@
 			<li class="tab col s3"><a href="#dashboard" class="active">Dashboard</a></li>
 			<li class="tab col s3"><a href="#upcoming">Upcoming</a></li>
 			<li class="tab col s3"><a href="#past">Past Events</a></li>
-			<li class="tab col s3"><a href="#searchTab">Search</a></li>
+			<li class="tab col s3"><a href="#subscriptions">Subscriptions</a></li>
 		</ul>
 	</div>
  </div>
@@ -24,7 +24,7 @@
   
 	@include('users.dashboard.tabs.past')
 
-	@include('users.dashboard.tabs.search')
+	@include('users.dashboard.tabs.subscriptions')
 
 </div>
 @stop

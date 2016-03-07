@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Http\Requests\UserRequest;
 use App\User;
 use App\Tag;
+use View;
 use Carbon\Carbon;
 use App\Photo;
 use Storage;
@@ -42,10 +43,17 @@ class UserController extends Controller
     {
       $user = User::findOrFail($id);
       if( $user->isHost() ){
-        return view('users.show', compact('user') );   
+        return View::make('users.show', compact('user') );   
       }else{
         return Redirect::url('/');
       }
+    }
+
+
+    public function index(){
+      $hosts = User::host();
+
+      return View::make('users.index', compact('hosts'));
     }
 
     public function update(Request $request, AppMailer $mailer) {

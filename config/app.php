@@ -149,7 +149,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
-
+        AlgoliaSearch\Laravel\AlgoliaServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */

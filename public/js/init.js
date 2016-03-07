@@ -5,7 +5,8 @@ $(document).ready(function() {
   $('.parallax').parallax();
   $('.datepicker').pickadate({
     selectMonths: true,
-    selectYears: 4
+    selectYears: 4,
+    closeOnSelect: true
   });
   $('.item').matchHeight();
   // var rowGridOptions = { minMargin: 10, maxMargin: 35, itemSelector: ".item"};

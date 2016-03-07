@@ -64,7 +64,7 @@ class User extends Authenticatable
 
     // USER SCOPES 
 
-    public function scopeHost()
+    public function scopeHost($query)
     {
         return $query->where('user_type', '=', 'host');
     }

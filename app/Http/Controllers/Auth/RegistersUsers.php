@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Mailers\UserMailer;
+use App\Mailers\AppMailer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Input;
@@ -58,10 +58,8 @@ trait RegistersUsers
      */
     public function register(Request $request)
     {
-        // Get validator.
         $validator = $this->validator($request->all());
 
-        // Validate.
         if ($validator->fails()) {
             $this->throwValidationException(
                 $request, $validator

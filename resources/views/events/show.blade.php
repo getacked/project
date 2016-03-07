@@ -22,7 +22,7 @@
 
       <div class="divider"></div>
       <h4 class="center-align">{{$event->name}}</h4>
-      <h5 class="center-align">by <a href="{{ route('dashboard', $event->host) }}">{{ $event->host->username }}</a></h5>
+      <h5 class="center-align">by <a href="{{ route('user.show', $event->host) }}">{{ $event->host->username }}</a></h5>
           <div class="center-align">
             <em>{{ $event->event_time->diffForHumans() }}</em>
           <p class="center-align">Tickets left: {{ $event->ticket_left }} at {{ $event->ticket_price }}</p>

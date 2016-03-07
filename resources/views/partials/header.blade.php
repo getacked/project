@@ -31,12 +31,12 @@
       <a href="{{ route('landing') }}" class="brand-logo center hide-on-small-only">Eventure</a>
 
         <!--Left hand side nav-->
-        <ul id="nav-mobile" class="left hide-on-small-only    ">
+        <ul id="nav-mobile" class="left hide-on-small-only">
           <li class="nav-link">{{ link_to_route('browse', 'Browse') }}</li>
 
           <!--Search button box thing-->
           <li class="nav-link">
-            {{ Form::open(array('route' => 'events.search')) }}
+            {{ Form::open(array('route' => 'events.search', 'method' => 'POST')) }}
               <div class="input-field">
                 <input id="searchTerm" type="search" name="searchTerm" required>
                 <label for="search"><i class="material-icons">search</i></label>
