@@ -7,9 +7,9 @@
 
 @section('pre-nav')
     <!--Landing page full screen video box-->
-  <div class="homepage-hero-module">
-    <div class="video-container">
-      <div class="filter"></div>
+    <div class="homepage-hero-module">
+      <div class="video-container">
+        <div class="filter"></div>
 @endsection
 
 
@@ -49,7 +49,10 @@
     <img src="images/Cheer-Up.jpg">
   </div>
 
-</div>  
+
+  </div>   
+<!-- </div>   -->    <!-- FIXES STUFF FOR SOME REASON ? -->
+
 
 <!--  END VIDEO CONTAINER -->
 
@@ -59,7 +62,7 @@
     <h3 class="center-align">Some Upcoming Events</h3>
     <div class="divider"></div>
   
-    <div class="row">
+    <div class="row row-grid">
     
       @foreach($events as $event)
       
@@ -120,14 +123,44 @@
 
 <!-- VIDEO SCRIPT - covverr.com -->
 @section('scripts')
+
+
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRAA5yBzOP9W3_GzYxYYlxEnmnjcEbkRM&signed_in=true&libraries=geometry,places&callback=getAddresses" async defer></script>
+
+
+<script>
+
+function getAddresses(){
+ var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 51.8962, lng: -8.7200},
+    zoom: 12
+  });
+
+  var service = new google.maps.places.PlacesService(map);
+
+//get placeIds of suggested events
+  var placeIds = {!! $events->lists('gmaps_id')->toJSON() !!};
+
+  for( i = 0; i < placeIds.length; i++ ){
+    fillAddressDetails(service, placeIds[i]);
+  }
+
+  function fillAddressDetails(service, id){
+    service.getDetails({
+       placeId: id
+     }, function(place, status) {
+       if (status === google.maps.places.PlacesServiceStatus.OK) {
+          $("#".concat(id)).html('<b>' + place.name + '</b><br><i>' + place.formatted_address + '</i>');
+       }
+     });
+  }    
+}
+
+</script>
+
 <script>
 $( document ).ready(function() {
-    $(".dropdown-button").dropdown();
-    $('.slider').slider({full_width: true});
-    $('.parallax').parallax();
-    
-    //For fixed action buttons.
-    $('.fixed-action-btn').openFAB();
                     
     //Javascript for video background
     scaleVideoContainer();
@@ -188,40 +221,5 @@ function scaleBannerVideoSize(element){
   });
 }
 </script>
-
-
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRAA5yBzOP9W3_GzYxYYlxEnmnjcEbkRM&signed_in=true&libraries=geometry,places&callback=getAddresses" async defer></script>
-
-
-<script>
-
-function getAddresses(){
- var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 51.8962, lng: -8.7200},
-    zoom: 12
-  });
-
-  var service = new google.maps.places.PlacesService(map);
-
-//get placeIds of suggested events
-  var placeIds = {!! $events->lists('gmaps_id')->toJSON() !!};
-
-  for( i = 0; i < placeIds.length; i++ ){
-    fillAddressDetails(service, placeIds[i]);
-  }
-
-  function fillAddressDetails(service, id){
-    service.getDetails({
-       placeId: id
-     }, function(place, status) {
-       if (status === google.maps.places.PlacesServiceStatus.OK) {
-          $("#".concat(id)).html('<b>' + place.name + '</b><br><i>' + place.formatted_address + '</i>');
-       }
-     });
-  }    
-}
-
-</script>
-
 
 @endsection

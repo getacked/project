@@ -3,9 +3,10 @@
 
     @if( Auth::check() )
       <ul id="user-dropdown" class="dropdown-content">
-          <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-          <li><a href="{{ route('events.create') }}">Create Event</a></li>
-          <li><a href="{{ route('landing') }}">Home</a></li>
+          <li><a href="{{ route('dashboard', Auth::user()->id) }}">Dashboard</a></li>
+          @if( Auth::user()->isHost() )
+            <li><a href="{{ route('events.create') }}">Create Event</a></li>
+          @endif
           <li><a href="{{ route('browse') }}">Browse Events</a></li>
           <li class="divider"></li>
           <li><a href="{{ url('/logout') }}">Logout</a></li>
@@ -35,13 +36,14 @@
 
           <!--Search button box thing-->
           <li class="nav-link">
-            <form>   <!-- NEEDS TO DO SOMETHING -->
+            {{ Form::open(array('route' => 'events.search')) }}
               <div class="input-field">
-                <input id="search" type="search" required>
+                <input id="searchTerm" type="search" name="searchTerm" required>
                 <label for="search"><i class="material-icons">search</i></label>
                 <i class="material-icons">close</i>
-              </div>
-            </form>
+              </div><!-- 
+              {{ Form::submit('search', ['class' =>'hidden']) }} -->
+            {{ Form::close() }}
           </li>
         </ul>
 

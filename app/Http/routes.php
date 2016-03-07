@@ -20,6 +20,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('faq', 'PagesController@faq')->name('faq');
     Route::get('about', 'PagesController@about')->name('about');
 
+
     //Authentication
     Route::auth();
     
@@ -54,6 +55,7 @@ Route::group(['middleware' => ['web']], function () {
             'index' => 'browse'
         ]]);
     Route::post('events/{event}/attend', 'EventsController@attend')->name('events.attend');
+    Route::post('/search', 'EventsController@search')->name('events.search');
     
     //Tags
     Route::resource('tags', 'TagsController', [

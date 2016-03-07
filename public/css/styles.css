@@ -65,6 +65,12 @@ footer a
 }
 */
 
+.form-errors
+{
+  background-color: gray;
+  padding: 1.2em;
+}
+
 .gmaps-container
 {
   width: 75%;

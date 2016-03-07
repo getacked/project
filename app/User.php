@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'subscriptions', 'subscribee_id', 'subscriber_id');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
+
     public function photo()
     {
         return $this->belongsTo('App\Photo');
@@ -49,6 +54,10 @@ class User extends Authenticatable
 
     public function hasType($type) {
         return $this->type == $type;
+    }
+
+    public function isHost(){
+        return $this->type == 'host';
     }
 
 
@@ -59,6 +68,8 @@ class User extends Authenticatable
     {
         return $query->where('user_type', '=', 'host');
     }
+
+
 
     // EMAIL VERIFICATION
 

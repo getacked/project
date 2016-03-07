@@ -38,6 +38,16 @@ class UserController extends Controller
         return view('users.follows');
     }
 
+    public function show($id)
+    {
+      $user = User::findOrFail($id);
+      if( $user->isHost() ){
+        return view('users.show', compact('user') );   
+      }else{
+        return Redirect::url('/');
+      }
+    }
+
     public function update(Request $request, AppMailer $mailer) {
  
         $user = Auth::user();
@@ -100,11 +110,11 @@ class UserController extends Controller
         $upcomingEvents = Event::upcoming($user)->get();
         
         // Past events
-        $pastEvents = Event::past($user)->get();
+        $pastEvents = $user->attending()->past();
 
         if($user->hasType('normal')) {
           // Tags
-          $tags = Tag::whereIn('id', DB::table('tag_user')->where('user_id', $user->id)->lists('tag_id') )->get();
+          $tags = $user->tags;
 
           // Suggested events
           $suggestedEvents = Event::suggested()->limit(4)->get();

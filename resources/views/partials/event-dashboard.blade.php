@@ -16,8 +16,8 @@
 		<div class="card-content">
 		
 		<span class="card-title activator grey-text text-darken-4">{{ $event->name }}<br><small>by {{ $event->host->username }}</small><i class="material-icons right">more_vert</i></span>
-			<p><b>{{ $event->event_time->diffForHumans() }}</b></p>
-			<p>{{ $event->event_time->toDayDateTimeString() }}</p>
+			<p><strong>{{ $event->event_time->diffForHumans() }}</strong></p>
+			<p id="place-{{ $event->gmaps_id }}"></p>
 		</div>
 	
 		<div class="card-reveal">
@@ -25,6 +25,9 @@
 
 			<p class="card-address" id="{{ $event->gmaps_id }}"></p>
 			<p>{{ $event->description }}</p>
+
+			<br>
+			<p><em>{{ $event->event_time->toDayDateTimeString() }}</em></p>
 
 			<small><a href="{{ route('events.show', $event) }}">See More</a></small>
 		</div>

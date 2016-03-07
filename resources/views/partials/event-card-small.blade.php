@@ -1,4 +1,4 @@
-<div class="col s6 m4">
+<div class="col s12 m4">
   <div class="card item hoverable">
     <div class="card-image waves-effect waves-block waves-light">
       
@@ -7,9 +7,9 @@
              $photo = $event->photo;
              $path = $photo->fileName . $photo->mime;
          ?>
-          <img alt="{{ $event->name }} image" class="activator responsive-img center-block"  src="/images/uploads/{!! $path !!}" />
+          <img alt="{{ $event->name }} image" class="activator responsive-img center-block"  src="/images/uploads/{!! $path !!}" width="320" height="250" />
       @else 
-          <img alt="{{ $event->name }} image" class="activator responsive-img center-block" src="http://lorempixel.com/850/480" />
+          <img alt="{{ $event->name }} image" class="activator responsive-img center-block" src="http://lorempixel.com/850/480"  width="320" height="250"/>
       @endif
     </div>
     
