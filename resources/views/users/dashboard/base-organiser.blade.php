@@ -18,7 +18,7 @@
 
   <?php 
 
-    $hostEvents = Auth::user()->events();
+    $hostEvents = Auth::user()->events()->upcoming();
 
   ?>
 
@@ -26,7 +26,7 @@
   
 	@include('users.dashboard.tabs.past')
 
-</div>
+  </div>
 @stop
 
 @section('scripts')

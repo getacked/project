@@ -9,7 +9,7 @@
          ?>
           <img alt="{{ $event->name }} image" class="activator responsive-img center-block"  src="/images/uploads/{!! $path !!}" width="320" height="250" />
       @else 
-          <img alt="{{ $event->name }} image" class="activator responsive-img center-block" src="http://lorempixel.com/850/480"  width="320" height="250"/>
+          <img alt="{{ $event->name }} image" class="activator responsive-img center-block" src="/images/default-event.png"  width="320" height="250"/>
       @endif
     </div>
     
@@ -18,6 +18,7 @@
     <span class="card-title activator truncate">{{ $event->name }}<i class="material-icons right">more_vert</i></span>
       <p><b>{{ $event->event_time->diffForHumans() }}</b></p>
       <p>{{ $event->event_time->toDayDateTimeString() }}</p>
+      <p>{{ $event->place_name }}</p>
     </div>
   
     <div class="card-reveal">

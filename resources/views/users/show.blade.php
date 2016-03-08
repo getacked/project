@@ -30,8 +30,6 @@
         <h2 class="center-align">{{ $user->username }}</h2>
         <p> {{ nl2br(e($user->description)) }} </p>
 
-        {{ dd($user) }}
-
         @if($user === Auth::user() )
         <a href='{{ route('user.edit', $user) }}'>
           <p class='chip'>Edit event <i class='material-icons'>mode_edit</i></p>

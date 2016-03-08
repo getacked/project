@@ -44,9 +44,8 @@ class EventsController extends Controller
   public function index()
   {
      $events = Event::orderBy('event_time')->upcoming()->get();
-     $initialSearch = "";
-     // return view('events.all', compact('events') );
-     return view('events.all', compact(['initialSearch', 'events']) );
+
+     return view('events.all', compact('events') );
   }
 
   public function show(Event $event, $id)
@@ -79,7 +78,7 @@ class EventsController extends Controller
     
     $initialSearch = $request->searchTerm;
     $fromSearchbar = true;
-    return View::make('events.all', compact(['initialSearch', 'fromSearchbar']));
+    return View::make('events.search', compact(['initialSearch', 'fromSearchbar']));
   }
 
 
@@ -87,7 +86,7 @@ class EventsController extends Controller
   {
     $user = Auth::user();
 //extract attributes from input
-    $attributes = $request->only('name', 'event_type', 'description', 'ticket_cap', 'gmaps_id', 'ticket_price');
+    $attributes = $request->only('name', 'place_name', 'event_type', 'description', 'ticket_cap', 'gmaps_id', 'ticket_price');
     $attributes['ticket_left'] = $request['ticket_cap'];
     $attributes['host_id'] = $user->id;
 

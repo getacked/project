@@ -44,7 +44,7 @@ class UserController extends Controller
       if( $user->isHost() ){
         return View::make('users.show', compact('user') );   
       }else{
-        return Redirect::url('/');
+        return Redirect::route('landing');
       }
     }
 
@@ -105,7 +105,7 @@ class UserController extends Controller
         $user->save();
         session()->flash('message', $message);
 
-        return redirect(route('edit-account'));
+        return Redirect::route('user.dashboard');
     }
 
     public function dashboard()

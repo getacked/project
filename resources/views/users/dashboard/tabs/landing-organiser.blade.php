@@ -1,9 +1,4 @@
 <div id="dashboard" class="col s12">
-	<div class="fixed-action-btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click here to Edit profile data" style="top: 300px; right: 5%;">
-			<a class="btn-floating btn-large red" href="{{ route('edit-account') }}">
-				<i class="large material-icons">mode_edit</i>
-			</a>
-	</div>
 
 	<div id="imageContainerorg">
 		<div class="valign-wrapper">
@@ -15,6 +10,12 @@
 			<div class="col s4"><p class="right-align white-text">{{ $user->email }}</p></div>
 			<div class="col s4 divider"></div>
 			<div class="col s4"><p class="left-align white-text">{{ $user->tel_no }}</p></div>
+		</div>
+
+		<div class="center">
+			<a class="btn-large red" href="{{ route('edit-account') }}">Edit Account Info
+				<i class="small material-icons">mode_edit</i>
+			</a>
 		</div>
 	</div>
 
