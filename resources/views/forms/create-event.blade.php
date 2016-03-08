@@ -32,6 +32,8 @@
 
     <div class="gmaps-container">
       <input type="hidden" name="gmaps_id" id="gmaps"/>
+
+      <input type="hidden" name="place_name" id="place_name"/>
       <input type="text" class="controls" id="pac-input" />
       <div id="map"></div>
       <img class="right" src="/images/powered_by_google_on_white.png" />

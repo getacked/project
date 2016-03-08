@@ -35,7 +35,7 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/';
 
-    protected $redirectAfterLogout = '/logedout';
+    protected $redirectAfterLogout = '/goodbye';
 
     protected $mailer;
 
@@ -133,6 +133,12 @@ class AuthController extends Controller
     }
 
     public function postLogout() {
-        return View::make('auth.logedout');
+        $name = Auth::user()->first_name;
+        return View::make('auth.logout', $name);
+    }
+
+    public function goodbye(){
+        // $name = Auth::user()->first_name;
+        return View::make('auth.logout');
     }
 }

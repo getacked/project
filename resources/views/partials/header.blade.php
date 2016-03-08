@@ -6,6 +6,7 @@
           <li><a href="{{ route('dashboard', Auth::user()->id) }}">Dashboard</a></li>
           @if( Auth::user()->isHost() )
             <li><a href="{{ route('events.create') }}">Create Event</a></li>
+            <li><a href="{{ route('user.show', Auth::user()->id) }}">My Profile</a></li>
           @endif
           <li><a href="{{ route('browse') }}">Browse Events</a></li>
           <li class="divider"></li>
@@ -53,7 +54,7 @@
          @if( Auth::check() )
            <li>
             <a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="user-dropdown">
-              <img src="http://lorempixel.com/800/800/" alt="" class="account-pic circle responsive-img" />
+              <img src="/images/default-user.png" alt="" class="account-pic circle responsive-img" />
               {{ Auth::user()->username }}
                 <i class="material-icons right">arrow_drop_down</i>
             </a>

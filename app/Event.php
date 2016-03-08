@@ -12,24 +12,24 @@ use AlgoliaSearch\Laravel\AlgoliaEloquentTrait;
 class Event extends Model
 {
 
-  use AlgoliaEloquentTrait;
+  // use AlgoliaEloquentTrait;
 
-  public $indices = ['dev_events'];
+  // public $indices = ['dev_events'];
 
 
-  public $algoliaSettings = [
-      'attributesToIndex' => [
-          'event_type', 
-          'name',
-          'event_time', 
-          'description',
-          'ticket_price',
-          'ticket_left',
-          'place_name',
-      ]
-  ];
+  // public $algoliaSettings = [
+  //     'attributesToIndex' => [
+  //         'event_type', 
+  //         'name',
+  //         'event_time', 
+  //         'description',
+  //         'ticket_price',
+  //         'ticket_left',
+  //         'place_name',
+  //     ]
+  // ];
 
-  public static $autoIndex = true;
+  // public static $autoIndex = true;
 
   protected $table = "events";
   /**

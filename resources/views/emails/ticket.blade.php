@@ -5,12 +5,12 @@
 
 	<tr width="100%">
 		<td colspan="1" width="25%" align="center" ><b>Event:</b></td>
-		<td colspan="3" width="75%" align="center">Bassline Presents Tchami at Fermoy{{ $event->name }}</td>
+		<td colspan="3" width="75%" align="center">{{ $event->name }}</td>
 	</tr>
 	
 	<tr>
 		<td width="25%" align="center"><b>Time/Date:</b></td>
-		<td width="25%" align="center">22:00 , 09/03/16{{ $event->event_time }}</td>
+		<td width="25%" align="center">{{ $event->event_time->toDayDateTimeString() }}</td>
 		
 		<td width="25%" align="center"><b>Location:</b></td>
 		<td width="25%" align="center">Fermoy SG1<!-- $event->place_name --></td>
@@ -18,7 +18,8 @@
 	
 	<tr>
 		<td colspan="1" align="center"><b>Order Info:</b></td>
-		<td colspan="3" align="center">Order no:243534<!-- Ticket->id -->. Ordered by {{ $user->first_name }} , {{ $user->last_name }} on {{ $user->attending()->has('id', '=', $event->id)->pivot->created_at }}</td>	
+		<td colspan="3" align="center">Order no: {{ DB::table('attending')->where('event_id' , $event->id)->where('user_id', Auth::user()->id)->first()->id }}. 
+			Ordered by {{ $user->first_name }} , {{ $user->last_name }} on {{ DB::table('attending')->where('event_id' , $event->id)->where('user_id', Auth::user()->id)->first()->created_at }}</td>	
 	</tr>	
 	
 	<tr>
@@ -26,9 +27,9 @@
 		<td colspan="3" align="center">{{ $event->ticket_price }}</td>	
 	</tr>
 
-	<tr>
-		<td colspan="1" align="center"><b>Ticket price:</b></td>
-		<td colspan="3" align="center">{{ $event->ticket_price }}</td>	
+	<tr>`
+		<td colspan="1" align="center"><b>Ticket Number:</b></td>
+		<td colspan="3" align="center">{{ $i }} of {{ $num_tickets }}</td>	
 	</tr>
 	
 	<tr>

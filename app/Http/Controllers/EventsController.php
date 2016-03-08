@@ -78,7 +78,8 @@ class EventsController extends Controller
     // $myIndex->addObject($events);
     
     $initialSearch = $request->searchTerm;
-    return View::make('events.all', compact(['initialSearch', 'events']));
+    $fromSearchbar = true;
+    return View::make('events.all', compact(['initialSearch', 'fromSearchbar']));
   }
 
 
@@ -141,11 +142,12 @@ class EventsController extends Controller
     }
 
     // Create QR code.
-    $code = QrCode::format('png')->size(100)->generate(url('/events') . '/' . $event->id);
-    File::put('images/qrcodes/' . $event->id . '.png', $code); 
+    $code = QrCode::format('png')->size(350)->generate(url('/events') . '/' . $event->id);
+    $qrPath = public_path(). '/images/qrcodes/' . $event->id . '.png';
+    File::put($qrPath, $code); 
 
     // show all events
-    return redirect()->action('EventsController@index');
+    return Redirect::route('events.show', $event);
   }
 
 

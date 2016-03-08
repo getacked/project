@@ -121,8 +121,8 @@ function initMap() {
     marker.setPosition(place.geometry.location);
     marker.setVisible(true);
     $("#gmaps").attr("value", place.place_id);
+    $('#place_name').attr('value', place.place_name);
 
-    // $("#gmaps").attr("yellow");
 
     var address = '';
     if (place.address_components) {

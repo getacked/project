@@ -2,6 +2,7 @@
 
 namespace App\Mailers;
 
+use DB;
 use App\User;
 use Illuminate\Mail\Mailer;
 use Illuminate\Http\Request;
@@ -58,7 +59,8 @@ class AppMailer {
 		$this->to = $user->email;
 		$this->view = 'emails.ticket-email';
 		$this->subject = 'Your tickets.';
-		$this->data = compact('user', 'event');
+		$num_tickets = DB::table('attending')->where('event_id' , $event->id)->where('user_id', $user->id)->first()->num_tickets;
+		$this->data = compact('user', 'event', 'num_tickets');
 
 		$this->deliver();
 	}

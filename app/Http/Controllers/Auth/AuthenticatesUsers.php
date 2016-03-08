@@ -175,8 +175,10 @@ trait AuthenticatesUsers
      */
     public function logout()
     {
+        $username = Auth::user()->first_name;
         Auth::guard($this->getGuard())->logout();
 
+        session()->flash('message', $username);
         return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
     }
 

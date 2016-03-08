@@ -24,7 +24,7 @@ class UserController extends Controller
     public function __construct() {
         $this->middleware('auth',
           ['except' => [
-            'index'
+            'show'
           ]]);
 
         $this->middleware('user.type:normal', 
@@ -39,9 +39,8 @@ class UserController extends Controller
         return view('users.follows');
     }
 
-    public function show($id)
+    public function show(User $user)
     {
-      $user = User::findOrFail($id);
       if( $user->isHost() ){
         return View::make('users.show', compact('user') );   
       }else{
@@ -96,7 +95,7 @@ class UserController extends Controller
           $photoData = array('fileName' => $filename, 'mime' => $mime);
 
           $photo = Photo::create( $photoData );
-          $imageFile->move( public_path().'/images/', $filename . $mime );
+          $imageFile->move( public_path().'/images/uploads/', $filename . $mime );
 
           //associate the image with the user
           $user->photo_id = $photo->id;

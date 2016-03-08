@@ -19,14 +19,6 @@
     {{ Form::label('username', 'Username') }}
   </div>
 
-  <div class="row" id="host_form" style="display: none">
-    <div class="input-field">
-      <i class="material-icons prefix black-text">description</i>      
-      {{ Form::textarea('description', null, array('placeholder' => "Give a description of the kind of events you'll be doing", 'class' => 'materialize-textarea')) }}
-      {{ Form::label('description')}}
-    </div>
-  </div>
-
 
   <div class="row">
     <div class="input-field col s6">
@@ -72,18 +64,26 @@
      </div>
   </div>
 
-  <div>
-    <h5>Upload a photo for your profile? </h5>
-    <div class="file-field input-field">
-      <div class="btn">
-        <span>Photo</span>
-        <input type="file" name="image">
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
+  <div class="row" id="host_form" style="display: none">
+    <div class="input-field">
+      <i class="material-icons prefix black-text">description</i>      
+      {{ Form::textarea('description', null, array('placeholder' => "Give a description of the kind of events you'll be doing", 'class' => 'materialize-textarea')) }}
+      {{ Form::label('description')}}
+    </div>
+    <div>
+      <h5>Upload a photo for your profile? </h5>
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Photo</span>
+          <input type="file" name="image">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
       </div>
     </div>
   </div>
+
 
   <div class="center">
     {{ Form::submit('Create your account!', ['class' => 'btn-large']) }}

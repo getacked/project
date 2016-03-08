@@ -31,11 +31,12 @@
 		<h4 class="center-align">Here are your upcoming events:</h4>
 
 		<div class="row">
-			@forelse($upcomingEvents as $event)
+			@forelse($user->events()->upcoming() as $event)
 				@include('partials.event-dashboard')
 			@empty
 				<p class="center-align">
-					You have not yet organised an event.
+					You have not yet organised an event. <br>
+					<a href="{{ route('events.create') }}">Start now?</a>
 				</p>
 			@endforelse
 		</div>

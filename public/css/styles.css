@@ -1,3 +1,18 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans+Narrow);
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+
+h1, h2, h3, h4, h5
+{
+  font-family: 'PT Sans Narrow', sans-serif;  
+}
+
+.user-splash
+{
+  padding: 3em 1.2em;
+  margin-bottom: 2.5em;
+}
+
 body {
     display: flex;
     min-height: 100vh;
@@ -14,6 +29,13 @@ main {
 
 #selection_box_search_page{
     margin-left: .75rem !important;
+}
+
+
+#slider
+{
+  width: 35%;
+  margin: auto !important;
 }
 
 header, footer, nav
@@ -64,6 +86,24 @@ footer a
   box-shadow: none !important;
 }
 */
+#logoutimage
+{
+    background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.0),
+      rgba(0, 0, 0, 0.0)
+    ),
+    url(http://img14.deviantart.net/1759/i/2013/141/9/1/bright_orange_sunset_stock_1_by_leeorr_stock-d663ha3.jpg);
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    height:100vh;
+    width:100vw;
+}
+
+.hidden
+{
+  display: none;
+}
 
 .form-errors
 {

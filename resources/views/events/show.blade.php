@@ -16,7 +16,7 @@
            ?>
             <img alt="{{ $event->name }} image" class="responsive-img center-block"  src="/images/uploads/{!! $path !!}" />
         @else 
-            <img alt="{{ $event->name }} image" class="responsive-img center-block" src="http://lorempixel.com/1000/480" />
+            <img alt="{{ $event->name }} image" class="responsive-img center-block" src="/images/default-event.png" />
         @endif
       </figure>
 
@@ -25,14 +25,18 @@
       <h5 class="center-align">by <a href="{{ route('user.show', $event->host) }}">{{ $event->host->username }}</a></h5>
           <div class="center-align">
             <em>{{ $event->event_time->diffForHumans() }}</em>
-          <p class="center-align">Tickets left: {{ $event->ticket_left }} at {{ $event->ticket_price }}</p>
+          <p class="center-align">Tickets left: {{ $event->ticket_left }} at &euro;{{ $event->ticket_price }} each</p>
             <?php
               if( $event->host == Auth::user() ){
                 echo "<a href='" . route('events.edit', $event)."'>";
                 echo "<p class='chip'>Edit event <i class='material-icons'>mode_edit</i></p></a>";
               }else{
                 if( !$event->attendees->contains(Auth::user()) && Auth::check() && $event->ticket_left > 0){
+                  $tickets_left = $event->ticket_left;
+                  $max_tickets = $tickets_left < 10 ? $tickets_left : 10;
                   echo Form::open(array('route' => array('events.attend', $event), 'method' => 'POST', 'id' => 'attend'));
+                    echo "<p class='range-field' id='slider'><input type='range' id='num_tickets_slider' name='num_tickets' min='1' max='". $max_tickets ."' /></p>";
+                    echo'<span class="hidden" id="slidernumber">50</span>';
                     echo "<button value='submit' type='submit' class='btn-large' id='attendButton'>Attend!</button>"; 
                     echo '<input type="hidden" name="stripeToken" id="token"/>';
                     echo '<input type="hidden" name="stripeEmail" id="email"/>';
@@ -54,7 +58,7 @@
                 <tbody>
                   <tr>
                     <td>Description</td>
-                    <td>{{ $event->description }}</td>
+                    <td>{{ nl2br(e($event->description)) }}</td>
                   </tr>
                   <tr>
                     <td id="lef">Date</td>
@@ -146,7 +150,7 @@
                     <div class="col s4 m3 l2">
                       <p class="center-align">
                         <a href="{{ route('tags.show', $tag) }}">
-                          {{$tag->name}}
+                          {{ $tag->name }}
                         </a>
                       </p>
                     </div>
@@ -171,6 +175,13 @@
 
 
 <script>
+  $(document).ready(function(){
+    $("[type=range]").change(function(){
+      var newval=$(this).val();
+      $("#slidernumber").text(newval);
+    });
+  });
+
   var form = $('#attend');
   var handler = StripeCheckout.configure({
     key: '{{ env("STRIPE_PK") }}',
@@ -184,13 +195,16 @@
     }
   });
 
+ 
+
   $('#attendButton').on('click', function(e) {
     // Open Checkout with further options
+     var num_tickets = $('#slidernumber').html();
     handler.open({
       name: "Purchase Tickets",
-      description: '{{ $event->name }}',
+      description: '' + num_tickets + ' tickets for {{ $event->name }}',
       currency: "eur",
-      amount: {{ $event->ticket_price * 100 }}
+      amount: {{ $event->ticket_price * 100 }} * num_tickets
     });
     e.preventDefault();
   });

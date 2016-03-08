@@ -32,10 +32,12 @@ Route::group(['middleware' => ['web']], function () {
     // Password Reset
     Route::get('password/reset', 'Auth\PasswordController@getResetForm')->name('reset-password');
 
+    Route::get('goodbye', 'Auth\AuthController@goodbye');
+
     //Users
     Route::resource('user', 'UserController', [
         'only' => [
-            'index', 'show'
+            'show'
         ]]);
     
     Route::get('dashboard', 'UserController@dashboard')->name('dashboard');

@@ -24,7 +24,7 @@
                 <p>@{{{ event._highlightResult.alternative_name.value }}}</p>
               </div>
               <div class="card-action">
-                <a class="right" href="#">See More</a>
+                <a class="right" href="/events/@{{ event.id }}">See More</a>
               </div>
             </div>
           
@@ -39,10 +39,13 @@
         <br>
         <br>
 
-        <h5>SEARCH OPTIONS</h5>
+        <h5>SEARCH FOR EVENTS</h5>
         <!-- <form v-on:submit.prevent="search"> -->
           <input type="text" value="{{ $initialSearch }}" v-model="query" 
                 v-on:keyup.enter="search" minlength="3" debounce="500" id="searchBox" >
+          <div class="range-field">
+            <input type="range" v-model="price" id="price" min="0" max="300" />
+          </div>
         <!-- </form> -->
         
       </div>
@@ -73,7 +76,7 @@ Vue.config.debug = true;
 new Vue({
   el: '#events',
 
-  data: { events: [], query: ''},
+  data: { events: [], query: '', price: '', },
 
   ready: function(){
     this.client = algoliasearch('DL6Q2SNWBH', '6ad40c1dee4b3dbe37af51a0c39b4d5a');
@@ -94,7 +97,9 @@ new Vue({
 
   methods: {
     search: function(){
-      this.index.search( this.query, function(err, content) {
+      this.index.search( this.query, {
+        // numericFilters: 'ticket_price>' . this.price
+      }, function(err, content) {
        console.log(err, content)
        this.events = content.hits;
       }.bind(this));

@@ -30,9 +30,10 @@ Order Confirmation.
 	</td>
 </tr>
 
-@for($i = 0; $i < $user->attending()->has('id', '=', $event->id)->pivot->num_tickets; $i++)
+@for($i = 1; $i <= $num_tickets; $i++)
 	<tr>
 		<td bgcolor="#85BB65" style="padding: 40px 30px 40px 30px;">
+			<?php $ticket_no = $i; ?>
 			@include('emails.ticket')
 		</td>
 	</tr>
