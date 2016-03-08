@@ -9,7 +9,7 @@
          ?>
           <img alt="{{ $event->name }} image" class="activator responsive-img center-block"  src="/images/uploads/{!! $path !!}" />
       @else 
-          <img alt="{{ $event->name }} image" class="activator responsive-img center-block" src="http://lorempixel.com/850/480" />
+          <img alt="{{ $event->name }} image" class="activator responsive-img center-block" src="/images/default-event.png" />
       @endif
     </div>
     

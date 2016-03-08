@@ -8,7 +8,7 @@
 @section('content')
 <div class="container row" id="events">
     <div class="col s12 m9">
-      <h4 class="center-align">Look At This Shit</h4>
+      <h4 class="center-align">Search Events</h4>
     
       <div class="divider"></div>
 

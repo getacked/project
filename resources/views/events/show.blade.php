@@ -149,9 +149,9 @@
                   @foreach( $event->tags as $tag )
                     <div class="col s4 m3 l2">
                       <p class="center-align">
-                        <a href="{{ route('tags.show', $tag) }}">
+                        
                           {{ $tag->name }}
-                        </a>
+                       
                       </p>
                     </div>
                   @endforeach

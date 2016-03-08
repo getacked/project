@@ -105,7 +105,7 @@ class UserController extends Controller
         $user->save();
         session()->flash('message', $message);
 
-        return Redirect::route('user.dashboard');
+        return Redirect::route('dashboard');
     }
 
     public function dashboard()

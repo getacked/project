@@ -6,7 +6,7 @@
 		<section>
 			<div class="row">
 				<!-- Upcoming Events -->
-				@forelse($upcomingEvents as $event)
+				@forelse(Auth::user()->attending()->upcoming()->get() as $event)
 					@include('partials.event-dashboard')
 				@empty
 					<p class="center-align">
@@ -17,4 +17,7 @@
 			</div>
 	    </section>
 	</div>
+<iframe width="420" height="315" src="https://www.youtube.com/embed/kUQTVdqgJOc" frameborder="0" allowfullscreen></iframe>
 	</div>
+
+
