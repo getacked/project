@@ -61,6 +61,7 @@ Route::group(['middleware' => ['web']], function () {
         ]]);
     Route::post('events/{event}/attend', 'EventsController@attend')->name('events.attend');
     Route::post('/search', 'EventsController@search')->name('events.search');
+    Route::get('/search', 'EventsController@searchPage')->name('events.searchPage');
     
     //Tags
     Route::resource('tags', 'TagsController', [

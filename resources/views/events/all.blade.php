@@ -28,7 +28,7 @@
         <br>
 
         <h4>Wanna get specific?</h4>
-        <a href="{{ route('events.search') }}">Search</a>
+        <a href="{{ route('events.searchPage') }}">Search</a>
         
       </div>
     </div>

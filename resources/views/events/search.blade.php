@@ -43,9 +43,9 @@
         <!-- <form v-on:submit.prevent="search"> -->
           <input type="text" value="{{ $initialSearch }}" v-model="query" 
                 v-on:keyup.enter="search" minlength="3" debounce="500" id="searchBox" >
-          <div class="range-field">
+         <!--  <div class="range-field">
             <input type="range" v-model="price" id="price" min="0" max="300" />
-          </div>
+          </div> -->
         <!-- </form> -->
         
       </div>

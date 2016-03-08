@@ -27,7 +27,8 @@ class EventsController extends Controller
       ['except' => [
         'index',
         'show',
-        'search'
+        'search',
+        'searchPage'
       ]]);
     $this->middleware('user.type:normal', 
                 ['only' => ['attend']]);
@@ -36,7 +37,8 @@ class EventsController extends Controller
         'show',
         'index',
         'attend',
-        'search'
+        'search',
+        'searchPage'
       ]]);
   }
 
@@ -81,6 +83,11 @@ class EventsController extends Controller
     return View::make('events.search', compact(['initialSearch', 'fromSearchbar']));
   }
 
+  public function searchPage(){
+    $initialSearch = '';
+    $fromSearchbar = false;
+    return View::make('events.search', compact(['initialSearch', 'fromSearchbar']));
+  }
 
   public function store(EventRequest $request)
   {
