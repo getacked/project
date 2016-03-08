@@ -7,8 +7,8 @@
 
 @section('content')
 <div class="container row" id="events">
-    <div class="col s12 m9">
-      <h4 class="center-align">Look At This Shit</h4>
+    <div class="col s12 m9 l8">
+      <h4 class="center-align">All Upcoming Events</h4>
     
       <div class="divider"></div>
 
@@ -22,13 +22,13 @@
 
     </div>
 
-    <div class="col hide-on-small-only m3">
+    <div class="col hide-on-small-only offset-m1 offset-l2 m2">
       <div class="tabs-wrapper pinned search">
         <br>
         <br>
 
         <h4>Wanna get specific?</h4>
-        <a href="{{ route('events.search') }}">Search for something spec
+        <a href="{{ route('events.search') }}">Search</a>
         
       </div>
     </div>

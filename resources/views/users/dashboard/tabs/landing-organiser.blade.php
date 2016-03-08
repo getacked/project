@@ -32,7 +32,7 @@
 		<h4 class="center-align">Here are your upcoming events:</h4>
 
 		<div class="row">
-			@forelse($user->events()->upcoming() as $event)
+			@forelse($user->events()->upcoming()->get() as $event)
 				@include('partials.event-dashboard')
 			@empty
 				<p class="center-align">

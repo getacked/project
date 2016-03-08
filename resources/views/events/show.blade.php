@@ -35,7 +35,7 @@
                   $tickets_left = $event->ticket_left;
                   $max_tickets = $tickets_left < 10 ? $tickets_left : 10;
                   echo Form::open(array('route' => array('events.attend', $event), 'method' => 'POST', 'id' => 'attend'));
-                    echo "<p class='range-field' id='slider'><input type='range' id='num_tickets_slider' name='num_tickets' min='1' max='". $max_tickets ."' /></p>";
+                    echo "<p class='range-field' id='slider'><input type='range' value='1' id='num_tickets_slider' name='num_tickets' min='1' max='". $max_tickets ."' /></p>";
                     echo'<span class="hidden" id="slidernumber">50</span>';
                     echo "<button value='submit' type='submit' class='btn-large' id='attendButton'>Attend!</button>"; 
                     echo '<input type="hidden" name="stripeToken" id="token"/>';
